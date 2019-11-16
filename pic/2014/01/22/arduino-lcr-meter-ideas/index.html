@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Arduino LCR meter &#8211; ideas | PIC Tutorials</title>
+<link rel="profile" href="../../../../../xfn/11.html" />
+<link rel="stylesheet" type="text/css" media="all" href="../../../../wp-content/themes/twentyeleven/style.css" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Arduino LCR meter &#8211; ideas Comments Feed" href="feed/index.html" />
+<link rel='stylesheet' id='collapseomatic-css-css'  href='../../../../wp-content/plugins/jquery-collapse-o-matic/light_style00e2.css?ver=1.5.7' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jqueryc1d8.js?ver=1.11.3'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Arduino Capacitance Meter Resolution' href='../../21/arduino-cap-meter-res/index.html' />
+<link rel='next' title='Experiments with the Arduino Capacitance Meter' href='../experiments-with-uno-cap-meter/index.html' />
+<link rel='canonical' href='index.html' />
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="single single-post postid-262 single-format-standard single-author singular two-column right-sidebar">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+			<hgroup>
+				<h1 id="site-title"><span><a href="../../../../index.html" rel="home">PIC Tutorials</a></span></h1>
+				<h2 id="site-description">Electronics and Programming Simplified</h2>
+			</hgroup>
+
+						<a href="../../../../index.html">
+									<img src="../../../../wp-content/uploads/sites/2/2013/07/cropped-header1.png" width="1000" height="288" alt="" />
+							</a>
+			
+			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Main menu</h3>
+								<div class="skip-link"><a class="assistive-text" href="#content">Skip to primary content</a></div>
+												<div class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-349" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-349"><a href="../../../../../ham/index.html">Amateur Radio</a></li>
+<li id="menu-item-351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a href="../../../../about/index.html">About</a></li>
+</ul></div>			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<div id="primary">
+			<div id="content" role="main">
+
+				
+					<nav id="nav-single">
+						<h3 class="assistive-text">Post navigation</h3>
+						<span class="nav-previous"><a href="../../21/arduino-cap-meter-res/index.html" rel="prev"><span class="meta-nav">&larr;</span> Previous</a></span>
+						<span class="nav-next"><a href="../experiments-with-uno-cap-meter/index.html" rel="next">Next <span class="meta-nav">&rarr;</span></a></span>
+					</nav><!-- #nav-single -->
+
+					
+<article id="post-262" class="post-262 post type-post status-publish format-standard hentry category-general">
+	<header class="entry-header">
+		<h1 class="entry-title">Arduino LCR meter &#8211; ideas</h1>
+
+				<div class="entry-meta">
+			<span class="sep">Posted on </span><a href="index.html" title="9:46 am" rel="bookmark"><time class="entry-date" datetime="2014-01-22T09:46:06+00:00">January 22, 2014</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>Further to the <a title="Arduino Capacitance Meter" href="../../21/cap-meter-with-arduino-uno/index.html">Arduino Capacitance Meter</a>, if your feeling adventurous, or want to make a complete LCR meter I have a few more ideas&#8230;</p>
+<h2><span id="more-262"></span></h2>
+<h2>Resistance Measurement</h2>
+<p>A similar circuit to the capacitance circuit could be used to measure resistance. Instead of a capacitor, use a resistor. Then the resistor under test and R1 form a potential divider. Like this:</p>
+<p><img class="alignnone size-medium wp-image-265" style="color: #333333; font-style: normal;" alt="SimpleResistanceTester" src="../../../../wp-content/uploads/sites/2/2014/01/SimpleResistanceTester-260x300.png" width="260" height="300" /></p>
+<p>This time though, rather than applying a pulse, A0 should be pulled low to discharge any stray capacitance, and then changed to an input to read the voltage on R1. This should not be done immediately however, since any stray capacitance will delay the rising voltage. Assuming a capacitance of 50pF and a potential RT of 1000 M ohms, this time could be in the order of 250 ms. The code would look something like:</p>
+<pre>const int IN_PIN = A0;
+const float R1 = 10.0;  //in M ohms
+
+const int MAX_ADC_VALUE = 1023;
+
+void setup()
+{
+  pinMode(IN_PIN, OUTPUT);
+  //digitalWrite(IN_PIN, LOW);
+
+  Serial.begin(115200);
+}
+
+void loop()
+{
+  while (1)
+  {
+    pinMode(IN_PIN, INPUT);
+    delay(250);
+    int val = analogRead(IN_PIN);
+
+    //Clear everything for next measurement
+    pinMode(IN_PIN, OUTPUT);
+
+    //Calculate and print result
+
+    float resistance = R1 * (float)(MAX_ADC_VALUE - val) / (float)val;
+
+    Serial.print(F("Resistance Value = "));
+    Serial.print(resistance, 3);
+    Serial.print(F(" M ohms ("));
+    Serial.print(val);
+    Serial.println(F(") "));
+
+    while (millis() % 500 != 0)
+      ;    
+  }
+}</pre>
+<p>This seems to work quite well from about 470KΩ to over 100MΩ. Above this the circuit seems to pick up a lot of stray noise and give increasingly inaccurate results. Care should also be taken not to let RT be too low as this may short the A0 pin to 5V while we try to discharge any stray capacitance. Unlike the <a title="Arduino Capacitance Meter" href="../../21/cap-meter-with-arduino-uno/index.html">capacitance meter</a>, we are doing this for a relatively long time (250ms).</p>
+<h2>Inductance Measurement</h2>
+<p>Theoretically it should also be possible to measure inductance. A 10cm length of straight wire has an inductance of about 0.1uH. That would seem a good minimum amount of inductance to try and measure. The best that I can come up with is the following circuit:</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2014/01/SimpleInductanceTester.png"><img class="alignnone size-full wp-image-323" alt="SimpleInductanceTester" src="../../../../wp-content/uploads/sites/2/2014/01/SimpleInductanceTester.png" width="274" height="256" /></a></p>
+<p>I have simulated this, and I think it should be able to measure inductances from about 1uH to 10mH with a resolution of about 5%. Since the 5V pulse is only 2us long we can probably don&#8217;t need R1 &#8211; in which case we only need one external component &#8211; D1.</p>
+<h2>Larger Capacitance Measurement</h2>
+<p>The code in the <a title="Arduino Capacitance Meter" href="../../21/cap-meter-with-arduino-uno/index.html">capacitance meter</a> already has provision for measuring larger capacitors (which should be added from A0 to GND. A good value for the next range up would be 22nF. This will allow capacitors between about 1nF and 1uF to be measured. Because the 22nF capacitor needs longer to charge up, a delay of about 30us should be included before reading the ADC on A0. I have tried this and it does seem to work quite well.</p>
+<p>It should also be possible to measure the next range &#8211; 1uF to 1000uF using a 22uF capacitor for C1. The delay to discharge C1 would now need to be about 30ms. When you measure capacitors of this size you need to make sure they are discharged first, otherwise you may damage the Arduino!</p>
+<p><span style="color: #000000; font-weight: bold;">LCR Meter and Auto-ranging</span></p>
+<p>If you want to get really fancy, you could combine all the ideas above. Changing range and mode could be achieved by connecting the extra R1 and C1 capacitors (and any inductors) to different I/O pins. Then you would enable features by changing the relevant I/O pin from an input (i.e. high impedance) to an output. The software should be able to take different measurements and work out the correct type and range.</p>
+<p>Or you could just buy one&#8230; 😉</p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+		This entry was posted in <a href="../../../../category/general/index.html" rel="category tag">General</a> by <a href="../../../../author/jon/index.html">jon</a>. Bookmark the <a href="index.html" title="Permalink to Arduino LCR meter &#8211; ideas" rel="bookmark">permalink</a>.		
+			</footer><!-- .entry-meta -->
+</article><!-- #post-262 -->
+
+						<div id="comments">
+	
+	
+			<h2 id="comments-title">
+			3 thoughts on &ldquo;<span>Arduino LCR meter &#8211; ideas</span>&rdquo;		</h2>
+
+		
+		<ol class="commentlist">
+				<li class="comment even thread-even depth-1" id="li-comment-297">
+		<article id="comment-297" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-large.png?s=68&amp;d=mm&amp;r=g' srcset='http://0.gravatar.com/avatar/f0824cbc68346566c2f671beb3624401?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn">robotheaed</span> on <a href="index.html#comment-297"><time datetime="2014-01-27T22:53:03+00:00">January 27, 2014 at 10:53 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi,<br />
+I have a concern regarding your idea for an L meter above. While both capacitance and resistance allow for the use of a voltage divider when using DC steady state, for inductances, DC steady state will only measure the resistance of the inductor. This is because inductance only manifests itself when the current is changing. Also a current divider instead of a voltage divider would be needed and currents measured.<br />
+thank you!</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-jon bypostauthor odd alt depth-2" id="li-comment-298">
+		<article id="comment-298" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-small.png?s=39&amp;d=mm&amp;r=g' srcset='http://1.gravatar.com/avatar/dc462521dac0765c59cc0734e6aea62e?s=78&amp;d=mm&amp;r=g 2x' class='avatar avatar-39 photo' height='39' width='39' /><span class="fn">jon</span> on <a href="index.html#comment-298"><time datetime="2014-01-28T10:14:06+00:00">January 28, 2014 at 10:14 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>You are absolutely right. I have been very vague about the inductance measurement, because I am not sure of a good way to do it. I have now included my best attempt, which involves using a diode, which I am not entirely happy about &#8211; but I think it should work, albeit with some non-linearity.</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment even depth-3" id="li-comment-299">
+		<article id="comment-299" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-small.png?s=39&amp;d=mm&amp;r=g' srcset='http://0.gravatar.com/avatar/f0824cbc68346566c2f671beb3624401?s=78&amp;d=mm&amp;r=g 2x' class='avatar avatar-39 photo' height='39' width='39' /><span class="fn">robothead</span> on <a href="index.html#comment-299"><time datetime="2014-01-28T17:05:49+00:00">January 28, 2014 at 5:05 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>maybe something to try would be to generate an A/C signal of known frequency and measure voltage drops on the L &#8211; R voltage divider, then the inductance L would be R*V(on L)/2pi*f*V(on R), where f is the frequency, and Voltages measured over L and R.</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		</ol>
+
+		
+		
+	
+
+			
+</div><!-- #comments -->
+
+				
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+
+	</div><!-- #main -->
+
+	<footer id="colophon" role="contentinfo">
+
+			
+
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type='text/javascript'>
+var colomatduration = 'fast';
+var colomatslideEffect = 'slideFade';
+</script><script type='text/javascript' src='../../../../wp-includes/js/comment-reply.min5b31.js?ver=4.3.1'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jquery-collapse-o-matic/js/collapse00e2.js?ver=1.5.7'></script>
+
+</body>
+</html>

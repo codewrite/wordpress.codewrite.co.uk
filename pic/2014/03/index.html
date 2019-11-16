@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>March | 2014 | PIC Tutorials</title>
+<link rel="profile" href="../../../xfn/11.html" />
+<link rel="stylesheet" type="text/css" media="all" href="../../wp-content/themes/twentyeleven/style.css" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Feed" href="../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Comments Feed" href="../../comments/feed/index.html" />
+<link rel='stylesheet' id='collapseomatic-css-css'  href='../../wp-content/plugins/jquery-collapse-o-matic/light_style00e2.css?ver=1.5.7' type='text/css' media='all' />
+<script type='text/javascript' src='../../wp-includes/js/jquery/jqueryc1d8.js?ver=1.11.3'></script>
+<script type='text/javascript' src='../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../wp-includes/wlwmanifest.xml" /> 
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="archive date single-author two-column right-sidebar">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+			<hgroup>
+				<h1 id="site-title"><span><a href="../../index.html" rel="home">PIC Tutorials</a></span></h1>
+				<h2 id="site-description">Electronics and Programming Simplified</h2>
+			</hgroup>
+
+						<a href="../../index.html">
+									<img src="../../wp-content/uploads/sites/2/2013/07/cropped-header1.png" width="1000" height="288" alt="" />
+							</a>
+			
+			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Main menu</h3>
+								<div class="skip-link"><a class="assistive-text" href="#content">Skip to primary content</a></div>
+									<div class="skip-link"><a class="assistive-text" href="#secondary">Skip to secondary content</a></div>
+												<div class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-349" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-349"><a href="../../../ham/index.html">Amateur Radio</a></li>
+<li id="menu-item-351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a href="../../about/index.html">About</a></li>
+</ul></div>			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<section id="primary">
+			<div id="content" role="main">
+
+			
+				<header class="page-header">
+					<h1 class="page-title">
+													Monthly Archives: <span>March 2014</span>											</h1>
+				</header>
+
+				
+								
+					
+	<article id="post-337" class="post-337 post type-post status-publish format-standard hentry category-uncategorized">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="14/next-project/index.html" rel="bookmark">Next Project</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="14/next-project/index.html" title="10:09 am" rel="bookmark"><time class="entry-date" datetime="2014-03-14T10:09:05+00:00">March 14, 2014</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="14/next-project/index.html#respond"><span class="leave-reply">Reply</span></a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>I was impressed by the simplicity of this article:</p>
+<p><a title="TDOA (Time Difference of Arrival) Directional Antenna" href="http://hackaday.com/2014/03/04/tdoa-time-difference-of-arrival-directional-antenna/">TDOA (Time Difference of Arrival) Directional Antenna</a></p>
+<p>which shows how to make a simple, but effective, directional antenna. At some point I am going to try this out.</p>
+<p>I also thought this video:</p>
+<p><a title="Use a scope to measure the length and impedance of coax - " href="http://www.youtube.com/watch?v=Il_eju4D_TM">Use a scope to measure the length and impedance of coax</a></p>
+<p>does a good job of explaining how to measure reflections (and therefore lengths and termination impedances) of cables such as coax.</p>
+<p>I reckon it should be possible to automate this process using a couple of comparators and an Arduino (or PIC). What I&#8217;m thinking is that one comparator would detect the first edge, and the second comparator would detect the second edge (the comparator reference voltages being iteratively set by the Arduino). The comparators would be configured to generate a pulse with a length equal to the difference in time between the two edges. This pulse duration could be measured by charging up a small capacitor, and then reading it&#8217;s voltage using an ADC.</p>
+<p><a href="../../wp-content/uploads/sites/2/2014/03/PulseMeasureOnScope.jpg"><img class="alignnone size-medium wp-image-339" alt="PulseMeasureOnScope" src="../../wp-content/uploads/sites/2/2014/03/PulseMeasureOnScope-300x220.jpg" width="300" height="220" /></a></p>
+<p>The comparators that come in AVR and PIC chips aren&#8217;t fast enough, but I&#8217;ve had a look on Farnell, and you can get comparators with speeds better than 1ns for less than £2.50 (US $4). Since we&#8217;re interested in the difference between two pulses, we might actually get a differential speed much faster than 1ns, which means that possibly we could measure to a resolution of 1 inches (assuming a resolution of 250ps).</p>
+<p>The other project I may work on is making a standalone capacitance meter. At the moment I use an Arduino and LCD shield, but I think it could be done with a PIC12F1840.</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/uncategorized/index.html" rel="category tag">Uncategorized</a>			</span>
+															
+|			
+					</footer><!-- .entry-meta -->
+	</article><!-- #post-337 -->
+
+				
+					
+	<article id="post-328" class="post-328 post type-post status-publish format-standard hentry category-wireless-dev">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="13/improved-arduino-wireless-board/index.html" rel="bookmark">Improved Arduino Wireless Board</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="13/improved-arduino-wireless-board/index.html" title="11:02 am" rel="bookmark"><time class="entry-date" datetime="2014-03-13T11:02:33+00:00">March 13, 2014</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="13/improved-arduino-wireless-board/index.html#comments">1</a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>The <a title="Chipkit uC32 Wireless Development Board" href="../../2013/12/11/nrf24l01hw/index.html">wireless Chipkit uC32 board</a> was very cumbersome, so I have made a few changes to it. Like the <a title="Standalone Wireless Board using the nRF24L01" href="../01/13/nrf24l01-test-board-pcb/index.html">standalone board</a>, I decided to have three switches and three LEDs. I made two boards and they look like this:</p>
+<p><a href="../../wp-content/uploads/sites/2/2014/03/wireless_uc32_board1.jpg"><img class="alignnone size-medium wp-image-330" alt="wireless_uc32_board1" src="../../wp-content/uploads/sites/2/2014/03/wireless_uc32_board1-300x168.jpg" width="300" height="168" /></a></p>
+<p>They plug into the Chipkit uC32 like this:</p>
+<p><a href="../../wp-content/uploads/sites/2/2014/03/wireless_uc32_board2.jpg"><img class="alignnone size-medium wp-image-331" alt="wireless_uc32_board2" src="../../wp-content/uploads/sites/2/2014/03/wireless_uc32_board2-300x168.jpg" width="300" height="168" /></a></p>
+<p> <a href="13/improved-arduino-wireless-board/index.html#more-328" class="more-link">Continue reading <span class="meta-nav">&rarr;</span></a></p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/wireless-dev/index.html" rel="category tag">Wireless Development</a>			</span>
+															
+| </span>
+						<span class="comments-link"><a href="13/improved-arduino-wireless-board/index.html#comments"><b>1</b> Reply</a></span>
+			
+					</footer><!-- .entry-meta -->
+	</article><!-- #post-328 -->
+
+				
+				
+			
+			</div><!-- #content -->
+		</section><!-- #primary -->
+
+		<div id="secondary" class="widget-area" role="complementary">
+			<aside id="search-2" class="widget widget_search"></aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="14/next-project/index.html">Next Project</a>
+						</li>
+					<li>
+				<a href="13/improved-arduino-wireless-board/index.html">Improved Arduino Wireless Board</a>
+						</li>
+					<li>
+				<a href="../01/27/cap-meter-temp-stability/index.html">Capacitance Meter Temperature Sensitivity</a>
+						</li>
+					<li>
+				<a href="../01/25/capacitance-meter-mk-ii/index.html">Capacitance Meter Mk II</a>
+						</li>
+					<li>
+				<a href="../01/22/experiments-with-uno-cap-meter/index.html">Experiments with the Arduino Capacitance Meter</a>
+						</li>
+				</ul>
+		</aside><aside id="text-3" class="widget widget_text">			<div class="textwidget"><script async src="../../../pagead/js/f.txt"></script>
+<!-- d4def396-a457-4882-90f7-74ec2980bba3 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6883435305856536"
+     data-ad-slot="3063473247"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+		</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">Eric</span> on <a href="../01/25/capacitance-meter-mk-ii/index.html#comment-1102">Capacitance Meter Mk II</a></li><li class="recentcomments"><span class="comment-author-link">Ravi Shankar</span> on <a href="../../2013/12/11/nrf24l01sw/index.html#comment-1071">Wireless Communication using the nRF24L01 Module</a></li><li class="recentcomments"><span class="comment-author-link">Ehsan</span> on <a href="../01/21/cap-meter-with-arduino-uno/index.html#comment-990">Capacitance measurement with the Arduino Uno</a></li><li class="recentcomments"><span class="comment-author-link">Ehsan</span> on <a href="../01/21/cap-meter-with-arduino-uno/index.html#comment-987">Capacitance measurement with the Arduino Uno</a></li><li class="recentcomments"><span class="comment-author-link">Andreas</span> on <a href="../01/25/capacitance-meter-mk-ii/index.html#comment-929">Capacitance Meter Mk II</a></li></ul></aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+	<li><a href='index.html'>March 2014</a></li>
+	<li><a href='../01/index.html'>January 2014</a></li>
+	<li><a href='../../2013/12/index.html'>December 2013</a></li>
+	<li><a href='../../2013/07/index.html'>July 2013</a></li>
+		</ul>
+</aside><aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+	<li class="cat-item cat-item-3"><a href="../../category/general/index.html" title="High level overviews - mainly.">General</a>
+</li>
+	<li class="cat-item cat-item-2"><a href="../../category/usingmplabx/index.html" title="Everything you need to get you started with the MicroChip MPLABX and a PIC.">Getting Started With MPLABX</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="../../category/pic-usb-solutions/index.html" >PIC USB Solutions</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="../../category/uncategorized/index.html" >Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="../../category/wireless-dev/index.html" title="Wireless development and solutions">Wireless Development</a>
+</li>
+		</ul>
+</aside></div><!-- #secondary .widget-area -->
+
+	</div><!-- #main -->
+
+	<footer id="colophon" role="contentinfo">
+
+			
+
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type='text/javascript'>
+var colomatduration = 'fast';
+var colomatslideEffect = 'slideFade';
+</script><script type='text/javascript' src='../../wp-content/plugins/jquery-collapse-o-matic/js/collapse00e2.js?ver=1.5.7'></script>
+
+</body>
+</html>

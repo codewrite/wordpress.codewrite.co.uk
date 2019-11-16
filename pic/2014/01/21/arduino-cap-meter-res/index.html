@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Arduino Capacitance Meter Resolution | PIC Tutorials</title>
+<link rel="profile" href="../../../../../xfn/11.html" />
+<link rel="stylesheet" type="text/css" media="all" href="../../../../wp-content/themes/twentyeleven/style.css" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Arduino Capacitance Meter Resolution Comments Feed" href="feed/index.html" />
+<link rel='stylesheet' id='collapseomatic-css-css'  href='../../../../wp-content/plugins/jquery-collapse-o-matic/light_style00e2.css?ver=1.5.7' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jqueryc1d8.js?ver=1.11.3'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Capacitance measurement with the Arduino Uno' href='../cap-meter-with-arduino-uno/index.html' />
+<link rel='next' title='Arduino LCR meter &#8211; ideas' href='../../22/arduino-lcr-meter-ideas/index.html' />
+<link rel='canonical' href='index.html' />
+<link rel='shortlink' href='../../../../indexc807.html?p=250' />
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="single single-post postid-250 single-format-standard single-author singular two-column right-sidebar">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+			<hgroup>
+				<h1 id="site-title"><span><a href="../../../../index.html" rel="home">PIC Tutorials</a></span></h1>
+				<h2 id="site-description">Electronics and Programming Simplified</h2>
+			</hgroup>
+
+						<a href="../../../../index.html">
+									<img src="../../../../wp-content/uploads/sites/2/2013/07/cropped-header1.png" width="1000" height="288" alt="" />
+							</a>
+			
+			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Main menu</h3>
+								<div class="skip-link"><a class="assistive-text" href="#content">Skip to primary content</a></div>
+												<div class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-349" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-349"><a href="../../../../../ham/index.html">Amateur Radio</a></li>
+<li id="menu-item-351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a href="../../../../about/index.html">About</a></li>
+</ul></div>			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<div id="primary">
+			<div id="content" role="main">
+
+				
+					<nav id="nav-single">
+						<h3 class="assistive-text">Post navigation</h3>
+						<span class="nav-previous"><a href="../cap-meter-with-arduino-uno/index.html" rel="prev"><span class="meta-nav">&larr;</span> Previous</a></span>
+						<span class="nav-next"><a href="../../22/arduino-lcr-meter-ideas/index.html" rel="next">Next <span class="meta-nav">&rarr;</span></a></span>
+					</nav><!-- #nav-single -->
+
+					
+<article id="post-250" class="post-250 post type-post status-publish format-standard hentry category-general">
+	<header class="entry-header">
+		<h1 class="entry-title">Arduino Capacitance Meter Resolution</h1>
+
+				<div class="entry-meta">
+			<span class="sep">Posted on </span><a href="index.html" title="7:21 pm" rel="bookmark"><time class="entry-date" datetime="2014-01-21T19:21:03+00:00">January 21, 2014</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>I worked out the theoretical resolution of the <a title="Arduino Uno Capacitance Meter" href="../cap-meter-with-arduino-uno/index.html">Arduino Uno capacitance meter</a> using a spreadsheet. Resolution is the ability to distinguish between nearby values; It is not the same as accuracy. In a way, accuracy can be viewed as an absolute error, whereas resolution is relative error.</p>
+<p><span id="more-250"></span></p>
+<p>I started with a 10% resolution:</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2014/01/CapTestRes_all.png"><img class="alignnone size-medium wp-image-253" alt="CapTestRes_all" src="../../../../wp-content/uploads/sites/2/2014/01/CapTestRes_all-300x157.png" width="300" height="157" /></a></p>
+<p>I then looked at 5%:</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2014/01/CapTestRes_5percent.png"><img class="alignnone size-medium wp-image-252" alt="CapTestRes_5percent" src="../../../../wp-content/uploads/sites/2/2014/01/CapTestRes_5percent-300x149.png" width="300" height="149" /></a></p>
+<p>Then 1%:</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2014/01/CapTestRes_1percent.png"><img class="alignnone size-medium wp-image-255" alt="CapTestRes_1percent" src="../../../../wp-content/uploads/sites/2/2014/01/CapTestRes_1percent-300x127.png" width="300" height="127" /></a></p>
+<p>And finally the 0.5% level of resolution:</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2014/01/CapTestRes_0p5percent.png"><img class="alignnone size-medium wp-image-254" alt="CapTestRes_0p5percent" src="../../../../wp-content/uploads/sites/2/2014/01/CapTestRes_0p5percent-300x150.png" width="300" height="150" /></a></p>
+<p>Unsurprisingly, the best resolution is at about 25pF. This is because C1 is 24.48pF. So when CT = C1 the error will be at its minimum. I think 5% is a reasonable level, so would suggest using this for capacitors between  0.5pF and 1.3nF (1300pF). Larger capacitors could be measured by adding additional capacitance to C1, but care should be taken because larger capacitors would take longer to reach a steady state condition, and delays in the code may become necessary.</p>
+<p>The resolution drops off pretty rapidly below 0.5pF, so this is worth looking at in more detail:</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2014/01/CapTestRes_0p5pF.png"><img class="alignnone size-medium wp-image-256" alt="CapTestRes_0p5pF" src="../../../../wp-content/uploads/sites/2/2014/01/CapTestRes_0p5pF-300x154.png" width="300" height="154" /></a></p>
+<p>This clearly shows that you could get useful measurements down to about 0.1fF (0.1pF), but in tests I found that the stray capacitance between A0 and A2 was being displayed at about 100fF. You can improve the low end resolution by using pins that are further apart &#8211; e.g. using A0 and A4 rather than A0 and A2. This reduces the stray capacitance between the pins.</p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+		This entry was posted in <a href="../../../../category/general/index.html" rel="category tag">General</a> by <a href="../../../../author/jon/index.html">jon</a>. Bookmark the <a href="index.html" title="Permalink to Arduino Capacitance Meter Resolution" rel="bookmark">permalink</a>.		
+			</footer><!-- .entry-meta -->
+</article><!-- #post-250 -->
+
+						<div id="comments">
+	
+	
+	
+
+			
+</div><!-- #comments -->
+
+				
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+
+	</div><!-- #main -->
+
+	<footer id="colophon" role="contentinfo">
+
+			
+
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type='text/javascript'>
+var colomatduration = 'fast';
+var colomatslideEffect = 'slideFade';
+</script><script type='text/javascript' src='../../../../wp-includes/js/comment-reply.min5b31.js?ver=4.3.1'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jquery-collapse-o-matic/js/collapse00e2.js?ver=1.5.7'></script>
+
+</body>
+</html>

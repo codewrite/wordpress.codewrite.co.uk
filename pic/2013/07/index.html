@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>July | 2013 | PIC Tutorials</title>
+<link rel="profile" href="../../../xfn/11.html" />
+<link rel="stylesheet" type="text/css" media="all" href="../../wp-content/themes/twentyeleven/style.css" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Feed" href="../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Comments Feed" href="../../comments/feed/index.html" />
+<link rel='stylesheet' id='collapseomatic-css-css'  href='../../wp-content/plugins/jquery-collapse-o-matic/light_style00e2.css?ver=1.5.7' type='text/css' media='all' />
+<script type='text/javascript' src='../../wp-includes/js/jquery/jqueryc1d8.js?ver=1.11.3'></script>
+<script type='text/javascript' src='../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../wp-includes/wlwmanifest.xml" /> 
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="archive date single-author two-column right-sidebar">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+			<hgroup>
+				<h1 id="site-title"><span><a href="../../index.html" rel="home">PIC Tutorials</a></span></h1>
+				<h2 id="site-description">Electronics and Programming Simplified</h2>
+			</hgroup>
+
+						<a href="../../index.html">
+									<img src="../../wp-content/uploads/sites/2/2013/07/cropped-header1.png" width="1000" height="288" alt="" />
+							</a>
+			
+			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Main menu</h3>
+								<div class="skip-link"><a class="assistive-text" href="#content">Skip to primary content</a></div>
+									<div class="skip-link"><a class="assistive-text" href="#secondary">Skip to secondary content</a></div>
+												<div class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-349" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-349"><a href="../../../ham/index.html">Amateur Radio</a></li>
+<li id="menu-item-351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a href="../../about/index.html">About</a></li>
+</ul></div>			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<section id="primary">
+			<div id="content" role="main">
+
+			
+				<header class="page-header">
+					<h1 class="page-title">
+													Monthly Archives: <span>July 2013</span>											</h1>
+				</header>
+
+				
+								
+					
+	<article id="post-80" class="post-80 post type-post status-publish format-standard hentry category-pic-usb-solutions">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="26/usb-interface-using-pic16f1455-2/index.html" rel="bookmark">USB interface using PIC16F1455</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="26/usb-interface-using-pic16f1455-2/index.html" title="4:32 pm" rel="bookmark"><time class="entry-date" datetime="2013-07-26T16:32:24+00:00">July 26, 2013</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="26/usb-interface-using-pic16f1455-2/index.html#comments">1</a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>This time I am going to make a simple circuit using the PIC16F1455 and a mini USB connection. This will allow us to connect the PIC up to a PC (or any USB host) and communicate using a suitable device driver. I am going to use the serial class, so the PIC will appear as a serial port. This is a very cheap way to make a USB interface &#8211; I reckon all the parts (retail) would cost about £1.50 (~US $2).</p>
+<p><a href="../../wp-content/uploads/sites/2/2013/07/16F1455_and_USB.jpg"><img class="alignnone size-medium wp-image-60" alt="16F1455_and_USB" src="../../wp-content/uploads/sites/2/2013/07/16F1455_and_USB-300x168.jpg" width="300" height="168" /></a></p>
+<p>The schematic of this is:</p>
+<p><a href="../../wp-content/uploads/sites/2/2013/07/PIC16F1455Pgm.png"><img class="alignnone size-medium wp-image-61" alt="PIC16F1455Pgm" src="../../wp-content/uploads/sites/2/2013/07/PIC16F1455Pgm-300x226.png" width="300" height="226" /></a></p>
+<p>In order to communicate via the PICs USB interface we need to get some code from Microchip. The code we need is the <a title="Microchip Libraries for Applications" href="http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&amp;nodeId=2680&amp;dDocName=en547784">Microchip Libraries for Applications</a>. I am using Windows 7, so I downloaded the Windows installer version. My advice is to install it to the default location, which for me was C:/microchip_solutions_v2013-02-15. If you like, you can try some of their examples, but they are all targeted at their development boards, so you will either need one of those, or you will need to modify the code a bit.</p>
+<p>I am going to create a new project, and then add USB support to it. This is the same as before &#8211; create a standalone project, based on the 16F1455 using the PICkit3 and XC8. I have given it the rather unimaginative name USB_Blink3.</p>
+<p>We need to add some include directories. We do this by right clicking the project and selecting properties. In the left hand window left click XC8 Compiler. In the right hand window click the &#8220;&#8230;&#8221; button on inlude directories. Add the follwing directories:</p>
+<pre>.
+
+C:/microchip_solutions_v2013-02-15/Microchip/Include
+
+C:/microchip_solutions_v2013-02-15/Microchip/Include/USB</pre>
+<p>The dot directory &#8220;.&#8221; will ensure that the microchip source files can find our local files.</p>
+<p>We now need to add some files from the Microchip&#8217;s USB library. I have put these in a New Logical Folder called USB, located in the Source Files folder. The folder is created by right clicking on <em>Source Files</em>, and selecting <em>New Logical Folder</em>. This will create a folder which we then have to rename by right clicking it and selecting <em>Rename</em>.</p>
+<p>The files that we need are located in:</p>
+<pre>C:/microchip_solutions_v2013-02-15/Microchip/USB/usb_device.c and
+
+C:/microchip_solutions_v2013-02-15/Microchip/USB/CDC Device Driver/usb_function_cdc.c</pre>
+<p>We now need to create two new header files. These are <em>HardwareProfile.h</em> and <em>usb_config.h</em>. They should contain the following:</p>
+<pre>/*
+ * File: HardwareProfile.h
+ */
+
+#ifndef HARDWAREPROFILE_H
+#define HARDWAREPROFILE_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define DEMO_BOARD USER_DEFINED_BOARD
+#define USE_INTERNAL_OSC
+#define tris_self_power TRISAbits.TRISA2 // Input
+#define self_power 0
+
+#define tris_usb_bus_sense TRISAbits.TRISA1 // Input
+#define USB_BUS_SENSE 1
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* HARDWAREPROFILE_H */</pre>
+<p>and</p>
+<pre>/*
+ * File: usb_config.h
+ */
+
+#ifndef USB_CONFIG_H
+#define USB_CONFIG_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define USB_EP0_BUFF_SIZE 8 // Valid Options: 8, 16, 32, or 64 bytes.
+#define USB_MAX_NUM_INT 1 // For tracking Alternate Setting
+
+//Device descriptor - if these two definitions are not defined then
+// a ROM USB_DEVICE_DESCRIPTOR variable by the exact name of device_dsc
+// must exist.
+#define USB_USER_DEVICE_DESCRIPTOR &amp;device_dsc
+#define USB_USER_DEVICE_DESCRIPTOR_INCLUDE extern ROM USB_DEVICE_DESCRIPTOR device_dsc
+
+//Configuration descriptors - if these two definitions do not exist then
+// a ROM BYTE *ROM variable named exactly USB_CD_Ptr[] must exist.
+#define USB_USER_CONFIG_DESCRIPTOR USB_CD_Ptr
+#define USB_USER_CONFIG_DESCRIPTOR_INCLUDE extern ROM BYTE *ROM USB_CD_Ptr[]
+
+//Make sure only one of the below "#define USB_PING_PONG_MODE"
+//is uncommented.
+//#define USB_PING_PONG_MODE USB_PING_PONG__NO_PING_PONG
+#define USB_PING_PONG_MODE USB_PING_PONG__FULL_PING_PONG
+//#define USB_PING_PONG_MODE USB_PING_PONG__EP0_OUT_ONLY
+//#define USB_PING_PONG_MODE USB_PING_PONG__ALL_BUT_EP0 //NOTE: This mode is not supported in PIC18F4550 family rev A3 devices
+
+//#define USB_POLLING
+#define USB_INTERRUPT
+
+/* Parameter definitions are defined in usb_device.h */
+#define USB_PULLUP_OPTION USB_PULLUP_ENABLE
+//#define USB_PULLUP_OPTION USB_PULLUP_DISABLED
+
+#define USB_TRANSCEIVER_OPTION USB_INTERNAL_TRANSCEIVER
+//External Transceiver support is not available on all product families. Please
+// refer to the product family datasheet for more information if this feature
+// is available on the target processor.
+//#define USB_TRANSCEIVER_OPTION USB_EXTERNAL_TRANSCEIVER
+
+#define USB_SPEED_OPTION USB_FULL_SPEED
+//#define USB_SPEED_OPTION USB_LOW_SPEED //(not valid option for PIC24F devices)
+
+#define USB_SUPPORT_DEVICE
+
+#define USB_NUM_STRING_DESCRIPTORS 3
+
+//#define USB_INTERRUPT_LEGACY_CALLBACKS
+#define USB_ENABLE_ALL_HANDLERS
+//#define USB_ENABLE_SUSPEND_HANDLER
+//#define USB_ENABLE_WAKEUP_FROM_SUSPEND_HANDLER
+//#define USB_ENABLE_SOF_HANDLER
+//#define USB_ENABLE_ERROR_HANDLER
+//#define USB_ENABLE_OTHER_REQUEST_HANDLER
+//#define USB_ENABLE_SET_DESCRIPTOR_HANDLER
+//#define USB_ENABLE_INIT_EP_HANDLER
+//#define USB_ENABLE_EP0_DATA_HANDLER
+//#define USB_ENABLE_TRANSFER_COMPLETE_HANDLER
+
+/** DEVICE CLASS USAGE *********************************************/
+#define USB_USE_CDC
+
+/** ENDPOINTS ALLOCATION *******************************************/
+#define USB_MAX_EP_NUMBER 2
+
+/* CDC */
+#define CDC_COMM_INTF_ID 0x0
+#define CDC_COMM_EP 1
+#define CDC_COMM_IN_EP_SIZE 10
+
+#define CDC_DATA_INTF_ID 0x01
+#define CDC_DATA_EP 2
+#define CDC_DATA_OUT_EP_SIZE 64
+#define CDC_DATA_IN_EP_SIZE 64
+
+//#define USB_CDC_SET_LINE_CODING_HANDLER mySetLineCodingHandler
+//#define USB_CDC_SUPPORT_HARDWARE_FLOW_CONTROL
+
+//#define USB_CDC_SUPPORT_ABSTRACT_CONTROL_MANAGEMENT_CAPABILITIES_D2 //Send_Break command
+#define USB_CDC_SUPPORT_ABSTRACT_CONTROL_MANAGEMENT_CAPABILITIES_D1 //Set_Line_Coding, Set_Control_Line_State, Get_Line_Coding, and Serial_State commands
+/** DEFINITIONS ****************************************************/
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* USB_CONFIG_H */</pre>
+<p>Also, under Source Files, we need to create usb_descriptors.c and main.c. These should contain the following:</p>
+<pre>/*
+ * File:   usb_descriptors.c
+
+-usb_descriptors.c-
+-------------------------------------------------------------------
+Filling in the descriptor values in the usb_descriptors.c file:
+-------------------------------------------------------------------
+
+[Device Descriptors]
+The device descriptor is defined as a USB_DEVICE_DESCRIPTOR type.
+This type is defined in usb_ch9.h  Each entry into this structure
+needs to be the correct length for the data type of the entry.
+
+[Configuration Descriptors]
+The configuration descriptor was changed in v2.x from a structure
+to a BYTE array.  Given that the configuration is now a byte array
+each byte of multi-byte fields must be listed individually.  This
+means that for fields like the total size of the configuration where
+the field is a 16-bit value "64,0," is the correct entry for a
+configuration that is only 64 bytes long and not "64," which is one
+too few bytes.
+
+The configuration attribute must always have the _DEFAULT
+definition at the minimum. Additional options can be ORed
+to the _DEFAULT attribute. Available options are _SELF and _RWU.
+These definitions are defined in the usb_device.h file. The
+_SELF tells the USB host that this device is self-powered. The
+_RWU tells the USB host that this device supports Remote Wakeup.
+
+[Endpoint Descriptors]
+Like the configuration descriptor, the endpoint descriptors were
+changed in v2.x of the stack from a structure to a BYTE array.  As
+endpoint descriptors also has a field that are multi-byte entities,
+please be sure to specify both bytes of the field.  For example, for
+the endpoint size an endpoint that is 64 bytes needs to have the size
+defined as "64,0," instead of "64,"
+
+Take the following example:
+    // Endpoint Descriptor //
+    0x07,                       //the size of this descriptor //
+    USB_DESCRIPTOR_ENDPOINT,    //Endpoint Descriptor
+    _EP02_IN,                   //EndpointAddress
+    _INT,                       //Attributes
+    0x08,0x00,                  //size (note: 2 bytes)
+    0x02,                       //Interval
+
+The first two parameters are self-explanatory. They specify the
+length of this endpoint descriptor (7) and the descriptor type.
+The next parameter identifies the endpoint, the definitions are
+defined in usb_device.h and has the following naming
+convention:
+_EP&lt;##&gt;_&lt;dir&gt;
+where ## is the endpoint number and dir is the direction of
+transfer. The dir has the value of either 'OUT' or 'IN'.
+The next parameter identifies the type of the endpoint. Available
+options are _BULK, _INT, _ISO, and _CTRL. The _CTRL is not
+typically used because the default control transfer endpoint is
+not defined in the USB descriptors. When _ISO option is used,
+addition options can be ORed to _ISO. Example:
+_ISO|_AD|_FE
+This describes the endpoint as an isochronous pipe with adaptive
+and feedback attributes. See usb_device.h and the USB
+specification for details. The next parameter defines the size of
+the endpoint. The last parameter in the polling interval.
+
+-------------------------------------------------------------------
+Adding a USB String
+-------------------------------------------------------------------
+A string descriptor array should have the following format:
+
+rom struct{byte bLength;byte bDscType;word string[size];}sdxxx={
+sizeof(sdxxx),DSC_STR,&lt;text&gt;};
+
+The above structure provides a means for the C compiler to
+calculate the length of string descriptor sdxxx, where xxx is the
+index number. The first two bytes of the descriptor are descriptor
+length and type. The rest &lt;text&gt; are string texts which must be
+in the unicode format. The unicode format is achieved by declaring
+each character as a word type. The whole text string is declared
+as a word array with the number of characters equals to &lt;size&gt;.
+&lt;size&gt; has to be manually counted and entered into the array
+declaration. Let's study this through an example:
+if the string is "USB" , then the string descriptor should be:
+(Using index 02)
+rom struct{byte bLength;byte bDscType;word string[3];}sd002={
+sizeof(sd002),DSC_STR,'U','S','B'};
+
+A USB project may have multiple strings and the firmware supports
+the management of multiple strings through a look-up table.
+The look-up table is defined as:
+rom const unsigned char *rom USB_SD_Ptr[]={&amp;sd000,&amp;sd001,&amp;sd002};
+
+The above declaration has 3 strings, sd000, sd001, and sd002.
+Strings can be removed or added. sd000 is a specialized string
+descriptor. It defines the language code, usually this is
+US English (0x0409). The index of the string must match the index
+position of the USB_SD_Ptr array, &amp;sd000 must be in position
+USB_SD_Ptr[0], &amp;sd001 must be in position USB_SD_Ptr[1] and so on.
+The look-up table USB_SD_Ptr is used by the get string handler
+function.
+
+-------------------------------------------------------------------
+
+The look-up table scheme also applies to the configuration
+descriptor. A USB device may have multiple configuration
+descriptors, i.e. CFG01, CFG02, etc. To add a configuration
+descriptor, user must implement a structure similar to CFG01.
+The next step is to add the configuration descriptor name, i.e.
+cfg01, cfg02,.., to the look-up table USB_CD_Ptr. USB_CD_Ptr[0]
+is a dummy place holder since configuration 0 is the un-configured
+state according to the definition in the USB specification.
+
+********************************************************************/
+
+/*********************************************************************
+ * Descriptor specific type definitions are defined in:
+ * usb_device.h
+ *
+ * Configuration options are defined in:
+ * usb_config.h
+ ********************************************************************/
+#ifndef __USB_DESCRIPTORS_C
+#define __USB_DESCRIPTORS_C
+
+/** INCLUDES *******************************************************/
+#include &lt;usb.h&gt;
+#include &lt;usb_function_cdc.h&gt;
+
+/** CONSTANTS ******************************************************/
+#if defined(__18CXX)
+#pragma romdata
+#endif
+
+/* Device Descriptor */
+ROM USB_DEVICE_DESCRIPTOR device_dsc=
+{
+    0x12,                   // Size of this descriptor in bytes
+    USB_DESCRIPTOR_DEVICE,  // DEVICE descriptor type
+    0x0200,                 // USB Spec Release Number in BCD format
+    CDC_DEVICE,             // Class Code
+    0x00,                   // Subclass code
+    0x00,                   // Protocol code
+    USB_EP0_BUFF_SIZE,      // Max packet size for EP0, see usb_config.h
+    0x04D8,                 // Vendor ID
+    0x000A,                 // Product ID: CDC RS-232 Emulation Demo
+    0x0100,                 // Device release number in BCD format
+    0x01,                   // Manufacturer string index
+    0x02,                   // Product string index
+    0x00,                   // Device serial number string index
+    0x01                    // Number of possible configurations
+};
+
+/* Configuration 1 Descriptor */
+ROM BYTE configDescriptor1[]={
+    /* Configuration Descriptor */
+    0x09,//sizeof(USB_CFG_DSC),    // Size of this descriptor in bytes
+    USB_DESCRIPTOR_CONFIGURATION,                // CONFIGURATION descriptor type
+    67,0,                   // Total length of data for this cfg
+    2,                      // Number of interfaces in this cfg
+    1,                      // Index value of this configuration
+    0,                      // Configuration string index
+    _DEFAULT | _SELF,               // Attributes, see usb_device.h
+    50,                     // Max power consumption (2X mA)
+
+    /* Interface Descriptor */
+    9,//sizeof(USB_INTF_DSC),   // Size of this descriptor in bytes
+    USB_DESCRIPTOR_INTERFACE,               // INTERFACE descriptor type
+    0,                      // Interface Number
+    0,                      // Alternate Setting Number
+    1,                      // Number of endpoints in this intf
+    COMM_INTF,              // Class code
+    ABSTRACT_CONTROL_MODEL, // Subclass code
+    V25TER,                 // Protocol code
+    0,                      // Interface string index
+
+    /* CDC Class-Specific Descriptors */
+    sizeof(USB_CDC_HEADER_FN_DSC),
+    CS_INTERFACE,
+    DSC_FN_HEADER,
+    0x10,0x01,
+
+    sizeof(USB_CDC_ACM_FN_DSC),
+    CS_INTERFACE,
+    DSC_FN_ACM,
+    USB_CDC_ACM_FN_DSC_VAL,
+
+    sizeof(USB_CDC_UNION_FN_DSC),
+    CS_INTERFACE,
+    DSC_FN_UNION,
+    CDC_COMM_INTF_ID,
+    CDC_DATA_INTF_ID,
+
+    sizeof(USB_CDC_CALL_MGT_FN_DSC),
+    CS_INTERFACE,
+    DSC_FN_CALL_MGT,
+    0x00,
+    CDC_DATA_INTF_ID,
+
+    /* Endpoint Descriptor */
+    //sizeof(USB_EP_DSC),DSC_EP,_EP02_IN,_INT,CDC_INT_EP_SIZE,0x02,
+    0x07,/*sizeof(USB_EP_DSC)*/
+    USB_DESCRIPTOR_ENDPOINT,    //Endpoint Descriptor
+    _EP01_IN,            //EndpointAddress
+    _INTERRUPT,                       //Attributes
+    0x08,0x00,                  //size
+    0x02,                       //Interval
+
+    /* Interface Descriptor */
+    9,//sizeof(USB_INTF_DSC),   // Size of this descriptor in bytes
+    USB_DESCRIPTOR_INTERFACE,               // INTERFACE descriptor type
+    1,                      // Interface Number
+    0,                      // Alternate Setting Number
+    2,                      // Number of endpoints in this intf
+    DATA_INTF,              // Class code
+    0,                      // Subclass code
+    NO_PROTOCOL,            // Protocol code
+    0,                      // Interface string index
+
+    /* Endpoint Descriptor */
+    //sizeof(USB_EP_DSC),DSC_EP,_EP03_OUT,_BULK,CDC_BULK_OUT_EP_SIZE,0x00,
+    0x07,/*sizeof(USB_EP_DSC)*/
+    USB_DESCRIPTOR_ENDPOINT,    //Endpoint Descriptor
+    _EP02_OUT,            //EndpointAddress
+    _BULK,                       //Attributes
+    0x40,0x00,                  //size
+    0x00,                       //Interval
+
+    /* Endpoint Descriptor */
+    //sizeof(USB_EP_DSC),DSC_EP,_EP03_IN,_BULK,CDC_BULK_IN_EP_SIZE,0x00
+    0x07,/*sizeof(USB_EP_DSC)*/
+    USB_DESCRIPTOR_ENDPOINT,    //Endpoint Descriptor
+    _EP02_IN,            //EndpointAddress
+    _BULK,                       //Attributes
+    0x40,0x00,                  //size
+    0x00,                       //Interval
+};
+
+//Language code string descriptor
+ROM struct{BYTE bLength;BYTE bDscType;WORD string[1];}sd000={
+sizeof(sd000),USB_DESCRIPTOR_STRING,{0x0409}};
+
+//Manufacturer string descriptor
+ROM struct{BYTE bLength;BYTE bDscType;WORD string[25];}sd001={
+sizeof(sd001),USB_DESCRIPTOR_STRING,
+{'M','i','c','r','o','c','h','i','p',' ',
+'T','e','c','h','n','o','l','o','g','y',' ','I','n','c','.'
+}};
+
+//Product string descriptor
+ROM struct{BYTE bLength;BYTE bDscType;WORD string[25];}sd002={
+sizeof(sd002),USB_DESCRIPTOR_STRING,
+{'C','D','C',' ','R','S','-','2','3','2',' ',
+'E','m','u','l','a','t','i','o','n',' ','D','e','m','o'}
+};
+
+//Array of configuration descriptors
+ROM BYTE *ROM USB_CD_Ptr[]=
+{
+    (ROM BYTE *ROM)&amp;configDescriptor1
+};
+//Array of string descriptors
+ROM BYTE *ROM USB_SD_Ptr[USB_NUM_STRING_DESCRIPTORS]=
+{
+    (ROM BYTE *ROM)&amp;sd000,
+    (ROM BYTE *ROM)&amp;sd001,
+    (ROM BYTE *ROM)&amp;sd002
+};
+
+#if defined(__18CXX)
+    #pragma code
+#endif
+
+#endif
+/** EOF usb_descriptors.c ****************************************************/</pre>
+<pre>/* 
+ * File:   main.c
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.hgt;
+#include &lt;usb.hgt;
+#include &lt;usb_function_cdc.hgt;
+
+#include "HardwareProfile.h"
+
+// CONFIG1
+#pragma config FOSC = INTOSC    // Oscillator Selection Bits (INTOSC oscillator: I/O function on CLKIN pin)
+#pragma config WDTE = OFF       // Watchdog Timer Enable (WDT disabled)
+#pragma config PWRTE = OFF      // Power-up Timer Enable (PWRT disabled)
+#pragma config MCLRE = ON       // MCLR Pin Function Select (MCLR/VPP pin function is MCLR)
+#pragma config CP = OFF         // Flash Program Memory Code Protection (Program memory code protection is disabled)
+#pragma config BOREN = ON       // Brown-out Reset Enable (Brown-out Reset enabled)
+#pragma config CLKOUTEN = OFF   // Clock Out Enable (CLKOUT function is disabled. I/O or oscillator function on the CLKOUT pin)
+#pragma config IESO = OFF       // Internal/External Switchover Mode (Internal/External Switchover Mode is enabled)
+#pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enable (Fail-Safe Clock Monitor is enabled)
+
+// CONFIG2
+#pragma config WRT = OFF        // Flash Memory Self-Write Protection (Write protection off)
+#pragma config CPUDIV = NOCLKDIV // CPU System Clock Selection Bit (CPU system clock divided by 6)
+#pragma config USBLSCLK = 48MHz // USB Low SPeed Clock Selection bit (System clock expects 48 MHz, FS/LS USB CLKENs divide-by is set to 8.)
+#pragma config PLLMULT = 3x     // PLL Multipler Selection Bit (3x Output Frequency Selected)
+#pragma config PLLEN = ENABLED  // PLL Enable Bit (3x or 4x PLL Enabled)
+#pragma config STVREN = ON      // Stack Overflow/Underflow Reset Enable (Stack Overflow or Underflow will cause a Reset)
+#pragma config BORV = LO        // Brown-out Reset Voltage Selection (Brown-out Reset Voltage (Vbor), low trip point selected.)
+#pragma config LPBOR = OFF      // Low-Power Brown Out Reset (Low-Power BOR is disabled)
+#pragma config LVP = OFF         // Low-Voltage Programming Enable (Low-voltage programming enabled)
+
+/** V A R I A B L E S ********************************************************/
+char USB_In_Buffer[64];
+char USB_Out_Buffer[64];
+int tmrCounter = 0;
+int tmrMask = 0x7FF;
+int tmrVal = 0x400;
+
+/** P R I V A T E  P R O T O T Y P E S ***************************************/
+static void InitializeSystem(void);
+void ProcessIO(void);
+void USBDeviceTasks(void);
+void YourHighPriorityISRCode();
+void YourLowPriorityISRCode();
+void USBCBSendResume(void);
+void BlinkUSBStatus(void);
+void UserInit(void);
+
+/** VECTOR REMAPPING ***********************************************/
+//These are your actual interrupt handling routines.
+void interrupt ISRCode()
+{
+        //Check which interrupt flag caused the interrupt.
+        //Service the interrupt
+        //Clear the interrupt flag
+        //Etc.
+#if defined(USB_INTERRUPT)
+    if (USBInterruptFlag != 0)
+        USBDeviceTasks();
+#endif
+
+    if (INTCONbits.TMR0IF)
+    {
+        tmrCounter++;
+        if ((tmrCounter &amp; tmrMask) == tmrVal)
+            RC3 = 1;
+        if ((tmrCounter &amp; tmrMask) == 0x0000)
+            RC3 = 0;
+        INTCONbits.TMR0IF = 0;
+    }
+}
+
+/** DECLARATIONS ***************************************************/
+#if defined(__18CXX)
+    #pragma code
+#endif
+
+/******************************************************************************
+ * Function:        void main(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        Main program entry point.
+ *
+ * Note:            None
+ *****************************************************************************/
+int main(void)
+{
+    InitializeSystem();
+
+    while(1)
+    {
+        #if defined(USB_INTERRUPT)
+            if(USB_BUS_SENSE &amp;&amp; (USBGetDeviceState() == DETACHED_STATE))
+            {
+                USBDeviceAttach();
+            }
+        #endif
+
+        #if defined(USB_POLLING)
+		// Check bus status and service USB interrupts.
+        USBDeviceTasks(); // Interrupt or polling method.  If using polling, must call
+        				  // this function periodically.  This function will take care
+        				  // of processing and responding to SETUP transactions
+        				  // (such as during the enumeration process when you first
+        				  // plug in).  USB hosts require that USB devices should accept
+        				  // and process SETUP packets in a timely fashion.  Therefore,
+        				  // when using polling, this function should be called
+        				  // regularly (such as once every 1.8ms or faster** [see
+        				  // inline code comments in usb_device.c for explanation when
+        				  // "or faster" applies])  In most cases, the USBDeviceTasks()
+        				  // function does not take very long to execute (ex: &lt;100
+        				  // instruction cycles) before it returns.
+        #endif
+
+		// Application-specific tasks.
+		// Application related code may be added here, or in the ProcessIO() function.
+        ProcessIO();
+    }//end while
+}//end main
+
+/********************************************************************
+ * Function:        static void InitializeSystem(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        InitializeSystem is a centralize initialization
+ *                  routine. All required USB initialization routines
+ *                  are called from here.
+ *
+ *                  User application initialization routine should
+ *                  also be called from here.
+ *
+ * Note:            None
+ *******************************************************************/
+static void InitializeSystem(void)
+{
+    #if defined(_PIC14E)
+        //Configure all pins for digital mode
+        ANSELA = 0x00;
+        ANSELC = 0x00;
+        #if defined (USE_INTERNAL_OSC)
+            OSCTUNE = 0;
+            OSCCON = 0xFC;          //16MHz HFINTOSC with 3x PLL enabled (48MHz operation)
+            ACTCON = 0x90;          //Enable active clock tuning with USB
+        #endif
+    #endif
+
+//	The USB specifications require that USB peripheral devices must never source
+//	current onto the Vbus pin.  Additionally, USB peripherals should not source
+//	current on D+ or D- when the host/hub is not actively powering the Vbus line.
+//	When designing a self powered (as opposed to bus powered) USB peripheral
+//	device, the firmware should make sure not to turn on the USB module and D+
+//	or D- pull up resistor unless Vbus is actively powered.  Therefore, the
+//	firmware needs some means to detect when Vbus is being powered by the host.
+//	A 5V tolerant I/O pin can be connected to Vbus (through a resistor), and
+// 	can be used to detect when Vbus is high (host actively powering), or low
+//	(host is shut down or otherwise not supplying power).  The USB firmware
+// 	can then periodically poll this I/O pin to know when it is okay to turn on
+//	the USB module/D+/D- pull up resistor.  When designing a purely bus powered
+//	peripheral device, it is not possible to source current on D+ or D- when the
+//	host is not actively providing power on Vbus. Therefore, implementing this
+//	bus sense feature is optional.  This firmware can be made to use this bus
+//	sense feature by making sure "USE_USB_BUS_SENSE_IO" has been defined in the
+//	HardwareProfile.h file.
+    #if defined(USE_USB_BUS_SENSE_IO)
+    tris_usb_bus_sense = INPUT_PIN; // See HardwareProfile.h
+    #endif
+
+//	If the host PC sends a GetStatus (device) request, the firmware must respond
+//	and let the host know if the USB peripheral device is currently bus powered
+//	or self powered.  See chapter 9 in the official USB specifications for details
+//	regarding this request.  If the peripheral device is capable of being both
+//	self and bus powered, it should not return a hard coded value for this request.
+//	Instead, firmware should check if it is currently self or bus powered, and
+//	respond accordingly.  If the hardware has been configured like demonstrated
+//	on the PICDEM FS USB Demo Board, an I/O pin can be polled to determine the
+//	currently selected power source.  On the PICDEM FS USB Demo Board, "RA2"
+//	is used for	this purpose.  If using this feature, make sure "USE_SELF_POWER_SENSE_IO"
+//	has been defined in HardwareProfile - (platform).h, and that an appropriate I/O pin
+//  has been mapped	to it.
+    #if defined(USE_SELF_POWER_SENSE_IO)
+    tris_self_power = INPUT_PIN;	// See HardwareProfile.h
+    #endif
+
+    UserInit();
+
+    USBDeviceInit();	//usb_device.c.  Initializes USB module SFRs and firmware
+    					//variables to known states.
+}//end InitializeSystem
+
+/******************************************************************************
+ * Function:        void UserInit(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        This routine should take care of all of the demo code
+ *                  initialization that is required.
+ *
+ * Note:
+ *
+ *****************************************************************************/
+void UserInit(void)
+{
+    TRISC = 0xF7;       //Set RC3 as output
+    OPTION_REG = 0xC3;  //Set prescaler to 256
+    TMR0 = 0xFF;        //Timer0 module register
+    INTCONbits.TMR0IF = 0;
+    INTCONbits.TMR0IE = 1;
+
+}//end UserInit
+
+/********************************************************************
+ * Function:        void ProcessIO(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        This function is a place holder for other user
+ *                  routines. It is a mixture of both USB and
+ *                  non-USB tasks.
+ *
+ * Note:            None
+ *******************************************************************/
+void ProcessIO(void)
+{
+    BYTE numBytesRead;
+
+    //Blink the LEDs according to the USB device status
+    BlinkUSBStatus();
+    // User Application USB tasks
+    if((USBDeviceState &lt; CONFIGURED_STATE)||(USBSuspendControl==1)) return;
+
+    if(USBUSARTIsTxTrfReady())
+    {
+        numBytesRead = getsUSBUSART(USB_Out_Buffer,64);
+        if(numBytesRead != 0)
+        {
+            BYTE i;
+            BOOL validCmd = TRUE;
+
+            for(i=0;i&lt;numBytesRead;i++)
+            {
+                switch(USB_Out_Buffer[i])
+                {
+                    case '1':
+                        tmrMask = 0xFFF;
+                        tmrVal = 0x800;
+                        break;
+                    case '2':
+                        tmrMask = 0x7FF;
+                        tmrVal = 0x400;
+                        break;
+                    case '3':
+                        tmrMask = 0x3FF;
+                        tmrVal = 0x200;
+                        break;
+                    case '4':
+                        tmrMask = 0x1FF;
+                        tmrVal = 0x100;
+                        break;
+                    default:
+                        validCmd = FALSE;
+                        break;
+                }
+            }
+            if (validCmd)
+                putUSBUSART((char*)"Done ",5);
+            else
+                putUSBUSART((char*)"Invalid Command ",16);
+        }
+    }
+
+    CDCTxService();
+}		//end ProcessIO
+
+/********************************************************************
+ * Function:        void BlinkUSBStatus(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        BlinkUSBStatus turns on and off LEDs
+ *                  corresponding to the USB device state.
+ *
+ * Note:            mLED macros can be found in HardwareProfile.h
+ *                  USBDeviceState is declared and updated in
+ *                  usb_device.c.
+ *******************************************************************/
+void BlinkUSBStatus(void)
+{
+    if(USBSuspendControl == 1)
+    {
+    }
+    else
+    {
+        if(USBDeviceState == DETACHED_STATE)
+        {
+        }
+        else if(USBDeviceState == ATTACHED_STATE)
+        {
+        }
+        else if(USBDeviceState == POWERED_STATE)
+        {
+        }
+        else if(USBDeviceState == DEFAULT_STATE)
+        {
+        }
+        else if(USBDeviceState == ADDRESS_STATE)
+        {
+        }
+        else if(USBDeviceState == CONFIGURED_STATE)
+        {
+        }//end if(...)
+    }//end if(UCONbits.SUSPND...)
+
+}//end BlinkUSBStatus
+
+// ******************************************************************************************************
+// ************** USB Callback Functions ****************************************************************
+// ******************************************************************************************************
+// The USB firmware stack will call the callback functions USBCBxxx() in response to certain USB related
+// events.  For example, if the host PC is powering down, it will stop sending out Start of Frame (SOF)
+// packets to your device.  In response to this, all USB devices are supposed to decrease their power
+// consumption from the USB Vbus to &lt;2.5mA* each.  The USB module detects this condition (which according
+// to the USB specifications is 3+ms of no bus activity/SOF packets) and then calls the USBCBSuspend()
+// function.  You should modify these callback functions to take appropriate actions for each of these
+// conditions.  For example, in the USBCBSuspend(), you may wish to add code that will decrease power
+// consumption from Vbus to &lt;2.5mA (such as by clock switching, turning off LEDs, putting the
+// microcontroller to sleep, etc.).  Then, in the USBCBWakeFromSuspend() function, you may then wish to
+// add code that undoes the power saving things done in the USBCBSuspend() function.
+
+// The USBCBSendResume() function is special, in that the USB stack will not automatically call this
+// function.  This function is meant to be called from the application firmware instead.  See the
+// additional comments near the function.
+
+// Note *: The "usb_20.pdf" specs indicate 500uA or 2.5mA, depending upon device classification. However,
+// the USB-IF has officially issued an ECN (engineering change notice) changing this to 2.5mA for all
+// devices.  Make sure to re-download the latest specifications to get all of the newest ECNs.
+
+/******************************************************************************
+ * Function:        void USBCBSuspend(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        Call back that is invoked when a USB suspend is detected
+ *
+ * Note:            None
+ *****************************************************************************/
+void USBCBSuspend(void)
+{
+	//Example power saving code.  Insert appropriate code here for the desired
+	//application behavior.  If the microcontroller will be put to sleep, a
+	//process similar to that shown below may be used:
+
+	//ConfigureIOPinsForLowPower();
+	//SaveStateOfAllInterruptEnableBits();
+	//DisableAllInterruptEnableBits();
+	//EnableOnlyTheInterruptsWhichWillBeUsedToWakeTheMicro();	//should enable at least USBActivityIF as a wake source
+	//Sleep();
+	//RestoreStateOfAllPreviouslySavedInterruptEnableBits();	//Preferrably, this should be done in the USBCBWakeFromSuspend() function instead.
+	//RestoreIOPinsToNormal();									//Preferrably, this should be done in the USBCBWakeFromSuspend() function instead.
+
+	//IMPORTANT NOTE: Do not clear the USBActivityIF (ACTVIF) bit here.  This bit is
+	//cleared inside the usb_device.c file.  Clearing USBActivityIF here will cause
+	//things to not work as intended.
+
+    #if defined(__C30__) || defined __XC16__
+        USBSleepOnSuspend();
+    #endif
+}
+
+/******************************************************************************
+ * Function:        void USBCBWakeFromSuspend(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        The host may put USB peripheral devices in low power
+ *					suspend mode (by "sending" 3+ms of idle).  Once in suspend
+ *					mode, the host may wake the device back up by sending non-
+ *					idle state signalling.
+ *
+ *					This call back is invoked when a wakeup from USB suspend
+ *					is detected.
+ *
+ * Note:            None
+ *****************************************************************************/
+void USBCBWakeFromSuspend(void)
+{
+	// If clock switching or other power savings measures were taken when
+	// executing the USBCBSuspend() function, now would be a good time to
+	// switch back to normal full power run mode conditions.  The host allows
+	// 10+ milliseconds of wakeup time, after which the device must be
+	// fully back to normal, and capable of receiving and processing USB
+	// packets.  In order to do this, the USB module must receive proper
+	// clocking (IE: 48MHz clock must be available to SIE for full speed USB
+	// operation).
+	// Make sure the selected oscillator settings are consistent with USB
+    // operation before returning from this function.
+}
+
+/********************************************************************
+ * Function:        void USBCB_SOF_Handler(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        The USB host sends out a SOF packet to full-speed
+ *                  devices every 1 ms. This interrupt may be useful
+ *                  for isochronous pipes. End designers should
+ *                  implement callback routine as necessary.
+ *
+ * Note:            None
+ *******************************************************************/
+void USBCB_SOF_Handler(void)
+{
+    // No need to clear UIRbits.SOFIF to 0 here.
+    // Callback caller is already doing that.
+}
+
+/*******************************************************************
+ * Function:        void USBCBErrorHandler(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        The purpose of this callback is mainly for
+ *                  debugging during development. Check UEIR to see
+ *                  which error causes the interrupt.
+ *
+ * Note:            None
+ *******************************************************************/
+void USBCBErrorHandler(void)
+{
+    // No need to clear UEIR to 0 here.
+    // Callback caller is already doing that.
+
+	// Typically, user firmware does not need to do anything special
+	// if a USB error occurs.  For example, if the host sends an OUT
+	// packet to your device, but the packet gets corrupted (ex:
+	// because of a bad connection, or the user unplugs the
+	// USB cable during the transmission) this will typically set
+	// one or more USB error interrupt flags.  Nothing specific
+	// needs to be done however, since the SIE will automatically
+	// send a "NAK" packet to the host.  In response to this, the
+	// host will normally retry to send the packet again, and no
+	// data loss occurs.  The system will typically recover
+	// automatically, without the need for application firmware
+	// intervention.
+
+	// Nevertheless, this callback function is provided, such as
+	// for debugging purposes.
+}
+
+/*******************************************************************
+ * Function:        void USBCBCheckOtherReq(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        When SETUP packets arrive from the host, some
+ * 					firmware must process the request and respond
+ *					appropriately to fulfill the request.  Some of
+ *					the SETUP packets will be for standard
+ *					USB "chapter 9" (as in, fulfilling chapter 9 of
+ *					the official USB specifications) requests, while
+ *					others may be specific to the USB device class
+ *					that is being implemented.  For example, a HID
+ *					class device needs to be able to respond to
+ *					"GET REPORT" type of requests.  This
+ *					is not a standard USB chapter 9 request, and
+ *					therefore not handled by usb_device.c.  Instead
+ *					this request should be handled by class specific
+ *					firmware, such as that contained in usb_function_hid.c.
+ *
+ * Note:            None
+ *******************************************************************/
+void USBCBCheckOtherReq(void)
+{
+    USBCheckCDCRequest();
+}//end
+
+/*******************************************************************
+ * Function:        void USBCBStdSetDscHandler(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        The USBCBStdSetDscHandler() callback function is
+ *					called when a SETUP, bRequest: SET_DESCRIPTOR request
+ *					arrives.  Typically SET_DESCRIPTOR requests are
+ *					not used in most applications, and it is
+ *					optional to support this type of request.
+ *
+ * Note:            None
+ *******************************************************************/
+void USBCBStdSetDscHandler(void)
+{
+    // Must claim session ownership if supporting this request
+}//end
+
+/*******************************************************************
+ * Function:        void USBCBInitEP(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        This function is called when the device becomes
+ *                  initialized, which occurs after the host sends a
+ * 					SET_CONFIGURATION (wValue not = 0) request.  This
+ *					callback function should initialize the endpoints
+ *					for the device's usage according to the current
+ *					configuration.
+ *
+ * Note:            None
+ *******************************************************************/
+void USBCBInitEP(void)
+{
+    //Enable the CDC data endpoints
+    CDCInitEP();
+}
+
+/********************************************************************
+ * Function:        void USBCBSendResume(void)
+ *
+ * PreCondition:    None
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        The USB specifications allow some types of USB
+ * 					peripheral devices to wake up a host PC (such
+ *					as if it is in a low power suspend to RAM state).
+ *					This can be a very useful feature in some
+ *					USB applications, such as an Infrared remote
+ *					control	receiver.  If a user presses the "power"
+ *					button on a remote control, it is nice that the
+ *					IR receiver can detect this signalling, and then
+ *					send a USB "command" to the PC to wake up.
+ *
+ *					The USBCBSendResume() "callback" function is used
+ *					to send this special USB signalling which wakes
+ *					up the PC.  This function may be called by
+ *					application firmware to wake up the PC.  This
+ *					function will only be able to wake up the host if
+ *                  all of the below are true:
+ *
+ *					1.  The USB driver used on the host PC supports
+ *						the remote wakeup capability.
+ *					2.  The USB configuration descriptor indicates
+ *						the device is remote wakeup capable in the
+ *						bmAttributes field.
+ *					3.  The USB host PC is currently sleeping,
+ *						and has previously sent your device a SET
+ *						FEATURE setup packet which "armed" the
+ *						remote wakeup capability.
+ *
+ *                  If the host has not armed the device to perform remote wakeup,
+ *                  then this function will return without actually performing a
+ *                  remote wakeup sequence.  This is the required behavior,
+ *                  as a USB device that has not been armed to perform remote
+ *                  wakeup must not drive remote wakeup signalling onto the bus;
+ *                  doing so will cause USB compliance testing failure.
+ *
+ *					This callback should send a RESUME signal that
+ *                  has the period of 1-15ms.
+ *
+ * Note:            This function does nothing and returns quickly, if the USB
+ *                  bus and host are not in a suspended condition, or are
+ *                  otherwise not in a remote wakeup ready state.  Therefore, it
+ *                  is safe to optionally call this function regularly, ex:
+ *                  anytime application stimulus occurs, as the function will
+ *                  have no effect, until the bus really is in a state ready
+ *                  to accept remote wakeup.
+ *
+ *                  When this function executes, it may perform clock switching,
+ *                  depending upon the application specific code in
+ *                  USBCBWakeFromSuspend().  This is needed, since the USB
+ *                  bus will no longer be suspended by the time this function
+ *                  returns.  Therefore, the USB module will need to be ready
+ *                  to receive traffic from the host.
+ *
+ *                  The modifiable section in this routine may be changed
+ *                  to meet the application needs. Current implementation
+ *                  temporary blocks other functions from executing for a
+ *                  period of ~3-15 ms depending on the core frequency.
+ *
+ *                  According to USB 2.0 specification section 7.1.7.7,
+ *                  "The remote wakeup device must hold the resume signaling
+ *                  for at least 1 ms but for no more than 15 ms."
+ *                  The idea here is to use a delay counter loop, using a
+ *                  common value that would work over a wide range of core
+ *                  frequencies.
+ *                  That value selected is 1800. See table below:
+ *                  ==========================================================
+ *                  Core Freq(MHz)      MIP         RESUME Signal Period (ms)
+ *                  ==========================================================
+ *                      48              12          1.05
+ *                       4              1           12.6
+ *                  ==========================================================
+ *                  * These timing could be incorrect when using code
+ *                    optimization or extended instruction mode,
+ *                    or when having other interrupts enabled.
+ *                    Make sure to verify using the MPLAB SIM's Stopwatch
+ *                    and verify the actual signal on an oscilloscope.
+ *******************************************************************/
+void USBCBSendResume(void)
+{
+    static WORD delay_count;
+
+    //First verify that the host has armed us to perform remote wakeup.
+    //It does this by sending a SET_FEATURE request to enable remote wakeup,
+    //usually just before the host goes to standby mode (note: it will only
+    //send this SET_FEATURE request if the configuration descriptor declares
+    //the device as remote wakeup capable, AND, if the feature is enabled
+    //on the host (ex: on Windows based hosts, in the device manager
+    //properties page for the USB device, power management tab, the
+    //"Allow this device to bring the computer out of standby." checkbox
+    //should be checked).
+    if(USBGetRemoteWakeupStatus() == TRUE)
+    {
+        //Verify that the USB bus is in fact suspended, before we send
+        //remote wakeup signalling.
+        if(USBIsBusSuspended() == TRUE)
+        {
+            USBMaskInterrupts();
+
+            //Clock switch to settings consistent with normal USB operation.
+            USBCBWakeFromSuspend();
+            USBSuspendControl = 0;
+            USBBusIsSuspended = FALSE;  //So we don't execute this code again,
+                                        //until a new suspend condition is detected.
+
+            //Section 7.1.7.7 of the USB 2.0 specifications indicates a USB
+            //device must continuously see 5ms+ of idle on the bus, before it sends
+            //remote wakeup signalling.  One way to be certain that this parameter
+            //gets met, is to add a 2ms+ blocking delay here (2ms plus at
+            //least 3ms from bus idle to USBIsBusSuspended() == TRUE, yeilds
+            //5ms+ total delay since start of idle).
+            delay_count = 3600U;
+            do
+            {
+                delay_count--;
+            }while(delay_count);
+
+            //Now drive the resume K-state signalling onto the USB bus.
+            USBResumeControl = 1;       // Start RESUME signaling
+            delay_count = 1800U;        // Set RESUME line for 1-13 ms
+            do
+            {
+                delay_count--;
+            }while(delay_count);
+            USBResumeControl = 0;       //Finished driving resume signalling
+
+            USBUnmaskInterrupts();
+        }
+    }
+}
+
+/*******************************************************************
+ * Function:        void USBCBEP0DataReceived(void)
+ *
+ * PreCondition:    ENABLE_EP0_DATA_RECEIVED_CALLBACK must be
+ *                  defined already (in usb_config.h)
+ *
+ * Input:           None
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        This function is called whenever a EP0 data
+ *                  packet is received.  This gives the user (and
+ *                  thus the various class examples a way to get
+ *                  data that is received via the control endpoint.
+ *                  This function needs to be used in conjunction
+ *                  with the USBCBCheckOtherReq() function since
+ *                  the USBCBCheckOtherReq() function is the apps
+ *                  method for getting the initial control transfer
+ *                  before the data arrives.
+ *
+ * Note:            None
+ *******************************************************************/
+#if defined(ENABLE_EP0_DATA_RECEIVED_CALLBACK)
+void USBCBEP0DataReceived(void)
+{
+}
+#endif
+
+/*******************************************************************
+ * Function:        BOOL USER_USB_CALLBACK_EVENT_HANDLER(
+ *                        int event, void *pdata, WORD size)
+ *
+ * PreCondition:    None
+ *
+ * Input:           int event - the type of event
+ *                  void *pdata - pointer to the event data
+ *                  WORD size - size of the event data
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        This function is called from the USB stack to
+ *                  notify a user application that a USB event
+ *                  occured.  This callback is in interrupt context
+ *                  when the USB_INTERRUPT option is selected.
+ *
+ * Note:            None
+ *******************************************************************/
+BOOL USER_USB_CALLBACK_EVENT_HANDLER(int event, void *pdata, WORD size)
+{
+    switch( event )
+    {
+        case EVENT_TRANSFER:
+            //Add application specific callback task or callback function here if desired.
+            break;
+        case EVENT_SOF:
+            USBCB_SOF_Handler();
+            break;
+        case EVENT_SUSPEND:
+            USBCBSuspend();
+            break;
+        case EVENT_RESUME:
+            USBCBWakeFromSuspend();
+            break;
+        case EVENT_CONFIGURED:
+            USBCBInitEP();
+            break;
+        case EVENT_SET_DESCRIPTOR:
+            USBCBStdSetDscHandler();
+            break;
+        case EVENT_EP0_REQUEST:
+            USBCBCheckOtherReq();
+            break;
+        case EVENT_BUS_ERROR:
+            USBCBErrorHandler();
+            break;
+        case EVENT_TRANSFER_TERMINATED:
+            //Add application specific callback task or callback function here if desired.
+            //The EVENT_TRANSFER_TERMINATED event occurs when the host performs a CLEAR
+            //FEATURE (endpoint halt) request on an application endpoint which was
+            //previously armed (UOWN was = 1).  Here would be a good place to:
+            //1.  Determine which endpoint the transaction that just got terminated was
+            //      on, by checking the handle value in the *pdata.
+            //2.  Re-arm the endpoint if desired (typically would be the case for OUT
+            //      endpoints).
+            break;
+        default:
+            break;
+    }
+    return TRUE;
+}
+
+/** EOF main.c *************************************************/</pre>
+<p>If you build this, you will notice that it uses 472 bytes (46%) of RAM and 3536 bytes (43%) of Flash. This still leaves a reasonable amount of space to actually do something useful.</p>
+<p><a href="../../wp-content/uploads/sites/2/2013/07/Blink3_USB_mem_used.png"><img class="alignnone size-medium wp-image-107" alt="Blink3_USB_mem_used" src="../../wp-content/uploads/sites/2/2013/07/Blink3_USB_mem_used-300x121.png" width="300" height="121" /></a></p>
+<p>The code I have put in is in ProcessIO, and just checks if we receive the characters &#8216;1&#8217;, &#8216;2&#8217;, &#8216;3&#8217; or &#8216;4&#8217;. It will then change the speed at which the LED flashes, and return &#8220;Done&#8221; via the serial connection. You <em>will</em> replace this with something else, so I have made no attempt to make this code useful or well written.</p>
+<p>In order to communicate with the PIC you will need a serial communication application on your PC. I have used <a title="Realterm" href="http://realterm.sourceforge.net/">Realterm</a>, but any similar program should work.</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/pic-usb-solutions/index.html" rel="category tag">PIC USB Solutions</a>			</span>
+															
+| </span>
+						<span class="comments-link"><a href="26/usb-interface-using-pic16f1455-2/index.html#comments"><b>1</b> Reply</a></span>
+			
+					</footer><!-- .entry-meta -->
+	</article><!-- #post-80 -->
+
+				
+					
+	<article id="post-53" class="post-53 post type-post status-publish format-standard hentry category-usingmplabx">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="12/pic12f1840-blink-using-timer0-and-interrupts/index.html" rel="bookmark">PIC12F1840: Blink using timer0 and interrupts</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="12/pic12f1840-blink-using-timer0-and-interrupts/index.html" title="3:25 pm" rel="bookmark"><time class="entry-date" datetime="2013-07-12T15:25:49+00:00">July 12, 2013</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="12/pic12f1840-blink-using-timer0-and-interrupts/index.html#respond"><span class="leave-reply">Reply</span></a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>A much better way to blink the LED is to use a timer, and rely on the timer generating an interrupt on the timer expiry. This is more accurate, and also doesn&#8217;t hog the CPU. Using the same setup as before (<a title="Using the PIC12F1840" href="11/using-the-pic12f1840/index.html">using the PIC12F1840</a>), we change the code as follows:</p>
+<pre>#include &lt;xc.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// CONFIG1
+#pragma config FOSC = INTOSC // Oscillator Selection (INTOSC oscillator: I/O function on CLKIN pin)
+#pragma config WDTE = OFF // Watchdog Timer Enable (WDT disabled)
+#pragma config PWRTE = OFF // Power-up Timer Enable (PWRT disabled)
+#pragma config MCLRE = ON // MCLR Pin Function Select (MCLR/VPP pin function is MCLR)
+#pragma config CP = OFF // Flash Program Memory Code Protection (Program memory code protection is disabled)
+#pragma config CPD = OFF // Data Memory Code Protection (Data memory code protection is disabled)
+#pragma config BOREN = ON // Brown-out Reset Enable (Brown-out Reset enabled)
+#pragma config CLKOUTEN = OFF // Clock Out Enable (CLKOUT function is disabled. I/O or oscillator function on the CLKOUT pin)
+#pragma config IESO = ON // Internal/External Switchover (Internal/External Switchover mode is enabled)
+#pragma config FCMEN = ON // Fail-Safe Clock Monitor Enable (Fail-Safe Clock Monitor is enabled)
+
+// CONFIG2
+#pragma config WRT = OFF // Flash Memory Self-Write Protection (Write protection off)
+#pragma config PLLEN = ON // PLL Enable (4x PLL enabled)
+#pragma config STVREN = ON // Stack Overflow/Underflow Reset Enable (Stack Overflow or Underflow will cause a Reset)
+#pragma config BORV = LO // Brown-out Reset Voltage Selection (Brown-out Reset Voltage (Vbor), low trip point selected.)
+#pragma config LVP = OFF // Low-Voltage Programming Enable (Low-voltage programming enabled)
+
+int counter = 0;
+
+int main(int argc, char** argv)
+{
+  TRISA = 0xEF; // Set RA4 pin as output
+
+  OPTION_REG = 0xC7; //Set prescaler to 256
+  TMR0 = 0xFF; //Timer0 module register
+  TMR0IE = 1;
+  ei(); //Enable all configured interrupts
+
+  while (1); //Loop forever
+
+  return (EXIT_SUCCESS);
+}
+
+void interrupt Timer0_ISR(void)
+{
+  counter++;
+  RA4 = counter &amp; 1;  //Toggle the LED
+  TMR0IF = 0;         //Clear the timer interrupt flag
+}</pre>
+<p>Notice that we have also included a configuration section. Apart from anything else, this will get rid of the annoying messages about the low power programming and watchdog (the watchdog is a very useful feature, but that will have to wait for another day). There is an easy way to generate the configuration, which is to select <em>Configuration Bits</em> from the <em>Window /  PIC Memory Views</em> menu item. From there you can change the options and the press the <em>Generate Source Code to Output</em> button.</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/usingmplabx/index.html" rel="category tag">Getting Started With MPLABX</a>			</span>
+															
+|			
+					</footer><!-- .entry-meta -->
+	</article><!-- #post-53 -->
+
+				
+					
+	<article id="post-42" class="post-42 post type-post status-publish format-standard hentry category-usingmplabx">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="11/using-the-pic12f1840/index.html" rel="bookmark">Using the PIC12F1840</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="11/using-the-pic12f1840/index.html" title="9:36 pm" rel="bookmark"><time class="entry-date" datetime="2013-07-11T21:36:11+00:00">July 11, 2013</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="11/using-the-pic12f1840/index.html#respond"><span class="leave-reply">Reply</span></a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>The PIC32 chip worked well, but this time I&#8217;m going to use a much cheaper (and smaller) device. The PIC12F1840 comes in an 8 pin DIP package. I&#8217;m going to do the same code &#8211; flash an LED &#8211; the principle is same as for the PIC32 chip, so we&#8217;ll use a similar circuit to program it:</p>
+<p><a href="../../wp-content/uploads/sites/2/2013/07/102_0104.jpg"><img class="alignnone size-medium wp-image-43" alt="102_0104" src="../../wp-content/uploads/sites/2/2013/07/102_0104-300x168.jpg" width="300" height="168" /></a></p>
+<p>This time though, we&#8217;re going to use an external supply rather than powering it from the PICkit3. Hence the battery pack. That&#8217;s 4 Ni-Mh cells, and produces just over 5V. We could power the PIC directly, but the batteries could theoretically provide over 5.5V when fully charged, so I&#8217;m going to use voltage regulator to bring the voltage down to 3.3V. Here is the schematic:</p>
+<p><a href="../../wp-content/uploads/sites/2/2013/07/PIC12F1840Pgm.png"><img class="alignnone size-medium wp-image-48" alt="PIC12F1840Pgm" src="../../wp-content/uploads/sites/2/2013/07/PIC12F1840Pgm-300x158.png" width="300" height="158" /></a></p>
+<p>After I built this, I measured the input voltage:</p>
+<p><a style="font-style: normal; line-height: 24px; text-decoration: underline;" href="../../wp-content/uploads/sites/2/2013/07/Blink2_Vin.jpg"><img class="alignnone size-medium wp-image-45" style="border-color: #bbbbbb; background-color: #eeeeee;" alt="Blink2_Vin" src="../../wp-content/uploads/sites/2/2013/07/Blink2_Vin-300x132.jpg" width="300" height="132" /></a></p>
+<p>and output voltage:</p>
+<p><a href="../../wp-content/uploads/sites/2/2013/07/Blink2_Vout.jpg"><img class="alignnone size-medium wp-image-46" alt="Blink2_Vout" src="../../wp-content/uploads/sites/2/2013/07/Blink2_Vout-300x136.jpg" width="300" height="136" /></a></p>
+<p>The regulator is supposed to output 3.3V, so that&#8217;s spot on.<em></em></p>
+<p>We&#8217;re going to need a different compiler, so I have downloaded and installed the XC8 compiler.The program is essentially the same as Blink1 for the PIC32 chip, but is coded slightly differently:</p>
+<pre>int main(int argc, char** argv)
+{
+  TRISA = 0xEF; // Set RA4 pin as output
+
+  // Loop to flash an LED on RA4 (pin 3)
+  while(1)
+  {
+    RA4 = 1; // Set RA4 high
+    // Insert some delay
+    int i = 10000;
+    while(i--);
+
+    RA4 = 0; // Set RA4 low
+    // Insert some delay
+    i = 10000;
+    while(i--);
+  }
+
+  return (EXIT_SUCCESS);
+}</pre>
+<p>We need to add the following include statement at the top of the file:</p>
+<pre>#include &lt;xc.h&gt;</pre>
+<p>This will choose the correct include file (in this case pic12f1840.h).</p>
+<p>You&#8217;ll notice that the delay loop (which I&#8217;m still not proud of) has less iterations than the PIC32 chip. This chip is considerably slower! By default the device is running at 500KHz. We can increase this to 32MHz, but the power consumption will be much higher.</p>
+<p>One advantage of powering the device externally is that we can disconnect the programmer and the code will still run. In order to do this we need to select Run Project (Blink2) from the run menu. The code, which is stored flash memory even when the power is off, will then happily just start running as soon as the battery is connected.</p>
+<p>With the PIC running just off the battery, I thought I&#8217;d check the current consumption. The current fluctuates between 0.16mA and 3.34mA depending on whether the LED is off or on. Given that the voltage drop across  the LED should be about 1.8V, 3mA is what I would expect to be going through the LED. As you can see though, it doesn&#8217;t draw much current when it is running. With proper use of sleep modes it is possible to get this device to use much less current when operating.</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/usingmplabx/index.html" rel="category tag">Getting Started With MPLABX</a>			</span>
+															
+|			
+					</footer><!-- .entry-meta -->
+	</article><!-- #post-42 -->
+
+				
+					
+	<article id="post-24" class="post-24 post type-post status-publish format-standard hentry category-usingmplabx">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="11/setting-up-the-pickit3-with-mplabx-part-2/index.html" rel="bookmark">Setting up the PICkit3 with MPLABX (Part 2)</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="11/setting-up-the-pickit3-with-mplabx-part-2/index.html" title="2:26 pm" rel="bookmark"><time class="entry-date" datetime="2013-07-11T14:26:56+00:00">July 11, 2013</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="11/setting-up-the-pickit3-with-mplabx-part-2/index.html#respond"><span class="leave-reply">Reply</span></a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>Last time we saw how to set up the PICkit3 with MPLABX and get a very simple program running. The program didn&#8217;t actually do anything though! So this time we are going to add an LED to the breadboard and make the LED blink on and off.</p>
+<p>The first thing we need to do is add an LED to the board:</p>
+<p><a href="../../wp-content/uploads/sites/2/2013/07/102_0096.jpg"><img class="alignnone size-medium wp-image-14" alt="102_0096" src="../../wp-content/uploads/sites/2/2013/07/102_0096-300x168.jpg" width="300" height="168" /></a></p>
+<p>The LED is connected via a 330 ohm resistor from pin 2 (RA0) to GND.</p>
+<p>We then need to modify our code. We are going to modify main function in main.c as follows:</p>
+<pre>int main(int argc, char** argv)
+{
+    TRISA = 0xFFFE; // Set RA0 pin as output
+
+    // Loop to flash an LED on RA0 (pin 2)
+    while(1)
+    {
+        PORTASET = 1;          // Set RA0 high
+        // Insert some delay
+        int i = 100000;
+        while(i--);
+
+        PORTACLR = 0;          // Set RA0 low
+        // Insert some delay
+        i = 100000;
+        while(i--);
+    }
+
+    return (EXIT_SUCCESS);
+}</pre>
+<p>For this to work you need to add the following include at the top of the file:</p>
+<pre>#include &lt;p32xxxx.h&gt;</pre>
+<p>Now when we run the project from the Run menu, the LED should blink on and off.</p>
+<p><strong>Note:</strong></p>
+<p>The delay loop is bad code. I&#8217;m not proud of that, and I wouldn&#8217;t suggest using it in your projects! I&#8217;ll show you how to do it properly in a future post.</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/usingmplabx/index.html" rel="category tag">Getting Started With MPLABX</a>			</span>
+															
+|			
+					</footer><!-- .entry-meta -->
+	</article><!-- #post-24 -->
+
+				
+					
+	<article id="post-21" class="post-21 post type-post status-publish format-standard hentry category-usingmplabx">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="11/setting-up-the-pickit3-with-mplabx-part-1/index.html" rel="bookmark">Setting up the PICkit3 with MPLABX (Part 1)</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="11/setting-up-the-pickit3-with-mplabx-part-1/index.html" title="2:16 pm" rel="bookmark"><time class="entry-date" datetime="2013-07-11T14:16:51+00:00">July 11, 2013</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="11/setting-up-the-pickit3-with-mplabx-part-1/index.html#respond"><span class="leave-reply">Reply</span></a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>The aim of this post is to describe how to put a PIC32 chip on a breadboard (I&#8217;m using a PIC32MX250F128B), connect up the PICkit3 between the board and the PC, and then debug a really simple program (that just flashes an LED).</p>
+<p>The IDE we&#8217;ll be using is MPLABX with the XC32 compiler. You need to make sure these are installed first, if you haven&#8217;t done so already. To get these visit:</p>
+<p><a href="http://www.microchip.com/pagehandler/en-us/family/mplabx/#downloads">http://www.microchip.com/pagehandler/en-us/family/mplabx/#downloads</a></p>
+<p>Install MPLABX first, and then install XC32.</p>
+<p>This is the setup for the breadboard connected to the PICkit3:</p>
+<p><a href="../../wp-content/uploads/sites/2/2013/07/PICkit3AndBoard1.jpg"><img class="alignnone size-medium wp-image-22" alt="PICkit3AndBoard" src="../../wp-content/uploads/sites/2/2013/07/PICkit3AndBoard1-300x128.jpg" width="300" height="128" /></a></p>
+<p>The schematic for this is:</p>
+<p><a href="../../wp-content/uploads/sites/2/2013/07/ProgramCircuit.png"><img class="alignnone size-medium wp-image-12" alt="ProgramCircuit" src="../../wp-content/uploads/sites/2/2013/07/ProgramCircuit-300x170.png" width="300" height="170" /></a></p>
+<p>[I got this from <a href="https://sites.google.com/site/pcusbprojects/5-custom-projects/r-pickit-3-header-for-pic32mx250f128b-programming">https://sites.google.com/site/pcusbprojects/5-custom-projects/r-pickit-3-header-for-pic32mx250f128b-programming</a>. I have removed the voltage regulator because I will be powering the chip from the PICkit3]</p>
+<p>You then connect this up to the PC with a USB cable, and start the MPLABX IDE.</p>
+<p>To create our simple project, select <em>New Project</em> from the file menu. Select <em>Microchip Embedded, Standalone Project</em> from the categories / projects windows. Press <em>Next</em>.</p>
+<p>Select the device, in my case 32 bit MCUS / PIC32MX250F128B. Press <em>Next</em>.</p>
+<p>Select PICkit3 as the tool. Press <em>Next</em>.</p>
+<p>Select XC32 as the compiler. Press <em>Next</em>.</p>
+<p>Choose a name for the project. I chose <em>Blink1</em> Press <em>Finish</em>.</p>
+<p>In the <em>Projects</em> window, right click on <em>Source Files</em>. and select <em>New</em>, <em>C New Main File&#8230;</em> and enter the name &#8220;main&#8221; (instead of newmain). Press <em>Finish</em>.</p>
+<p>Before we run this on the real device, we need to make sure that the chip will be powered from the PICkit3. To do this you need to select Project Properties (Blink1) from the file menu. In the left hand window (Categories) you need to select PICkit3. On the right you will then see a dropdown labelled <em>Option Categories</em>. From this select <em>Power</em>. In the options below you will now see Power target circuit from PICkit3. Check the checkbox. Leave the voltage level as 3.25. Press <em>OK</em>.</p>
+<p>We need to build the project, program the device, and then start the debugger. The easiest way to do this is select <em>Debug Project (Blink1)</em> from the <em>Debug</em> menu. MPLABX will then build, program and run our code. You may get the following warning:</p>
+<p><a href="../../wp-content/uploads/sites/2/2013/07/WatchdogWarning.png"><img class="alignnone size-medium wp-image-13" alt="WatchdogWarning" src="../../wp-content/uploads/sites/2/2013/07/WatchdogWarning-300x170.png" width="300" height="170" /></a></p>
+<p>&#8230;just press <em>Yes</em>.</p>
+<p>If everything is working ok there will be a set of windows at the bottom labelled &#8220;Blink1 (Build, Load, &#8230;)&#8221;, &#8220;Debugger Console&#8221; and &#8220;PICkit3&#8221;. In the PICkit3 window the last few lines should read:</p>
+<p>Programming&#8230;<br />
+Programming/Verify complete</p>
+<p>Running</p>
+<p>Not very exciting after all that work! And no evidence that it really is working. Lets add a breakpoint.</p>
+<p>Open main.c in the source files folder by double clicking it. Click on the grey sidebar where it says 16. That will set a breakpoint at the line which will look like:</p>
+<p><a href="../../wp-content/uploads/sites/2/2013/07/Breakpoint.png"><img class="alignnone size-medium wp-image-16" alt="Breakpoint" src="../../wp-content/uploads/sites/2/2013/07/Breakpoint-300x100.png" width="300" height="100" /></a></p>
+<p>You should notice that the PICkit3 window has a red line of text that says:</p>
+<p>The PICkit 3 does not support the ability to set breakpoints while the devices is running. The breakpoint will be applied prior to the next time you run the device.</p>
+<p>This is important. It means that you can only set breakpoints:</p>
+<ul>
+<li>Before you&#8217;ve started the debugger, or</li>
+<li>When you have stopped at an existing breakpoint.</li>
+</ul>
+<p>If you click on Debug Project (Blink1) again then the program should restart and (eventually) the breakpoint will be hit. That looks like:</p>
+<p><a href="../../wp-content/uploads/sites/2/2013/07/HitBreakpoint.png"><img class="alignnone size-medium wp-image-17" alt="HitBreakpoint" src="../../wp-content/uploads/sites/2/2013/07/HitBreakpoint-300x66.png" width="300" height="66" /></a></p>
+<p>Still not very exciting. But at least we can see that something is happening. It&#8217;s probably worth having a quick look at what you do when you are stopped at a breakpoint. On the Window menu there is a Debugging option. From here we can see variables and the disassembly for instance. We can also see the contents of memory and registers on the PIC Memory Views menu item&#8230; but detailed explanations would take far too long to go through now. I&#8217;ll do that in a later post.</p>
+<p>Anyway, that&#8217;s enough for now. Next time we&#8217;ll modify the circuit to add an LED, and make it blink &#8211; after all that is the name of the project!</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/usingmplabx/index.html" rel="category tag">Getting Started With MPLABX</a>			</span>
+															
+|			
+					</footer><!-- .entry-meta -->
+	</article><!-- #post-21 -->
+
+				
+					
+	<article id="post-10" class="post-10 post type-post status-publish format-standard hentry category-general">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="11/which-micro-controller-should-you-use/index.html" rel="bookmark">Which micro-controller should you use?</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="11/which-micro-controller-should-you-use/index.html" title="2:13 pm" rel="bookmark"><time class="entry-date" datetime="2013-07-11T14:13:34+00:00">July 11, 2013</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="11/which-micro-controller-should-you-use/index.html#respond"><span class="leave-reply">Reply</span></a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>Note: I may do a video to accompany this later. Let me know if that would be of interest&#8230;</p>
+<p><strong>A Short Introduction</strong></p>
+<p>Micro-controllers have been around a <em>long</em> time. Just recently though they have attracted a lot more interest, thanks mainly to the Arduino boards. People all over the world are now building  all sorts of exotic and innovative creations. If you are new to micro-controllers you would be well advised to start with an Arduino board (<a title="Arduino website" href="http://arduino.cc/en/" target="_blank">Arduino website</a>).</p>
+<p>Once you have played with this for a while you will probably be interested in getting some of the <em>shields</em> (plug in boards) that help out with tasks like driving motors (e.g. for robots) or LCD displays or connecting via wireless. USB or ethernet etc.</p>
+<p>You will also discover that there are other boards available &#8211; using different processors. The ones that I&#8217;m going to mention here are the PIC based ones made by Digilent (chipKIT). These are the Uno32, uC32, DP32 and Max32. They are all based on the PIC32 chips. They run a lot faster than the Arduino boards (which are based on Atmel processors). Be warned though that you won&#8217;t be able to use the Arduino IDE &#8211; you have to use a specially adapted version called MPIDE. The idea is that you should be able to use sketches built for Arduino boards and recompile them without modification using MPIDE for the chipKIT boards. In practice, it&#8217;s not always as easy as that, so if you decide you want the faster speed and extra features, you may have to put up with having less support than you get with the Arduino boards.</p>
+<p>There is another approach, which I am going to use &#8211; which is to use the PIC devices directly. Also, instead of using the MPIDE, I will be using Microchip&#8217;s IDE &#8211; MPLABX. Microchip provide three free compilers &#8211; XC8, XC16 and XC32 depending on whether you are programming an 8bit, 16bit or 32bit chip. They also provide an assember &#8211; MPASM if you need really feel the need to write the code directly in assembler!</p>
+<p>You can use the chipKIT boards with MPLABX, but to be honest, if you are going down this route you might as well just program straight to the device itself. You&#8217;ll need a few external components, but you can build this all on a small breadboard, like this one:</p>
+<p><a href="../../wp-content/uploads/sites/2/2013/07/Breadboard400.png"><img class="alignnone size-medium wp-image-15" alt="Breadboard400" src="../../wp-content/uploads/sites/2/2013/07/Breadboard400-300x200.png" width="300" height="200" /></a></p>
+<p>You will need to get a programmer / debugger, and the one that I would recommend is the PICkit 3. This connects your PC (Windows, MAC or linux) via USB, and to the board via a 6 pin header. This is obviously more effort that using the Arduino IDE or MPIDE, but there are several benefits to this extra effort:</p>
+<ul>
+<li>Debugging (including breakpoints and register / variable inspection).</li>
+<li>Ability to use a much wider range of devices.</li>
+<li>Easier to understand hardware (most projects can be done with very few external components).</li>
+</ul>
+<p>There are many other benefits &#8211; this is just some of them.</p>
+<p>So if you&#8217;ve got here, you&#8217;re either an advanced user, or you&#8217;re felling brave and want to do some real hacking with real devices. If it&#8217;s the latter I applaud your ambition!</p>
+<p>I will try to make this as painless as possible with the upcoming  tutorials. I am sure that you will find it much more satisfying than using a pre-built board.</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/general/index.html" rel="category tag">General</a>			</span>
+															
+|			
+					</footer><!-- .entry-meta -->
+	</article><!-- #post-10 -->
+
+				
+					
+	<article id="post-8" class="post-8 post type-post status-publish format-standard hentry category-general">
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="11/road-map/index.html" rel="bookmark">Road Map</a></h1>
+			
+						<div class="entry-meta">
+				<span class="sep">Posted on </span><a href="11/road-map/index.html" title="2:13 pm" rel="bookmark"><time class="entry-date" datetime="2013-07-11T14:13:06+00:00">July 11, 2013</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>			</div><!-- .entry-meta -->
+			
+						<div class="comments-link">
+				<a href="11/road-map/index.html#respond"><span class="leave-reply">Reply</span></a>			</div>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p><a href="../../wp-content/uploads/sites/2/2013/07/variousPICs.jpg"><img alt="variousPICs" src="../../wp-content/uploads/sites/2/2013/07/variousPICs-300x118.jpg" width="300" height="118" /></a></p>
+<p>Welcome to my PIC tutorials. Over the coming weeks and months I plan to show some exciting ways to use the PIC micro-controllers. I&#8217;ll be working with devices from the PIC10 all the way up to the PIC32. Most of these devices are very inexpensive, but they really can do a LOT.</p>
+<p>I&#8217;ll start by looking at what&#8217;s available, and then I&#8217;ll dive into programming some simple examples.</p>
+<p>I&#8217;ll also occasionally include some articles about Arduino and chipKIT boards.</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/general/index.html" rel="category tag">General</a>			</span>
+															
+|			
+					</footer><!-- .entry-meta -->
+	</article><!-- #post-8 -->
+
+				
+				
+			
+			</div><!-- #content -->
+		</section><!-- #primary -->
+
+		<div id="secondary" class="widget-area" role="complementary">
+			<aside id="search-2" class="widget widget_search"></aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="../../2014/03/14/next-project/index.html">Next Project</a>
+						</li>
+					<li>
+				<a href="../../2014/03/13/improved-arduino-wireless-board/index.html">Improved Arduino Wireless Board</a>
+						</li>
+					<li>
+				<a href="../../2014/01/27/cap-meter-temp-stability/index.html">Capacitance Meter Temperature Sensitivity</a>
+						</li>
+					<li>
+				<a href="../../2014/01/25/capacitance-meter-mk-ii/index.html">Capacitance Meter Mk II</a>
+						</li>
+					<li>
+				<a href="../../2014/01/22/experiments-with-uno-cap-meter/index.html">Experiments with the Arduino Capacitance Meter</a>
+						</li>
+				</ul>
+		</aside><aside id="text-3" class="widget widget_text">			<div class="textwidget"><script async src="../../../pagead/js/f.txt"></script>
+<!-- d4def396-a457-4882-90f7-74ec2980bba3 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6883435305856536"
+     data-ad-slot="3063473247"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+		</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">Eric</span> on <a href="../../2014/01/25/capacitance-meter-mk-ii/index.html#comment-1102">Capacitance Meter Mk II</a></li><li class="recentcomments"><span class="comment-author-link">Ravi Shankar</span> on <a href="../12/11/nrf24l01sw/index.html#comment-1071">Wireless Communication using the nRF24L01 Module</a></li><li class="recentcomments"><span class="comment-author-link">Ehsan</span> on <a href="../../2014/01/21/cap-meter-with-arduino-uno/index.html#comment-990">Capacitance measurement with the Arduino Uno</a></li><li class="recentcomments"><span class="comment-author-link">Ehsan</span> on <a href="../../2014/01/21/cap-meter-with-arduino-uno/index.html#comment-987">Capacitance measurement with the Arduino Uno</a></li><li class="recentcomments"><span class="comment-author-link">Andreas</span> on <a href="../../2014/01/25/capacitance-meter-mk-ii/index.html#comment-929">Capacitance Meter Mk II</a></li></ul></aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+	<li><a href='../../2014/03/index.html'>March 2014</a></li>
+	<li><a href='../../2014/01/index.html'>January 2014</a></li>
+	<li><a href='../12/index.html'>December 2013</a></li>
+	<li><a href='index.html'>July 2013</a></li>
+		</ul>
+</aside><aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+	<li class="cat-item cat-item-3"><a href="../../category/general/index.html" title="High level overviews - mainly.">General</a>
+</li>
+	<li class="cat-item cat-item-2"><a href="../../category/usingmplabx/index.html" title="Everything you need to get you started with the MicroChip MPLABX and a PIC.">Getting Started With MPLABX</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="../../category/pic-usb-solutions/index.html" >PIC USB Solutions</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="../../category/uncategorized/index.html" >Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="../../category/wireless-dev/index.html" title="Wireless development and solutions">Wireless Development</a>
+</li>
+		</ul>
+</aside></div><!-- #secondary .widget-area -->
+
+	</div><!-- #main -->
+
+	<footer id="colophon" role="contentinfo">
+
+			
+
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type='text/javascript'>
+var colomatduration = 'fast';
+var colomatslideEffect = 'slideFade';
+</script><script type='text/javascript' src='../../wp-content/plugins/jquery-collapse-o-matic/js/collapse00e2.js?ver=1.5.7'></script>
+
+</body>
+</html>

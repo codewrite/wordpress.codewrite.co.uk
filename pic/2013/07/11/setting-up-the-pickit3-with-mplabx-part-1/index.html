@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Setting up the PICkit3 with MPLABX (Part 1) | PIC Tutorials</title>
+<link rel="profile" href="../../../../../xfn/11.html" />
+<link rel="stylesheet" type="text/css" media="all" href="../../../../wp-content/themes/twentyeleven/style.css" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Setting up the PICkit3 with MPLABX (Part 1) Comments Feed" href="feed/index.html" />
+<link rel='stylesheet' id='collapseomatic-css-css'  href='../../../../wp-content/plugins/jquery-collapse-o-matic/light_style00e2.css?ver=1.5.7' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jqueryc1d8.js?ver=1.11.3'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Which micro-controller should you use?' href='../which-micro-controller-should-you-use/index.html' />
+<link rel='next' title='Setting up the PICkit3 with MPLABX (Part 2)' href='../setting-up-the-pickit3-with-mplabx-part-2/index.html' />
+<link rel='canonical' href='index.html' />
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="single single-post postid-21 single-format-standard single-author singular two-column right-sidebar">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+			<hgroup>
+				<h1 id="site-title"><span><a href="../../../../index.html" rel="home">PIC Tutorials</a></span></h1>
+				<h2 id="site-description">Electronics and Programming Simplified</h2>
+			</hgroup>
+
+						<a href="../../../../index.html">
+									<img src="../../../../wp-content/uploads/sites/2/2013/07/cropped-header1.png" width="1000" height="288" alt="" />
+							</a>
+			
+			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Main menu</h3>
+								<div class="skip-link"><a class="assistive-text" href="#content">Skip to primary content</a></div>
+												<div class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-349" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-349"><a href="../../../../../ham/index.html">Amateur Radio</a></li>
+<li id="menu-item-351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a href="../../../../about/index.html">About</a></li>
+</ul></div>			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<div id="primary">
+			<div id="content" role="main">
+
+				
+					<nav id="nav-single">
+						<h3 class="assistive-text">Post navigation</h3>
+						<span class="nav-previous"><a href="../which-micro-controller-should-you-use/index.html" rel="prev"><span class="meta-nav">&larr;</span> Previous</a></span>
+						<span class="nav-next"><a href="../setting-up-the-pickit3-with-mplabx-part-2/index.html" rel="next">Next <span class="meta-nav">&rarr;</span></a></span>
+					</nav><!-- #nav-single -->
+
+					
+<article id="post-21" class="post-21 post type-post status-publish format-standard hentry category-usingmplabx">
+	<header class="entry-header">
+		<h1 class="entry-title">Setting up the PICkit3 with MPLABX (Part 1)</h1>
+
+				<div class="entry-meta">
+			<span class="sep">Posted on </span><a href="index.html" title="2:16 pm" rel="bookmark"><time class="entry-date" datetime="2013-07-11T14:16:51+00:00">July 11, 2013</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>The aim of this post is to describe how to put a PIC32 chip on a breadboard (I&#8217;m using a PIC32MX250F128B), connect up the PICkit3 between the board and the PC, and then debug a really simple program (that just flashes an LED).</p>
+<p>The IDE we&#8217;ll be using is MPLABX with the XC32 compiler. You need to make sure these are installed first, if you haven&#8217;t done so already. To get these visit:</p>
+<p><a href="http://www.microchip.com/pagehandler/en-us/family/mplabx/#downloads">http://www.microchip.com/pagehandler/en-us/family/mplabx/#downloads</a></p>
+<p>Install MPLABX first, and then install XC32.</p>
+<p>This is the setup for the breadboard connected to the PICkit3:</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2013/07/PICkit3AndBoard1.jpg"><img class="alignnone size-medium wp-image-22" alt="PICkit3AndBoard" src="../../../../wp-content/uploads/sites/2/2013/07/PICkit3AndBoard1-300x128.jpg" width="300" height="128" /></a></p>
+<p>The schematic for this is:</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2013/07/ProgramCircuit.png"><img class="alignnone size-medium wp-image-12" alt="ProgramCircuit" src="../../../../wp-content/uploads/sites/2/2013/07/ProgramCircuit-300x170.png" width="300" height="170" /></a></p>
+<p>[I got this from <a href="https://sites.google.com/site/pcusbprojects/5-custom-projects/r-pickit-3-header-for-pic32mx250f128b-programming">https://sites.google.com/site/pcusbprojects/5-custom-projects/r-pickit-3-header-for-pic32mx250f128b-programming</a>. I have removed the voltage regulator because I will be powering the chip from the PICkit3]</p>
+<p>You then connect this up to the PC with a USB cable, and start the MPLABX IDE.</p>
+<p>To create our simple project, select <em>New Project</em> from the file menu. Select <em>Microchip Embedded, Standalone Project</em> from the categories / projects windows. Press <em>Next</em>.</p>
+<p>Select the device, in my case 32 bit MCUS / PIC32MX250F128B. Press <em>Next</em>.</p>
+<p>Select PICkit3 as the tool. Press <em>Next</em>.</p>
+<p>Select XC32 as the compiler. Press <em>Next</em>.</p>
+<p>Choose a name for the project. I chose <em>Blink1</em> Press <em>Finish</em>.</p>
+<p>In the <em>Projects</em> window, right click on <em>Source Files</em>. and select <em>New</em>, <em>C New Main File&#8230;</em> and enter the name &#8220;main&#8221; (instead of newmain). Press <em>Finish</em>.</p>
+<p>Before we run this on the real device, we need to make sure that the chip will be powered from the PICkit3. To do this you need to select Project Properties (Blink1) from the file menu. In the left hand window (Categories) you need to select PICkit3. On the right you will then see a dropdown labelled <em>Option Categories</em>. From this select <em>Power</em>. In the options below you will now see Power target circuit from PICkit3. Check the checkbox. Leave the voltage level as 3.25. Press <em>OK</em>.</p>
+<p>We need to build the project, program the device, and then start the debugger. The easiest way to do this is select <em>Debug Project (Blink1)</em> from the <em>Debug</em> menu. MPLABX will then build, program and run our code. You may get the following warning:</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2013/07/WatchdogWarning.png"><img class="alignnone size-medium wp-image-13" alt="WatchdogWarning" src="../../../../wp-content/uploads/sites/2/2013/07/WatchdogWarning-300x170.png" width="300" height="170" /></a></p>
+<p>&#8230;just press <em>Yes</em>.</p>
+<p>If everything is working ok there will be a set of windows at the bottom labelled &#8220;Blink1 (Build, Load, &#8230;)&#8221;, &#8220;Debugger Console&#8221; and &#8220;PICkit3&#8221;. In the PICkit3 window the last few lines should read:</p>
+<p>Programming&#8230;<br />
+Programming/Verify complete</p>
+<p>Running</p>
+<p>Not very exciting after all that work! And no evidence that it really is working. Lets add a breakpoint.</p>
+<p>Open main.c in the source files folder by double clicking it. Click on the grey sidebar where it says 16. That will set a breakpoint at the line which will look like:</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2013/07/Breakpoint.png"><img class="alignnone size-medium wp-image-16" alt="Breakpoint" src="../../../../wp-content/uploads/sites/2/2013/07/Breakpoint-300x100.png" width="300" height="100" /></a></p>
+<p>You should notice that the PICkit3 window has a red line of text that says:</p>
+<p>The PICkit 3 does not support the ability to set breakpoints while the devices is running. The breakpoint will be applied prior to the next time you run the device.</p>
+<p>This is important. It means that you can only set breakpoints:</p>
+<ul>
+<li>Before you&#8217;ve started the debugger, or</li>
+<li>When you have stopped at an existing breakpoint.</li>
+</ul>
+<p>If you click on Debug Project (Blink1) again then the program should restart and (eventually) the breakpoint will be hit. That looks like:</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2013/07/HitBreakpoint.png"><img class="alignnone size-medium wp-image-17" alt="HitBreakpoint" src="../../../../wp-content/uploads/sites/2/2013/07/HitBreakpoint-300x66.png" width="300" height="66" /></a></p>
+<p>Still not very exciting. But at least we can see that something is happening. It&#8217;s probably worth having a quick look at what you do when you are stopped at a breakpoint. On the Window menu there is a Debugging option. From here we can see variables and the disassembly for instance. We can also see the contents of memory and registers on the PIC Memory Views menu item&#8230; but detailed explanations would take far too long to go through now. I&#8217;ll do that in a later post.</p>
+<p>Anyway, that&#8217;s enough for now. Next time we&#8217;ll modify the circuit to add an LED, and make it blink &#8211; after all that is the name of the project!</p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+		This entry was posted in <a href="../../../../category/usingmplabx/index.html" rel="category tag">Getting Started With MPLABX</a> by <a href="../../../../author/jon/index.html">jon</a>. Bookmark the <a href="index.html" title="Permalink to Setting up the PICkit3 with MPLABX (Part 1)" rel="bookmark">permalink</a>.		
+			</footer><!-- .entry-meta -->
+</article><!-- #post-21 -->
+
+						<div id="comments">
+	
+	
+	
+
+			
+</div><!-- #comments -->
+
+				
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+
+	</div><!-- #main -->
+
+	<footer id="colophon" role="contentinfo">
+
+			
+
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type='text/javascript'>
+var colomatduration = 'fast';
+var colomatslideEffect = 'slideFade';
+</script><script type='text/javascript' src='../../../../wp-includes/js/comment-reply.min5b31.js?ver=4.3.1'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jquery-collapse-o-matic/js/collapse00e2.js?ver=1.5.7'></script>
+
+</body>
+</html>

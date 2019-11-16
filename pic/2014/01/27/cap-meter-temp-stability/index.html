@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Capacitance Meter Temperature Sensitivity | PIC Tutorials</title>
+<link rel="profile" href="../../../../../xfn/11.html" />
+<link rel="stylesheet" type="text/css" media="all" href="../../../../wp-content/themes/twentyeleven/style.css" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Capacitance Meter Temperature Sensitivity Comments Feed" href="feed/index.html" />
+<link rel='stylesheet' id='collapseomatic-css-css'  href='../../../../wp-content/plugins/jquery-collapse-o-matic/light_style00e2.css?ver=1.5.7' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jqueryc1d8.js?ver=1.11.3'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Capacitance Meter Mk II' href='../../25/capacitance-meter-mk-ii/index.html' />
+<link rel='next' title='Improved Arduino Wireless Board' href='../../../03/13/improved-arduino-wireless-board/index.html' />
+<link rel='canonical' href='index.html' />
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="single single-post postid-317 single-format-standard single-author singular two-column right-sidebar">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+			<hgroup>
+				<h1 id="site-title"><span><a href="../../../../index.html" rel="home">PIC Tutorials</a></span></h1>
+				<h2 id="site-description">Electronics and Programming Simplified</h2>
+			</hgroup>
+
+						<a href="../../../../index.html">
+									<img src="../../../../wp-content/uploads/sites/2/2013/07/cropped-header1.png" width="1000" height="288" alt="" />
+							</a>
+			
+			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Main menu</h3>
+								<div class="skip-link"><a class="assistive-text" href="#content">Skip to primary content</a></div>
+												<div class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-349" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-349"><a href="../../../../../ham/index.html">Amateur Radio</a></li>
+<li id="menu-item-351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a href="../../../../about/index.html">About</a></li>
+</ul></div>			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<div id="primary">
+			<div id="content" role="main">
+
+				
+					<nav id="nav-single">
+						<h3 class="assistive-text">Post navigation</h3>
+						<span class="nav-previous"><a href="../../25/capacitance-meter-mk-ii/index.html" rel="prev"><span class="meta-nav">&larr;</span> Previous</a></span>
+						<span class="nav-next"><a href="../../../03/13/improved-arduino-wireless-board/index.html" rel="next">Next <span class="meta-nav">&rarr;</span></a></span>
+					</nav><!-- #nav-single -->
+
+					
+<article id="post-317" class="post-317 post type-post status-publish format-standard hentry category-general">
+	<header class="entry-header">
+		<h1 class="entry-title">Capacitance Meter Temperature Sensitivity</h1>
+
+				<div class="entry-meta">
+			<span class="sep">Posted on </span><a href="index.html" title="10:23 am" rel="bookmark"><time class="entry-date" datetime="2014-01-27T10:23:54+00:00">January 27, 2014</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>One of the comments was from Jim, who was interested in the temperature sensitivity of the capacatiance meter. So I&#8217;ve tested it. I took some measurements of a selection of capacitors. I then put the Arduino board in the fridge at 4C for an hour, and repeated the test. I tried to do this as quickly as possible, so the board didn&#8217;t warm up too much. The results were as follows:</p>
+<p><span id="more-317"></span></p>
+<table width="470" border="0" cellspacing="0" cellpadding="0">
+<colgroup>
+<col width="122" />
+<col width="284" />
+<col width="64" /> </colgroup>
+<tbody>
+<tr>
+<td colspan="2" width="406" height="17">Room Temperature (measured at 21ºC)</td>
+<td width="64"></td>
+</tr>
+<tr>
+<td height="17">Capacitor</td>
+<td>Reading</td>
+<td></td>
+</tr>
+<tr>
+<td height="17">&#8211;</td>
+<td>0.072 pF (3)</td>
+<td></td>
+</tr>
+<tr>
+<td height="17">5pF +-.5pF</td>
+<td>5.440 pF (186)</td>
+<td></td>
+</tr>
+<tr>
+<td height="17">15J</td>
+<td>15.461 pF (396)</td>
+<td></td>
+</tr>
+<tr>
+<td height="17">22J</td>
+<td>23.403 pF (500)</td>
+<td></td>
+</tr>
+<tr>
+<td height="17">47J</td>
+<td>48.532 pF (680)</td>
+<td></td>
+</tr>
+<tr>
+<td height="17">101J</td>
+<td>102.000 pF (825)</td>
+<td></td>
+</tr>
+<tr>
+<td height="17">471K</td>
+<td>457.117 pF (971)</td>
+<td></td>
+</tr>
+<tr>
+<td height="17">102K</td>
+<td>0.95 nF (Normal, t= 32 us, ADC= 636)</td>
+<td></td>
+</tr>
+<tr>
+<td height="17">103K</td>
+<td>10.47 nF (Normal, t= 272 us, ADC= 538)</td>
+<td></td>
+</tr>
+<tr>
+<td height="17">104K</td>
+<td>111.43 nF (Normal, t= 2776 us, ADC= 523)</td>
+<td></td>
+</tr>
+<tr>
+<td height="17">105</td>
+<td>985.55 nF (Normal, t= 24416 us, ADC= 521)</td>
+<td></td>
+</tr>
+<tr>
+<td height="17">106K (tant.)</td>
+<td>11.79 uF (Normal, t= 291356 us, ADC= 520)</td>
+<td></td>
+</tr>
+<tr>
+<td height="17">220u (elec.)</td>
+<td>224.77 uF (HighVal, t= 400000 us, ADC= 51)</td>
+<td></td>
+</tr>
+<tr>
+<td height="17"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" height="17">Cooled in the fridge (measured at 4ºC)</td>
+<td></td>
+</tr>
+<tr>
+<td height="17">Capacitor</td>
+<td>Reading</td>
+<td>% chg</td>
+</tr>
+<tr>
+<td height="17">&#8211;</td>
+<td>0.096 pF (4)</td>
+<td>33.3</td>
+</tr>
+<tr>
+<td height="17">5pF +-.5pF</td>
+<td>5.620 pF (191)</td>
+<td>3.3</td>
+</tr>
+<tr>
+<td height="17">15J</td>
+<td>15.461 pF (396)</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td height="17">22J</td>
+<td>23.312 pF (499)</td>
+<td>-0.4</td>
+</tr>
+<tr>
+<td height="17">47J</td>
+<td>48.320 pF (679)</td>
+<td>-0.4</td>
+</tr>
+<tr>
+<td height="17">101J</td>
+<td>102.000 pF (825)</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td height="17">471K</td>
+<td>457.117 pF (971)</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td height="17">102K</td>
+<td>0.94 nF (Normal, t= 32 us, ADC= 637)</td>
+<td>-1.1</td>
+</tr>
+<tr>
+<td height="17">103K</td>
+<td>10.59 nF (Normal, t= 272 us, ADC= 534)</td>
+<td>1.1</td>
+</tr>
+<tr>
+<td height="17">104K</td>
+<td>111.74 nF (Normal, t= 2776 us, ADC= 522)</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td height="17">105</td>
+<td>952.37 nF (Normal, t= 23528 us, ADC= 520)</td>
+<td>-3.4</td>
+</tr>
+<tr>
+<td height="17">106K (tant.)</td>
+<td>11.96 uF (Normal, t= 292936 us, ADC= 517)</td>
+<td>1.4</td>
+</tr>
+<tr>
+<td height="17">220u (elec.)</td>
+<td>229.38 uF (HighVal, t= 400004 us, ADC= 50)</td>
+<td>2.1</td>
+</tr>
+</tbody>
+</table>
+<p>To be honest, I can&#8217;t see any variation due to temperature. Looking at the raw numbers they are mostly only out by 1 &#8211; which means that the variations are only due to the resolution of the measurement. The only capacitor of note is the &#8220;105&#8221; capacitor. That seems to vary between readings at room temperature. It doesn&#8217;t have a tolerance marking on it, and I can&#8217;t really understand why it varies so much.</p>
+<p>I&#8217;ve then put the Arduino in the freezer (at -18ºC) for an hour to see if that would make any difference. I am a not sure the Arduino is rated to work at that temperature, but it seemed to be ok! Anyway the results of this test were:</p>
+<table width="468" border="0" cellspacing="0" cellpadding="0">
+<colgroup>
+<col width="133" />
+<col width="271" />
+<col width="64" /> </colgroup>
+<tbody>
+<tr>
+<td colspan="2" width="404" height="17">Cooled in the freezer (should be about -18degC)</td>
+<td width="64"></td>
+</tr>
+<tr>
+<td height="17">Capacitor</td>
+<td>Reading</td>
+<td>% chg</td>
+</tr>
+<tr>
+<td height="17">&#8211;</td>
+<td>0.120 pF (5)</td>
+<td>66.7</td>
+</tr>
+<tr>
+<td height="17">5pF +-.5pF</td>
+<td>5.512 pF (188)</td>
+<td>1.3</td>
+</tr>
+<tr>
+<td height="17">15J</td>
+<td>15.397 pF (395)</td>
+<td>-0.4</td>
+</tr>
+<tr>
+<td height="17">22J</td>
+<td>23.312 pF (499)</td>
+<td>-0.4</td>
+</tr>
+<tr>
+<td height="17">47J</td>
+<td>48.109 pF (678)</td>
+<td>-0.9</td>
+</tr>
+<tr>
+<td height="17">101J</td>
+<td>102.000 pF (825)</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td height="17">471K</td>
+<td>457.117 pF (971)</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td height="17">102K</td>
+<td>0.97 nF (Normal, t= 32 us, ADC= 626)</td>
+<td>2.1</td>
+</tr>
+<tr>
+<td height="17">103K</td>
+<td>10.65 nF (Normal, t= 272 us, ADC= 532)</td>
+<td>1.7</td>
+</tr>
+<tr>
+<td height="17">104K</td>
+<td>112.70 nF (Normal, t= 2792 us, ADC= 521)</td>
+<td>1.1</td>
+</tr>
+<tr>
+<td height="17">105</td>
+<td>1.10 uF (Normal, t= 26972 us, ADC= 517)</td>
+<td>11.6</td>
+</tr>
+<tr>
+<td height="17">106K (tant.)</td>
+<td>11.93 uF (Normal, t= 292280 us, ADC= 517)</td>
+<td>1.2</td>
+</tr>
+<tr>
+<td height="17">220u (elec.)</td>
+<td>229.38 uF (HighVal, t= 400000 us, ADC= 50)</td>
+<td>2.1</td>
+</tr>
+</tbody>
+</table>
+<p>My &#8220;105&#8221; capacitor is still acting strangely, but apart from that my conclusions are:</p>
+<ol>
+<li>There doesn&#8217;t seem to be any difference to the low temperature readings (below 1nF).</li>
+<li>The higher (i.e. RC discharge) readings seem to have increased by about 1 &#8211; 2 %. This would seem to suggest that the value of the pullup resistor has gone down (although not by much), which would make sense.</li>
+</ol>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+		This entry was posted in <a href="../../../../category/general/index.html" rel="category tag">General</a> by <a href="../../../../author/jon/index.html">jon</a>. Bookmark the <a href="index.html" title="Permalink to Capacitance Meter Temperature Sensitivity" rel="bookmark">permalink</a>.		
+			</footer><!-- .entry-meta -->
+</article><!-- #post-317 -->
+
+						<div id="comments">
+	
+	
+	
+
+			
+</div><!-- #comments -->
+
+				
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+
+	</div><!-- #main -->
+
+	<footer id="colophon" role="contentinfo">
+
+			
+
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type='text/javascript'>
+var colomatduration = 'fast';
+var colomatslideEffect = 'slideFade';
+</script><script type='text/javascript' src='../../../../wp-includes/js/comment-reply.min5b31.js?ver=4.3.1'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jquery-collapse-o-matic/js/collapse00e2.js?ver=1.5.7'></script>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>PIC12F1840: Blink using timer0 and interrupts | PIC Tutorials</title>
+<link rel="profile" href="../../../../../xfn/11.html" />
+<link rel="stylesheet" type="text/css" media="all" href="../../../../wp-content/themes/twentyeleven/style.css" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; PIC12F1840: Blink using timer0 and interrupts Comments Feed" href="feed/index.html" />
+<link rel='stylesheet' id='collapseomatic-css-css'  href='../../../../wp-content/plugins/jquery-collapse-o-matic/light_style00e2.css?ver=1.5.7' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jqueryc1d8.js?ver=1.11.3'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Using the PIC12F1840' href='../../11/using-the-pic12f1840/index.html' />
+<link rel='next' title='USB interface using PIC16F1455' href='../../26/usb-interface-using-pic16f1455-2/index.html' />
+<link rel='canonical' href='index.html' />
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="single single-post postid-53 single-format-standard single-author singular two-column right-sidebar">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+			<hgroup>
+				<h1 id="site-title"><span><a href="../../../../index.html" rel="home">PIC Tutorials</a></span></h1>
+				<h2 id="site-description">Electronics and Programming Simplified</h2>
+			</hgroup>
+
+						<a href="../../../../index.html">
+									<img src="../../../../wp-content/uploads/sites/2/2013/07/cropped-header1.png" width="1000" height="288" alt="" />
+							</a>
+			
+			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Main menu</h3>
+								<div class="skip-link"><a class="assistive-text" href="#content">Skip to primary content</a></div>
+												<div class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-349" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-349"><a href="../../../../../ham/index.html">Amateur Radio</a></li>
+<li id="menu-item-351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a href="../../../../about/index.html">About</a></li>
+</ul></div>			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<div id="primary">
+			<div id="content" role="main">
+
+				
+					<nav id="nav-single">
+						<h3 class="assistive-text">Post navigation</h3>
+						<span class="nav-previous"><a href="../../11/using-the-pic12f1840/index.html" rel="prev"><span class="meta-nav">&larr;</span> Previous</a></span>
+						<span class="nav-next"><a href="../../26/usb-interface-using-pic16f1455-2/index.html" rel="next">Next <span class="meta-nav">&rarr;</span></a></span>
+					</nav><!-- #nav-single -->
+
+					
+<article id="post-53" class="post-53 post type-post status-publish format-standard hentry category-usingmplabx">
+	<header class="entry-header">
+		<h1 class="entry-title">PIC12F1840: Blink using timer0 and interrupts</h1>
+
+				<div class="entry-meta">
+			<span class="sep">Posted on </span><a href="index.html" title="3:25 pm" rel="bookmark"><time class="entry-date" datetime="2013-07-12T15:25:49+00:00">July 12, 2013</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>A much better way to blink the LED is to use a timer, and rely on the timer generating an interrupt on the timer expiry. This is more accurate, and also doesn&#8217;t hog the CPU. Using the same setup as before (<a title="Using the PIC12F1840" href="../../11/using-the-pic12f1840/index.html">using the PIC12F1840</a>), we change the code as follows:</p>
+<pre>#include &lt;xc.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// CONFIG1
+#pragma config FOSC = INTOSC // Oscillator Selection (INTOSC oscillator: I/O function on CLKIN pin)
+#pragma config WDTE = OFF // Watchdog Timer Enable (WDT disabled)
+#pragma config PWRTE = OFF // Power-up Timer Enable (PWRT disabled)
+#pragma config MCLRE = ON // MCLR Pin Function Select (MCLR/VPP pin function is MCLR)
+#pragma config CP = OFF // Flash Program Memory Code Protection (Program memory code protection is disabled)
+#pragma config CPD = OFF // Data Memory Code Protection (Data memory code protection is disabled)
+#pragma config BOREN = ON // Brown-out Reset Enable (Brown-out Reset enabled)
+#pragma config CLKOUTEN = OFF // Clock Out Enable (CLKOUT function is disabled. I/O or oscillator function on the CLKOUT pin)
+#pragma config IESO = ON // Internal/External Switchover (Internal/External Switchover mode is enabled)
+#pragma config FCMEN = ON // Fail-Safe Clock Monitor Enable (Fail-Safe Clock Monitor is enabled)
+
+// CONFIG2
+#pragma config WRT = OFF // Flash Memory Self-Write Protection (Write protection off)
+#pragma config PLLEN = ON // PLL Enable (4x PLL enabled)
+#pragma config STVREN = ON // Stack Overflow/Underflow Reset Enable (Stack Overflow or Underflow will cause a Reset)
+#pragma config BORV = LO // Brown-out Reset Voltage Selection (Brown-out Reset Voltage (Vbor), low trip point selected.)
+#pragma config LVP = OFF // Low-Voltage Programming Enable (Low-voltage programming enabled)
+
+int counter = 0;
+
+int main(int argc, char** argv)
+{
+  TRISA = 0xEF; // Set RA4 pin as output
+
+  OPTION_REG = 0xC7; //Set prescaler to 256
+  TMR0 = 0xFF; //Timer0 module register
+  TMR0IE = 1;
+  ei(); //Enable all configured interrupts
+
+  while (1); //Loop forever
+
+  return (EXIT_SUCCESS);
+}
+
+void interrupt Timer0_ISR(void)
+{
+  counter++;
+  RA4 = counter &amp; 1;  //Toggle the LED
+  TMR0IF = 0;         //Clear the timer interrupt flag
+}</pre>
+<p>Notice that we have also included a configuration section. Apart from anything else, this will get rid of the annoying messages about the low power programming and watchdog (the watchdog is a very useful feature, but that will have to wait for another day). There is an easy way to generate the configuration, which is to select <em>Configuration Bits</em> from the <em>Window /  PIC Memory Views</em> menu item. From there you can change the options and the press the <em>Generate Source Code to Output</em> button.</p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+		This entry was posted in <a href="../../../../category/usingmplabx/index.html" rel="category tag">Getting Started With MPLABX</a> by <a href="../../../../author/jon/index.html">jon</a>. Bookmark the <a href="index.html" title="Permalink to PIC12F1840: Blink using timer0 and interrupts" rel="bookmark">permalink</a>.		
+			</footer><!-- .entry-meta -->
+</article><!-- #post-53 -->
+
+						<div id="comments">
+	
+	
+	
+
+			
+</div><!-- #comments -->
+
+				
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+
+	</div><!-- #main -->
+
+	<footer id="colophon" role="contentinfo">
+
+			
+
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type='text/javascript'>
+var colomatduration = 'fast';
+var colomatslideEffect = 'slideFade';
+</script><script type='text/javascript' src='../../../../wp-includes/js/comment-reply.min5b31.js?ver=4.3.1'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jquery-collapse-o-matic/js/collapse00e2.js?ver=1.5.7'></script>
+
+</body>
+</html>

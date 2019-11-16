@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Wireless Communication using the nRF24L01 Module | PIC Tutorials</title>
+<link rel="profile" href="../../../../../xfn/11.html" />
+<link rel="stylesheet" type="text/css" media="all" href="../../../../wp-content/themes/twentyeleven/style.css" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Wireless Communication using the nRF24L01 Module Comments Feed" href="feed/index.html" />
+<link rel='stylesheet' id='collapseomatic-css-css'  href='../../../../wp-content/plugins/jquery-collapse-o-matic/light_style00e2.css?ver=1.5.7' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jqueryc1d8.js?ver=1.11.3'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='USB interface using PIC16F1455' href='../../../07/26/usb-interface-using-pic16f1455-2/index.html' />
+<link rel='next' title='nRF24L01 PIC16F1455 and chipKIT uC32 Hardware Configuration' href='../nrf24l01hw/index.html' />
+<link rel='canonical' href='index.html' />
+<link rel='shortlink' href='../../../../indexb7c7.html?p=177' />
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="single single-post postid-177 single-format-standard single-author singular two-column right-sidebar">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+			<hgroup>
+				<h1 id="site-title"><span><a href="../../../../index.html" rel="home">PIC Tutorials</a></span></h1>
+				<h2 id="site-description">Electronics and Programming Simplified</h2>
+			</hgroup>
+
+						<a href="../../../../index.html">
+									<img src="../../../../wp-content/uploads/sites/2/2013/07/cropped-header1.png" width="1000" height="288" alt="" />
+							</a>
+			
+			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Main menu</h3>
+								<div class="skip-link"><a class="assistive-text" href="#content">Skip to primary content</a></div>
+												<div class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-349" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-349"><a href="../../../../../ham/index.html">Amateur Radio</a></li>
+<li id="menu-item-351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a href="../../../../about/index.html">About</a></li>
+</ul></div>			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<div id="primary">
+			<div id="content" role="main">
+
+				
+					<nav id="nav-single">
+						<h3 class="assistive-text">Post navigation</h3>
+						<span class="nav-previous"><a href="../../../07/26/usb-interface-using-pic16f1455-2/index.html" rel="prev"><span class="meta-nav">&larr;</span> Previous</a></span>
+						<span class="nav-next"><a href="../nrf24l01hw/index.html" rel="next">Next <span class="meta-nav">&rarr;</span></a></span>
+					</nav><!-- #nav-single -->
+
+					
+<article id="post-177" class="post-177 post type-post status-publish format-standard hentry category-wireless-dev">
+	<header class="entry-header">
+		<h1 class="entry-title">Wireless Communication using the nRF24L01 Module</h1>
+
+				<div class="entry-meta">
+			<span class="sep">Posted on </span><a href="index.html" title="1:33 pm" rel="bookmark"><time class="entry-date" datetime="2013-12-11T13:33:20+00:00">December 11, 2013</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>Wireless communication between devices is very appealing, but designing the hardware and writing the software can seem daunting. There are expensive solutions, but I&#8217;m going to show how to communicate using the nRF24L01 which can be purchased for around 60p (about US $1), or less. The nRF24L01 works in the 2.4GHz band and has a good range; In tests, I have managed 20 &#8211; 30 metres inside though lots of concrete and steel, and over 150 metres outside (line of sight). My top tip for getting a good range is to use the 250kbps rate, and keep the packets short &#8211; for my tests I was using a packet length of 6 bytes:</p>
+<table border="1">
+<tbody>
+<tr>
+<td>1. preamble   |</td>
+<td>2. Address 1   |</td>
+<td>3. Address 2   |</td>
+<td>4. Address 3   |</td>
+<td>5. payload   |</td>
+<td>6. crc</td>
+</tr>
+</tbody>
+</table>
+<p>I am going to show how to use the nRF24L01 with PIC16F1455 boards and/or chipKIT uC32 boards. I am not going to say too much about the hardware here, because I think the more difficult issue is getting the software right. Suffice to say that the nRF24L01 has a relatively simple interface, but most of the modules that you get have 2&#215;4 pins which won&#8217;t just plug straight into a uC32 (or Arduino) board. You can see more about the hardware by <a href="../nrf24l01hw/index.html">following this link</a>. To keep things simple here, we only need to worry about the circuit, which is as follows:</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2013/12/nRF24L01_PIC16F1455.png"><img class="alignnone size-medium wp-image-159" alt="nRF24L01_PIC16F1455" src="../../../../wp-content/uploads/sites/2/2013/12/nRF24L01_PIC16F1455-300x143.png" width="300" height="143" /></a></p>
+<p>As you can see, there are three switches and three LEDs. Our program is going to be very simple. The nRF24L01 has an auto acknowledgement mode which is supposed to simplify things. Does it? Well maybe, but it certainly doesn&#8217;t make it easier to understand. I wouldn&#8217;t recommend it if you are trying to understand how these modules work and how to use them. So we won&#8217;t be using that. Fairly obviously, we are going to need two modules, one for &#8220;transmit&#8221; and one for &#8220;receive&#8221;. I have used quotes for transmit and receive because actually both modules will be transmitting and receiving. The &#8220;transmitter&#8221; sends a packet when one of the buttons is pressed; It then immediately goes into receive mode and waits for a short amount of time to see if a packet is received. The &#8220;receiver&#8221; is continuously waiting for packets. When a valid packet is received the &#8220;receiver&#8221; goes into transmit mode and re-transmits the packet &#8211; hopefully the &#8220;transmitter&#8221; will receive this and light one of the LEDs. This gives us a visual indication that the packet has completed a round trip to the other transceiver and back again. <a href="../nrf24l01hw/index.html">There is more detail about this here</a>.</p>
+<p>The source code for the uC32 board looks like this:</p>
+<pre>#include &lt;SPI.h&gt;
+
+//Pins
+const int csnPin = 7;
+const int cePin = 9;
+const int irqPin = 8;
+
+//Commands
+const byte R_REG = 0x00;
+const byte W_REG = 0x20;
+const byte RX_PAYLOAD = 0x61;
+const byte TX_PAYLOAD = 0xA0;
+const byte FLUSH_TX = 0xE1;
+const byte FLUSH_RX = 0xE2;
+const byte ACTIVATE = 0x50;
+const byte R_STATUS = 0xFF;
+
+//Registers
+const byte CONFIG = 0x00;
+const byte EN_AA = 0x01;
+const byte EN_RXADDR = 0x02;
+const byte SETUP_AW = 0x03;
+const byte SETUP_RETR = 0x04;
+const byte RF_CH = 0x05;
+const byte RF_SETUP = 0x06;
+const byte STATUS = 0x07;
+const byte OBSERVE_TX = 0x08;
+const byte CD = 0x09;
+const byte RX_ADDR_P0 = 0x0A;
+const byte RX_ADDR_P1 = 0x0B;
+const byte RX_ADDR_P2 = 0x0C;
+const byte RX_ADDR_P3 = 0x0D;
+const byte RX_ADDR_P4 = 0x0E;
+const byte RX_ADDR_P5 = 0x0F;
+const byte TX_ADDR = 0x10;
+const byte RX_PW_P0 = 0x11;
+const byte RX_PW_P1 = 0x12;
+const byte RX_PW_P2 = 0x13;
+const byte RX_PW_P3 = 0x14;
+const byte RX_PW_P4 = 0x15;
+const byte RX_PW_P5 = 0x16;
+const byte FIFO_STATUS = 0x17;
+const byte DYNPD = 0x1C;
+const byte FEATURE = 0x1D;
+
+//Data
+byte RXTX_ADDR[3] = { 0xB5, 0x23, 0xA5 }; //Randomly chosen address
+
+//Local Helper Function Prototypes
+void FlushTXRX();
+void WriteRegister(byte reg, byte val);
+void WriteAddress(byte reg, byte num, byte* addr);
+byte ReadRegister(byte reg);
+void WriteCommand(byte command);
+void WritePayload(byte num, byte* data);
+void ReadPayload(byte num, byte* data);
+
+void nRF_Setup()
+{
+  // start the SPI library:
+  SPI.begin();
+
+  // initalize the  CSN and CE pins:
+  pinMode(csnPin, OUTPUT);
+  pinMode(cePin, OUTPUT);
+  pinMode(irqPin, INPUT);
+
+  digitalWrite(csnPin, HIGH);
+  digitalWrite(cePin, LOW);
+
+  // give the nRF24L01 time to set up:
+  delay(2);
+
+  WriteRegister(CONFIG, 0x0B);         //1 byte CRC, POWER UP, PRX
+  WriteRegister(EN_AA, 0x00);          //Disable auto ack
+  WriteRegister(EN_RXADDR, 0x01);      //Enable data pipe 0
+  WriteRegister(SETUP_AW, 0x01);       //3 byte address
+  WriteRegister(SETUP_RETR, 0x00);     //Retransmit disabled
+  WriteRegister(RF_CH, 0x01);          //Randomly chosen RF channel
+  WriteRegister(RF_SETUP, 0x26);       //250kbps, 0dBm
+  WriteRegister(RX_PW_P0, 0x01);       //RX payload = 1 byte
+
+  WriteAddress(RX_ADDR_P0, 3, RXTX_ADDR);
+  WriteAddress(TX_ADDR, 3, RXTX_ADDR);
+
+  FlushTXRX();
+
+  Serial.println("Initialized");
+}
+
+void RXMode()
+{
+  WriteRegister(CONFIG, 0x0B);         //1 byte CRC, POWER UP, PRX
+  digitalWrite(cePin, HIGH);
+}
+
+void TXMode()
+{
+  digitalWrite(cePin, LOW);
+  WriteRegister(CONFIG, 0x0A);         //1 byte CRC, POWER UP, PTX
+}
+
+void PowerDown()
+{
+  digitalWrite(cePin, LOW);
+  WriteRegister(CONFIG, 0);
+}
+
+byte RXChar()
+{
+  byte data;
+  ReadPayload(1, &amp;data);
+  //Clear status bit
+  WriteRegister(STATUS, 0x40);
+  return data;
+}
+
+void TXChar(byte ch)
+{
+  WritePayload(1, &amp;ch);
+
+  //Wait for char to be sent
+  byte stat;
+  do
+  {
+    stat = ReadStatus();
+  } while ((stat &amp; 0x20) == 0);
+
+  //Clear status bit
+  WriteRegister(STATUS, 0x20);
+}
+
+boolean ReadDataAvailable()
+{
+  if (digitalRead(cePin) == LOW)
+    return false;
+
+  byte stat = ReadStatus();
+  return (stat &amp; 0x40) != 0;
+}
+
+void DumpRegisters()
+{
+  for (int i=0; i&lt;10; i++)
+  {
+    digitalWrite(csnPin, LOW);
+
+    SPI.transfer(R_REG | i);
+    // send a value of 0 to read the first byte returned:
+    byte result = SPI.transfer(0x00);
+
+    Serial.print("Reg (");
+    PrintHex(i, 2);
+    Serial.print(") = ");
+    PrintHex(result, 2);
+    Serial.println();
+
+    digitalWrite(csnPin, HIGH);
+  }
+  Serial.print("IRQ = ");
+  Serial.println(digitalRead(irqPin), DEC);
+}
+
+// *************** Helper Methods ***************
+
+void FlushTXRX()
+{
+  //Clear: data RX ready, data sent TX, Max TX retransmits
+  WriteRegister(STATUS, 0x70);
+  WriteCommand(FLUSH_RX);
+  WriteCommand(FLUSH_TX);
+}
+
+void WriteRegister(byte reg, byte val)
+{
+  digitalWrite(csnPin, LOW);
+  SPI.transfer(W_REG | reg);
+  SPI.transfer(val);
+  digitalWrite(csnPin, HIGH);
+}
+
+//Address is 3-5 bytes, LSB first
+void WriteAddress(byte reg, byte num, byte* addr)
+{
+  digitalWrite(csnPin, LOW);
+  SPI.transfer(W_REG | reg);
+  for (byte i=0; i&lt;num; i++)
+    SPI.transfer(addr[i]);
+  digitalWrite(csnPin, HIGH);
+}
+
+byte ReadRegister(byte reg)
+{
+  digitalWrite(csnPin, LOW);
+  SPI.transfer(R_REG | reg);
+  byte val = SPI.transfer(0x00);
+  digitalWrite(csnPin, HIGH);
+  return val;
+}
+
+byte ReadStatus()
+{
+  digitalWrite(csnPin, LOW);
+  byte val = SPI.transfer(R_STATUS);
+  digitalWrite(csnPin, HIGH);
+  return val;
+}
+
+void WriteCommand(byte command)
+{
+  digitalWrite(csnPin, LOW);
+  SPI.transfer(command);
+  digitalWrite(csnPin, HIGH);
+}
+
+void WritePayload(byte num, byte* data)
+{
+  digitalWrite(csnPin, LOW);
+  SPI.transfer(TX_PAYLOAD);
+  for (byte i=0; i&lt;num; i++)
+    SPI.transfer(data[i]);
+  digitalWrite(csnPin, HIGH);
+
+  digitalWrite(cePin, HIGH);
+  for (int i=0; i&lt;100;i++)
+    asm("nop");
+  digitalWrite(cePin, LOW);
+}
+
+void ReadPayload(byte num, byte* data)
+{
+  digitalWrite(csnPin, LOW);
+  SPI.transfer(RX_PAYLOAD);
+  for (byte i=0; i&lt;num; i++)
+    data[i] = SPI.transfer(0);
+  digitalWrite(csnPin, HIGH);
+}</pre>
+<p>I put the code above in a file called nRF24L01.pde. To use these low-level functions I created  the following functions:</p>
+<pre>boolean SendChar(char* args)
+{
+  boolean charReceived = false;
+  TXChar(args[0]);
+  RXMode();
+  delay(2);
+  if (ReadDataAvailable())
+  {
+    Serial.print("RX = ");
+    byte ch = RXChar();
+    Serial.println(ch);
+    charReceived = true;
+  }
+  TXMode();
+  Serial.println("Char sent");
+  return charReceived;
+}
+
+void ReceiveChar()
+{
+  byte ch = RXChar();
+  TXMode();
+  TXChar(ch);
+  RXMode();  
+  Serial.print("RX = ");
+  Serial.println(ch);
+}</pre>
+<p>You can see that SendChar() sends a single character, immediately enters receive mode and waits 2 milliseconds to receive the echoed response. Theoretically the packet should be received after 330 microseconds at 250kbps (including the 130uS TX/RX switching time), so 2ms should be more than enough.</p>
+<p>ReceiveChar() resends the character sent to it. It should be called in a loop similar to the following:</p>
+<pre>  void loop()
+  {
+    if (ReadDataAvailable())
+    {
+      ReceiveChar();
+    }
+  }</pre>
+<p>So that&#8217;s the uC32 code, what about the PIC16F1455 code? The code for this is similar, but we have to write our own SPI functions. These look like this:</p>
+<pre>/* 
+ * File:   spi.h
+ */
+
+#ifndef SPI_H
+#define	SPI_H
+
+#ifdef	__cplusplus
+extern "C" {
+#endif
+
+void SPI_init();
+BYTE SPI_transfer(BYTE data);
+
+#ifdef	__cplusplus
+}
+#endif
+
+#endif	/* SPI_H */</pre>
+<pre>/* 
+ * File:   spi.c
+ */
+
+#include 
+#include 
+#include "spi.h"
+
+void SPI_init()
+{
+    SSPEN = 0;
+    TRISC0 = 0;     //SCK
+    ANSC1 = 0;      //SDI
+    TRISC2 = 0;     //SDO
+    CKE = 1;
+    SSPCON1 = 0x01;  //CKP = 0, SCK = 1MHz
+    SMP = 1;
+    SSPEN = 1;
+}
+
+BYTE SPI_transfer(BYTE data)
+{
+    SSPBUF = data;       // Put command into SPI buffer
+    while (!BF);         // Wait for the transfer to finish
+    return SSPBUF;       // Save the read value
+}</pre>
+<p>The settings in SPI_init() are important. CKE, SSPCON1 and SMP determine the SPI timings. If we get these wrong the nRF24L01 won&#8217;t communicate with us reliably. The settings must be: CKE = 1, CKP = 0 and SMP = 1. If you want to know which edges of the waveforms are used then you can work this out from the datasheet, or you can just trust me if I say that these settings work!</p>
+<p>The nRF24L01 files are similar to the uC32 ones, with a few modifications:</p>
+<pre>/*
+ nRF24L01 Header
+ */
+
+void nRF_Setup();
+void RXMode();
+void TXMode();
+void PowerDown();
+BYTE RXChar();
+void TXChar(BYTE ch);
+BOOL ReadDataAvailable();
+void FlushTXRX();</pre>
+<pre>/*
+ nRF24L01 Interface
+ */
+
+#include 
+#include 
+#include "spi.h"
+#include "nRF24L01.h"
+
+//Pins
+#define triscsn TRISA5
+#define trisce TRISA4
+#define csnPin RA5
+#define cePin RA4
+//#define irqPin
+
+//Commands
+const BYTE R_REG = 0x00;
+const BYTE W_REG = 0x20;
+const BYTE RX_PAYLOAD = 0x61;
+const BYTE TX_PAYLOAD = 0xA0;
+const BYTE FLUSH_TX = 0xE1;
+const BYTE FLUSH_RX = 0xE2;
+const BYTE ACTIVATE = 0x50;
+const BYTE R_STATUS = 0xFF;
+
+//Registers
+const BYTE NRF_CONFIG = 0x00;
+const BYTE EN_AA = 0x01;
+const BYTE EN_RXADDR = 0x02;
+const BYTE SETUP_AW = 0x03;
+const BYTE SETUP_RETR = 0x04;
+const BYTE RF_CH = 0x05;
+const BYTE RF_SETUP = 0x06;
+const BYTE NRF_STATUS = 0x07;
+const BYTE OBSERVE_TX = 0x08;
+const BYTE CD = 0x09;
+const BYTE RX_ADDR_P0 = 0x0A;
+const BYTE RX_ADDR_P1 = 0x0B;
+const BYTE RX_ADDR_P2 = 0x0C;
+const BYTE RX_ADDR_P3 = 0x0D;
+const BYTE RX_ADDR_P4 = 0x0E;
+const BYTE RX_ADDR_P5 = 0x0F;
+const BYTE TX_ADDR = 0x10;
+const BYTE RX_PW_P0 = 0x11;
+const BYTE RX_PW_P1 = 0x12;
+const BYTE RX_PW_P2 = 0x13;
+const BYTE RX_PW_P3 = 0x14;
+const BYTE RX_PW_P4 = 0x15;
+const BYTE RX_PW_P5 = 0x16;
+const BYTE FIFO_STATUS = 0x17;
+const BYTE DYNPD = 0x1C;
+const BYTE FEATURE = 0x1D;
+
+//Data
+BYTE RXTX_ADDR[3] = { 0xB5, 0x23, 0xA5 }; //Randomly chosen address
+BOOL rfCardPresent = FALSE;
+
+//Local Helper Function Prototypes
+void FlushTXRX();
+void WriteRegister(BYTE reg, BYTE val);
+void WriteAddress(BYTE reg, BYTE num, BYTE* addr);
+BYTE ReadRegister(BYTE reg);
+BYTE ReadStatus();
+void WriteCommand(BYTE command);
+void WritePayload(BYTE num, BYTE* data);
+void ReadPayload(BYTE num, BYTE* data);
+
+void nRF_Setup()
+{
+  // start the SPI library:
+  SPI_init();
+
+  // initalize the  CSN and CE pins:
+  triscsn = 0;
+  trisce = 0;
+
+  csnPin = 1;
+  cePin = 0;
+
+  WriteRegister(NRF_CONFIG, 0x0B);     //1 BYTE CRC, POWER UP, PRX
+  WriteRegister(EN_AA, 0x00);          //Disable auto ack
+  WriteRegister(EN_RXADDR, 0x01);      //Enable data pipe 0
+  WriteRegister(SETUP_AW, 0x01);       //3 BYTE address
+  WriteRegister(SETUP_RETR, 0x00);     //Retransmit disabled
+  WriteRegister(RF_CH, 0x01);          //Randomly chosen RF channel
+  WriteRegister(RF_SETUP, 0x26);       //250kbps, 0dBm
+  WriteRegister(RX_PW_P0, 0x01);       //RX payload = 1 BYTE
+
+  WriteAddress(RX_ADDR_P0, 3, RXTX_ADDR);
+  WriteAddress(TX_ADDR, 3, RXTX_ADDR);
+
+  FlushTXRX();
+
+  if ((ReadRegister(NRF_CONFIG) &amp; 0x08) != 0)
+      rfCardPresent = TRUE;
+}
+
+void RXMode()
+{
+  WriteRegister(NRF_CONFIG, 0x0B);    //1 BYTE CRC, POWER UP, PRX
+  cePin = 1;
+  //According to the datasheet we shouldn't bring CSN low
+  // within Tpece2csn
+  //after setting ce high. Can't see why (or when that would
+  // happen though)
+  //so comment out the next line.
+  //__delay_us(4);    //Tpece2csn
+}
+
+void TXMode()
+{
+  cePin = 0;
+  WriteRegister(NRF_CONFIG, 0x0A);      //1 BYTE CRC, POWER UP, PTX
+}
+
+void PowerDown()
+{
+  cePin = 0;
+  WriteRegister(NRF_CONFIG, 0);
+}
+
+BYTE RXChar()
+{
+  BYTE data;
+  ReadPayload(1, &amp;data);
+  //Clear status bit
+  WriteRegister(NRF_STATUS, 0x40);
+  return data;
+}
+
+void TXChar(BYTE ch)
+{
+  WritePayload(1, &amp;ch);
+
+  if (rfCardPresent)
+  {
+      //Wait for char to be sent
+      BYTE stat;
+      do
+      {
+          stat = ReadStatus();
+      } while ((stat &amp; 0x20) == 0);
+  }
+
+  //Clear status bit
+  WriteRegister(NRF_STATUS, 0x20);
+}
+
+BOOL ReadDataAvailable()
+{
+  BYTE stat = ReadStatus();
+  return (stat &amp; 0x40) != 0;
+}
+
+void FlushTXRX()
+{
+  WriteRegister(NRF_STATUS, 0x70);
+  WriteCommand(FLUSH_RX);
+  WriteCommand(FLUSH_TX);
+}
+
+// *************** Helper Methods ***************
+
+void WriteRegister(BYTE reg, BYTE val)
+{
+  csnPin = 0;
+  SPI_transfer(W_REG | reg);
+  SPI_transfer(val);
+  csnPin = 1;
+}
+
+//Address is 3-5 bytes, LSB first
+void WriteAddress(BYTE reg, BYTE num, BYTE* addr)
+{
+  csnPin = 0;
+  SPI_transfer(W_REG | reg);
+  for (BYTE i=0; i&lt;num; i++)
+    SPI_transfer(addr[i]);
+  csnPin = 1;
+}
+
+BYTE ReadRegister(BYTE reg)
+{
+  csnPin = 0;
+  SPI_transfer(R_REG | reg);
+  BYTE val = SPI_transfer(0x00);
+  csnPin = 1;
+  return val;
+}
+
+BYTE ReadStatus()
+{
+  csnPin = 0;
+  BYTE val = SPI_transfer(R_STATUS);
+  csnPin = 1;
+  return val;
+}
+
+void WriteCommand(BYTE command)
+{
+  csnPin = 0;
+  SPI_transfer(command);
+  csnPin = 1;
+}
+
+void WritePayload(BYTE num, BYTE* data)
+{
+  csnPin = 0;
+  SPI_transfer(TX_PAYLOAD);
+  for (BYTE i=0; i&lt;num; i++)
+    SPI_transfer(data[i]);
+  csnPin = 1;
+
+  cePin = 1;
+  __delay_us(12);   //Thce (10us) + a bit (2us)
+  cePin = 0;
+}
+
+void ReadPayload(BYTE num, BYTE* data)
+{
+  csnPin = 0;
+  SPI_transfer(RX_PAYLOAD);
+  for (BYTE i=0; i&lt;num; i++)
+    data[i] = SPI_transfer(0);
+  csnPin = 1;
+}</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+		This entry was posted in <a href="../../../../category/wireless-dev/index.html" rel="category tag">Wireless Development</a> by <a href="../../../../author/jon/index.html">jon</a>. Bookmark the <a href="index.html" title="Permalink to Wireless Communication using the nRF24L01 Module" rel="bookmark">permalink</a>.		
+			</footer><!-- .entry-meta -->
+</article><!-- #post-177 -->
+
+						<div id="comments">
+	
+	
+			<h2 id="comments-title">
+			9 thoughts on &ldquo;<span>Wireless Communication using the nRF24L01 Module</span>&rdquo;		</h2>
+
+		
+		<ol class="commentlist">
+				<li class="comment even thread-even depth-1" id="li-comment-309">
+		<article id="comment-309" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-large.png?s=68&amp;d=mm&amp;r=g' srcset='http://0.gravatar.com/avatar/9f90b3da79ba5513493fd978e4ccd9de?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn"><a href='http://blogison.com/' rel='external nofollow' class='url'>Kalpesh Patel</a></span> on <a href="index.html#comment-309"><time datetime="2014-02-15T05:32:41+00:00">February 15, 2014 at 5:32 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi,</p>
+<p> Thanks for this wonderful information. Do you have any idea how to enable CKE = 1, CKP = 0 and SMP = 1 in Software SPI Subroutine (Bit bang) ?</p>
+<p>Thanks.</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-348">
+		<article id="comment-348" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-large.png?s=68&amp;d=mm&amp;r=g' srcset='http://2.gravatar.com/avatar/ba65d156844545505bcf2609fe97e358?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn">ERIC</span> on <a href="index.html#comment-348"><time datetime="2014-05-06T10:39:15+00:00">May 6, 2014 at 10:39 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Can you add comments?<br />
+Where is your main() program ?</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-356">
+		<article id="comment-356" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-large.png?s=68&amp;d=mm&amp;r=g' srcset='http://0.gravatar.com/avatar/c201a1f2a313ade420e423d6fe982e96?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn">ali</span> on <a href="index.html#comment-356"><time datetime="2014-05-15T09:15:06+00:00">May 15, 2014 at 9:15 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi Sir!!<br />
+at first thanks alot for wonderful information..<br />
+please insert the code of atmega168 for nrf24l01+ ( half_duplex connection)&#8230;<br />
+please help me</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-426">
+		<article id="comment-426" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-large.png?s=68&amp;d=mm&amp;r=g' srcset='http://1.gravatar.com/avatar/a4662d34bfb6628b3acf860e454f540c?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn">vicentek6</span> on <a href="index.html#comment-426"><time datetime="2014-08-21T06:12:37+00:00">August 21, 2014 at 6:12 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Very good post, and very helpful.<br />
+There are one thing i don´t understand. The function:</p>
+<p>boolean ReadDataAvailable()<br />
+{<br />
+  if (digitalRead(cePin) == LOW)<br />
+    return false;</p>
+<p>  byte stat = ReadStatus();<br />
+  return (stat &amp; 0x40) != 0;<br />
+}</p>
+<p>Presumably cePin is an output control pin than  activates RX or TX mode. Maybe you would refer to irq pin?<br />
+Greetings.</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-429">
+		<article id="comment-429" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-large.png?s=68&amp;d=mm&amp;r=g' srcset='http://2.gravatar.com/avatar/56b2b844a99401b6b4bbb57eac8c7e8f?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn">Jean Noel Prigent</span> on <a href="index.html#comment-429"><time datetime="2014-08-26T16:46:56+00:00">August 26, 2014 at 4:46 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi,<br />
+excellent publication ! Thank you.</p>
+<p>But I have a question: looking at the PIC and nRF24L01 datasheets I think that the SMP flag  of the SPI settings should be 0. By this way, the pic checks the data in the middle of the data input : that is that I understand in the PIC specification . Am I wrong ?<br />
+In your code you set it to 1 !!</p>
+<p>thanks<br />
+JN</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-jon bypostauthor odd alt depth-2" id="li-comment-432">
+		<article id="comment-432" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-small.png?s=39&amp;d=mm&amp;r=g' srcset='http://1.gravatar.com/avatar/dc462521dac0765c59cc0734e6aea62e?s=78&amp;d=mm&amp;r=g 2x' class='avatar avatar-39 photo' height='39' width='39' /><span class="fn">jon</span> on <a href="index.html#comment-432"><time datetime="2014-08-31T16:31:44+00:00">August 31, 2014 at 4:31 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Sorry for the delay in replying&#8230;</p>
+<p>That sounds logical (it did to me too!). But I think that by checking at the end you are getting more time (the check will never be after the input has become invalid). I&#8217;m not sure they have explained it very well, but I think that is how it works&#8230;</p>
+<p>Regards,<br />
+Jon.</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment even depth-3" id="li-comment-438">
+		<article id="comment-438" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-small.png?s=39&amp;d=mm&amp;r=g' srcset='http://2.gravatar.com/avatar/56b2b844a99401b6b4bbb57eac8c7e8f?s=78&amp;d=mm&amp;r=g 2x' class='avatar avatar-39 photo' height='39' width='39' /><span class="fn">Jean Noel Prigent</span> on <a href="index.html#comment-438"><time datetime="2014-09-07T13:44:03+00:00">September 7, 2014 at 1:44 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi Jon,</p>
+<p>Thanks for your reply.<br />
+I did a lot of test myself, you are right, it works better if SMP is set to 1. Not clear for me according to datasheet . It  would be interesting to have the opinion of the Nordic team on this.<br />
+I would add two other points that I notice. Could be useful for people experiencing this component.</p>
+<p>During my first test the two modules were very close each other ( less than 1 m). the transmission quality was very bad. I suspect that in this case, the emitter was overloading ( saturate) the RF input stage of the receiver, but I am not a High Frequency transmission expert!</p>
+<p>Second point, the nRF24L01 seems to be very sensitive to the quality of the power supply. by soldering two capacitors ( 2.2 µF electrochemical + 15nf ceramic) as close as possible to the power supply pins ( PIN 1 &amp;2),  I improve a lot the quality of the transmission.</p>
+<p>best regards<br />
+JN</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-903">
+		<article id="comment-903" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-large.png?s=68&amp;d=mm&amp;r=g' srcset='http://0.gravatar.com/avatar/3eee6a7c99d42ce0bc07bd1f865ffc61?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn">mohamed4data</span> on <a href="index.html#comment-903"><time datetime="2015-05-20T11:44:07+00:00">May 20, 2015 at 11:44 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Please. .can you write the code for Pic16f877a because I couldn&#8217;t write it carefully</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-1071">
+		<article id="comment-1071" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-large.png?s=68&amp;d=mm&amp;r=g' srcset='http://0.gravatar.com/avatar/cdcdaa65ff865127e9ca9945aa5c7d1a?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn">Ravi Shankar</span> on <a href="index.html#comment-1071"><time datetime="2015-09-29T05:21:35+00:00">September 29, 2015 at 5:21 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi,</p>
+<p>   Your post helped me a lot. Thank you for sharing tutorial. Keep up the good work.</p>
+<p>Best Regards.</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+		</ol>
+
+		
+		
+	
+
+			
+</div><!-- #comments -->
+
+				
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+
+	</div><!-- #main -->
+
+	<footer id="colophon" role="contentinfo">
+
+			
+
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type='text/javascript'>
+var colomatduration = 'fast';
+var colomatslideEffect = 'slideFade';
+</script><script type='text/javascript' src='../../../../wp-includes/js/comment-reply.min5b31.js?ver=4.3.1'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jquery-collapse-o-matic/js/collapse00e2.js?ver=1.5.7'></script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Next Project | PIC Tutorials</title>
+<link rel="profile" href="../../../../../xfn/11.html" />
+<link rel="stylesheet" type="text/css" media="all" href="../../../../wp-content/themes/twentyeleven/style.css" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Next Project Comments Feed" href="feed/index.html" />
+<link rel='stylesheet' id='collapseomatic-css-css'  href='../../../../wp-content/plugins/jquery-collapse-o-matic/light_style00e2.css?ver=1.5.7' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jqueryc1d8.js?ver=1.11.3'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Improved Arduino Wireless Board' href='../../13/improved-arduino-wireless-board/index.html' />
+<link rel='canonical' href='index.html' />
+<link rel='shortlink' href='../../../../indexf6a9.html?p=337' />
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="single single-post postid-337 single-format-standard single-author singular two-column right-sidebar">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+			<hgroup>
+				<h1 id="site-title"><span><a href="../../../../index.html" rel="home">PIC Tutorials</a></span></h1>
+				<h2 id="site-description">Electronics and Programming Simplified</h2>
+			</hgroup>
+
+						<a href="../../../../index.html">
+									<img src="../../../../wp-content/uploads/sites/2/2013/07/cropped-header1.png" width="1000" height="288" alt="" />
+							</a>
+			
+			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Main menu</h3>
+								<div class="skip-link"><a class="assistive-text" href="#content">Skip to primary content</a></div>
+												<div class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-349" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-349"><a href="../../../../../ham/index.html">Amateur Radio</a></li>
+<li id="menu-item-351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a href="../../../../about/index.html">About</a></li>
+</ul></div>			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<div id="primary">
+			<div id="content" role="main">
+
+				
+					<nav id="nav-single">
+						<h3 class="assistive-text">Post navigation</h3>
+						<span class="nav-previous"><a href="../../13/improved-arduino-wireless-board/index.html" rel="prev"><span class="meta-nav">&larr;</span> Previous</a></span>
+						<span class="nav-next"></span>
+					</nav><!-- #nav-single -->
+
+					
+<article id="post-337" class="post-337 post type-post status-publish format-standard hentry category-uncategorized">
+	<header class="entry-header">
+		<h1 class="entry-title">Next Project</h1>
+
+				<div class="entry-meta">
+			<span class="sep">Posted on </span><a href="index.html" title="10:09 am" rel="bookmark"><time class="entry-date" datetime="2014-03-14T10:09:05+00:00">March 14, 2014</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>I was impressed by the simplicity of this article:</p>
+<p><a title="TDOA (Time Difference of Arrival) Directional Antenna" href="http://hackaday.com/2014/03/04/tdoa-time-difference-of-arrival-directional-antenna/">TDOA (Time Difference of Arrival) Directional Antenna</a></p>
+<p>which shows how to make a simple, but effective, directional antenna. At some point I am going to try this out.</p>
+<p>I also thought this video:</p>
+<p><a title="Use a scope to measure the length and impedance of coax - " href="http://www.youtube.com/watch?v=Il_eju4D_TM">Use a scope to measure the length and impedance of coax</a></p>
+<p>does a good job of explaining how to measure reflections (and therefore lengths and termination impedances) of cables such as coax.</p>
+<p>I reckon it should be possible to automate this process using a couple of comparators and an Arduino (or PIC). What I&#8217;m thinking is that one comparator would detect the first edge, and the second comparator would detect the second edge (the comparator reference voltages being iteratively set by the Arduino). The comparators would be configured to generate a pulse with a length equal to the difference in time between the two edges. This pulse duration could be measured by charging up a small capacitor, and then reading it&#8217;s voltage using an ADC.</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2014/03/PulseMeasureOnScope.jpg"><img class="alignnone size-medium wp-image-339" alt="PulseMeasureOnScope" src="../../../../wp-content/uploads/sites/2/2014/03/PulseMeasureOnScope-300x220.jpg" width="300" height="220" /></a></p>
+<p>The comparators that come in AVR and PIC chips aren&#8217;t fast enough, but I&#8217;ve had a look on Farnell, and you can get comparators with speeds better than 1ns for less than £2.50 (US $4). Since we&#8217;re interested in the difference between two pulses, we might actually get a differential speed much faster than 1ns, which means that possibly we could measure to a resolution of 1 inches (assuming a resolution of 250ps).</p>
+<p>The other project I may work on is making a standalone capacitance meter. At the moment I use an Arduino and LCD shield, but I think it could be done with a PIC12F1840.</p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+		This entry was posted in <a href="../../../../category/uncategorized/index.html" rel="category tag">Uncategorized</a> by <a href="../../../../author/jon/index.html">jon</a>. Bookmark the <a href="index.html" title="Permalink to Next Project" rel="bookmark">permalink</a>.		
+			</footer><!-- .entry-meta -->
+</article><!-- #post-337 -->
+
+						<div id="comments">
+	
+	
+	
+
+			
+</div><!-- #comments -->
+
+				
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+
+	</div><!-- #main -->
+
+	<footer id="colophon" role="contentinfo">
+
+			
+
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type='text/javascript'>
+var colomatduration = 'fast';
+var colomatslideEffect = 'slideFade';
+</script><script type='text/javascript' src='../../../../wp-includes/js/comment-reply.min5b31.js?ver=4.3.1'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jquery-collapse-o-matic/js/collapse00e2.js?ver=1.5.7'></script>
+
+</body>
+</html>

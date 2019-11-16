@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Which micro-controller should you use? | PIC Tutorials</title>
+<link rel="profile" href="../../../../../xfn/11.html" />
+<link rel="stylesheet" type="text/css" media="all" href="../../../../wp-content/themes/twentyeleven/style.css" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Which micro-controller should you use? Comments Feed" href="feed/index.html" />
+<link rel='stylesheet' id='collapseomatic-css-css'  href='../../../../wp-content/plugins/jquery-collapse-o-matic/light_style00e2.css?ver=1.5.7' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jqueryc1d8.js?ver=1.11.3'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Road Map' href='../road-map/index.html' />
+<link rel='next' title='Setting up the PICkit3 with MPLABX (Part 1)' href='../setting-up-the-pickit3-with-mplabx-part-1/index.html' />
+<link rel='canonical' href='index.html' />
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="single single-post postid-10 single-format-standard single-author singular two-column right-sidebar">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+			<hgroup>
+				<h1 id="site-title"><span><a href="../../../../index.html" rel="home">PIC Tutorials</a></span></h1>
+				<h2 id="site-description">Electronics and Programming Simplified</h2>
+			</hgroup>
+
+						<a href="../../../../index.html">
+									<img src="../../../../wp-content/uploads/sites/2/2013/07/cropped-header1.png" width="1000" height="288" alt="" />
+							</a>
+			
+			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Main menu</h3>
+								<div class="skip-link"><a class="assistive-text" href="#content">Skip to primary content</a></div>
+												<div class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-349" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-349"><a href="../../../../../ham/index.html">Amateur Radio</a></li>
+<li id="menu-item-351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a href="../../../../about/index.html">About</a></li>
+</ul></div>			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<div id="primary">
+			<div id="content" role="main">
+
+				
+					<nav id="nav-single">
+						<h3 class="assistive-text">Post navigation</h3>
+						<span class="nav-previous"><a href="../road-map/index.html" rel="prev"><span class="meta-nav">&larr;</span> Previous</a></span>
+						<span class="nav-next"><a href="../setting-up-the-pickit3-with-mplabx-part-1/index.html" rel="next">Next <span class="meta-nav">&rarr;</span></a></span>
+					</nav><!-- #nav-single -->
+
+					
+<article id="post-10" class="post-10 post type-post status-publish format-standard hentry category-general">
+	<header class="entry-header">
+		<h1 class="entry-title">Which micro-controller should you use?</h1>
+
+				<div class="entry-meta">
+			<span class="sep">Posted on </span><a href="index.html" title="2:13 pm" rel="bookmark"><time class="entry-date" datetime="2013-07-11T14:13:34+00:00">July 11, 2013</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>Note: I may do a video to accompany this later. Let me know if that would be of interest&#8230;</p>
+<p><strong>A Short Introduction</strong></p>
+<p>Micro-controllers have been around a <em>long</em> time. Just recently though they have attracted a lot more interest, thanks mainly to the Arduino boards. People all over the world are now building  all sorts of exotic and innovative creations. If you are new to micro-controllers you would be well advised to start with an Arduino board (<a title="Arduino website" href="http://arduino.cc/en/" target="_blank">Arduino website</a>).</p>
+<p>Once you have played with this for a while you will probably be interested in getting some of the <em>shields</em> (plug in boards) that help out with tasks like driving motors (e.g. for robots) or LCD displays or connecting via wireless. USB or ethernet etc.</p>
+<p>You will also discover that there are other boards available &#8211; using different processors. The ones that I&#8217;m going to mention here are the PIC based ones made by Digilent (chipKIT). These are the Uno32, uC32, DP32 and Max32. They are all based on the PIC32 chips. They run a lot faster than the Arduino boards (which are based on Atmel processors). Be warned though that you won&#8217;t be able to use the Arduino IDE &#8211; you have to use a specially adapted version called MPIDE. The idea is that you should be able to use sketches built for Arduino boards and recompile them without modification using MPIDE for the chipKIT boards. In practice, it&#8217;s not always as easy as that, so if you decide you want the faster speed and extra features, you may have to put up with having less support than you get with the Arduino boards.</p>
+<p>There is another approach, which I am going to use &#8211; which is to use the PIC devices directly. Also, instead of using the MPIDE, I will be using Microchip&#8217;s IDE &#8211; MPLABX. Microchip provide three free compilers &#8211; XC8, XC16 and XC32 depending on whether you are programming an 8bit, 16bit or 32bit chip. They also provide an assember &#8211; MPASM if you need really feel the need to write the code directly in assembler!</p>
+<p>You can use the chipKIT boards with MPLABX, but to be honest, if you are going down this route you might as well just program straight to the device itself. You&#8217;ll need a few external components, but you can build this all on a small breadboard, like this one:</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2013/07/Breadboard400.png"><img class="alignnone size-medium wp-image-15" alt="Breadboard400" src="../../../../wp-content/uploads/sites/2/2013/07/Breadboard400-300x200.png" width="300" height="200" /></a></p>
+<p>You will need to get a programmer / debugger, and the one that I would recommend is the PICkit 3. This connects your PC (Windows, MAC or linux) via USB, and to the board via a 6 pin header. This is obviously more effort that using the Arduino IDE or MPIDE, but there are several benefits to this extra effort:</p>
+<ul>
+<li>Debugging (including breakpoints and register / variable inspection).</li>
+<li>Ability to use a much wider range of devices.</li>
+<li>Easier to understand hardware (most projects can be done with very few external components).</li>
+</ul>
+<p>There are many other benefits &#8211; this is just some of them.</p>
+<p>So if you&#8217;ve got here, you&#8217;re either an advanced user, or you&#8217;re felling brave and want to do some real hacking with real devices. If it&#8217;s the latter I applaud your ambition!</p>
+<p>I will try to make this as painless as possible with the upcoming  tutorials. I am sure that you will find it much more satisfying than using a pre-built board.</p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+		This entry was posted in <a href="../../../../category/general/index.html" rel="category tag">General</a> by <a href="../../../../author/jon/index.html">jon</a>. Bookmark the <a href="index.html" title="Permalink to Which micro-controller should you use?" rel="bookmark">permalink</a>.		
+			</footer><!-- .entry-meta -->
+</article><!-- #post-10 -->
+
+						<div id="comments">
+	
+	
+	
+
+			
+</div><!-- #comments -->
+
+				
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+
+	</div><!-- #main -->
+
+	<footer id="colophon" role="contentinfo">
+
+			
+
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type='text/javascript'>
+var colomatduration = 'fast';
+var colomatslideEffect = 'slideFade';
+</script><script type='text/javascript' src='../../../../wp-includes/js/comment-reply.min5b31.js?ver=4.3.1'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jquery-collapse-o-matic/js/collapse00e2.js?ver=1.5.7'></script>
+
+</body>
+</html>

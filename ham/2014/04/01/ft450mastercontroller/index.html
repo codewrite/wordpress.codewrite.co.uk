@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Yaesu FT-450 Master Controller | Amateur Radio</title>
+<link rel="profile" href="../../../../../xfn/11.html" />
+<link rel="alternate" type="application/rss+xml" title="Amateur Radio &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Amateur Radio &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Amateur Radio &raquo; Yaesu FT-450 Master Controller Comments Feed" href="feed/index.html" />
+<link rel='stylesheet' id='collapseomatic-css-css'  href='../../../../wp-content/plugins/jquery-collapse-o-matic/light_style00e2.css?ver=1.5.7' type='text/css' media='all' />
+<link rel='stylesheet' id='twentytwelve-fonts-css'  href='../../../../../css9d1f.css?family=Open+Sans:400italic,700italic,400,700&amp;subset=latin,latin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='twentytwelve-style-css'  href='../../../../wp-content/themes/twentytwelve/style5b31.css?ver=4.3.1' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jqueryc1d8.js?ver=1.11.3'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='next' title='Homebrew Data Interface' href='../../04/homebrew-data-interface/index.html' />
+<link rel='canonical' href='index.html' />
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="single single-post postid-4 single-format-standard custom-font-enabled single-author">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<hgroup>
+			<h1 class="site-title"><a href="../../../../index.html" title="Amateur Radio" rel="home">Amateur Radio</a></h1>
+			<h2 class="site-description">My experiments in Amateur Radio</h2>
+		</hgroup>
+
+		<nav id="site-navigation" class="main-navigation" role="navigation">
+			<h3 class="menu-toggle">Menu</h3>
+			<a class="assistive-text" href="#content" title="Skip to content">Skip to content</a>
+			<div class="menu-main-menu-container"><ul id="menu-main-menu" class="nav-menu"><li id="menu-item-32" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-32"><a href="../../../../../pic/index.html">PIC Tutorials</a></li>
+<li id="menu-item-33" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-33"><a href="../../../../about/index.html">About</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+
+				<a href="../../../../index.html"><img src="../../../../wp-content/uploads/sites/3/2014/04/Banner1.jpg" class="header-image" width="960" height="250" alt="" /></a>
+			</header><!-- #masthead -->
+
+	<div id="main" class="wrapper">
+	<div id="primary" class="site-content">
+		<div id="content" role="main">
+
+			
+				
+	<article id="post-4" class="post-4 post type-post status-publish format-standard hentry category-uncategorized">
+				<header class="entry-header">
+			
+						<h1 class="entry-title">Yaesu FT-450 Master Controller</h1>
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>I quite like using data modes, and for this I use fldigi. I think one of the key things is to have a good setup, and so I have spent quite a lot of time creating macros, getting the CAT cable working, and building a <a title="Homebrew Data Interface" href="../../04/homebrew-data-interface/index.html">homebrew data interface</a>. For contests I use fldigi&#8217;s log, but for normal contacts I use DXKeeper. I found an application called fldigiDXLabsGateway.exe that will forward fldigi&#8217;s logged QSO to DXKeeper.</p>
+<p><a href="../../../../wp-content/uploads/sites/3/2014/04/fldigiDXLabsGateway.png"><img class="size-medium wp-image-20 alignnone" alt="fldigiDXLabsGateway" src="../../../../wp-content/uploads/sites/3/2014/04/fldigiDXLabsGateway-300x226.png" width="300" height="226" /></a></p>
+<p>One of the problems that I have had though was controlling the transceiver. I have tried using Commander (in the DXLab suite) and flrig but both seemed to cause fldigi to use the  PTT line via the CAT cable. The transceiver then didn&#8217;t want to get the audio via the data port. I did *sort of* get this working (you have to make sure the transceiver uses either USB DATA or LSB DATA mode), but it is unreliable at best, and fldigi and the rig control program seem to fight over the mode setting. If you want to try that though, click on the the link below:</p>
+<h2 class="collapseomatic " id="id9228"  title="Using Rig control program with fldigi">Using Rig control program with fldigi</h2><div id="target-id9228" class="collapseomatic_content "></p>
+<p><img class="alignnone  wp-image-38" style="font-size: 1rem; line-height: 1;" alt="FT450MasterController Arch 2" src="../../../../wp-content/uploads/sites/3/2014/04/FT450MasterController-Arch-2-300x234.png" width="600" height="468" /></p>
+<p>In this configuration fldigi needs to control the rig using XML-RPC rather than Hamlib</p>
+<p></div>
+<p>The other problem is that fldigi doesn&#8217;t fill in the power field, so I had to manually update the record in DXKeeper. I try to use as little power as possible, so I am changing the RF power setting all the time. So, after trying various configurations, this was the one I settled with:</p>
+<p><a href="../../../../wp-content/uploads/sites/3/2014/04/FT450MasterController-using-DXKeeper-and-gateway.png"><img class="alignnone  wp-image-24" alt="FT450MasterController using DXKeeper and gateway" src="../../../../wp-content/uploads/sites/3/2014/04/FT450MasterController-using-DXKeeper-and-gateway-300x84.png" width="479" height="276" /></a></p>
+<p>In order to solve the problem of how to control the rig, I decided to go homebrew and create a transceiver controller. I looked at various architectures (and ran into various problems), but in the end I went for one that intercepted the messages going to the COM port. I did this by using a COM port loopback program called COM0COM.</p>
+<p><a href="../../../../wp-content/uploads/sites/3/2014/04/COM0COM.png"><img class="size-medium wp-image-17 alignleft" alt="COM0COM" src="../../../../wp-content/uploads/sites/3/2014/04/COM0COM-300x248.png" width="300" height="248" /></a></p>
+<p>COM0COM gives you pairs of COM ports (we only need one pair), and makes it appear as if the two COM ports are loopbacked to each other. This gives us lots of advantages over other ways of intercepting serial data &#8211; we don&#8217;t have to mess with drivers, and we don&#8217;t have to worry about serial ports disappearing when programs are closed (so we don&#8217;t have to worry too much about what order we run programs). I have tried COM0COM on Vista and Windows 7. On Vista you can use version 3.0 (after jumping through a few hoops), but Windows 7 needs a signed driver, so you have to use version 2.2 (and you still have to jump through a few hoops &#8211; mainly putting the OS into test mode, rebooting, installing, coming out of test mode and rebooting).</p>
+<p>So the new architecture is:</p>
+<p><a href="../../../../wp-content/uploads/sites/3/2014/04/FT450MasterController-Arch-1.png"><img class="alignnone  wp-image-23" alt="FT450MasterController Arch 1" src="../../../../wp-content/uploads/sites/3/2014/04/FT450MasterController-Arch-1-300x172.png" width="600" height="344" /></a></p>
+<p>In order to put the power field in the log I intercept the TCP message sent by the fldigiDXLabGateway. Usually the gateway and DXKeeper both use port 52001, but I configured the gateway to use port 51001 so that I could intercept the message, add the power field, and then sent it to port 52001. The finished controller&#8217;s UI looked like this:</p>
+<p><img class="size-medium wp-image-15 alignleft" alt="FT450MasterController1" src="../../../../wp-content/uploads/sites/3/2014/04/FT450MasterController1-300x274.png" width="300" height="274" /></p>
+<p>Serial data from fldigi is intercepted by the master controller, and then forwarded to the radio. Same goes for data coming from the radio. The master controller also sends messages to the radio, so I created a queue. That way I can match replies up with requests, and ensure they go to the right place.</p>
+<p>Now I&#8217;ve done this, I have a framework which I can use for any controls that I want. The only controls I have so far are RF power, AF gain, and controlling what the CS/Voice button does  -in this case play a pre-recorded voice message (SSB / phone) or output a 10W carrier (for tuning / swr display).</p>
+<p>&nbsp;</p>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+			This entry was posted in <a href="../../../../category/uncategorized/index.html" rel="category tag">Uncategorized</a> on <a href="index.html" title="3:37 pm" rel="bookmark"><time class="entry-date" datetime="2014-04-01T15:37:35+00:00">April 1, 2014</time></a><span class="by-author"> by <span class="author vcard"><a class="url fn n" href="../../../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>.								</footer><!-- .entry-meta -->
+	</article><!-- #post -->
+
+				<nav class="nav-single">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"></span>
+					<span class="nav-next"><a href="../../04/homebrew-data-interface/index.html" rel="next">Homebrew Data Interface <span class="meta-nav">&rarr;</span></a></span>
+				</nav><!-- .nav-single -->
+
+				
+<div id="comments" class="comments-area">
+
+	
+	
+
+			
+</div><!-- #comments .comments-area -->
+			
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+
+			<div id="secondary" class="widget-area" role="complementary">
+					<aside id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="../../../06/30/friedrichshafen-2014/index.html">HAM Radio and Maker World Exhibition at Friedrichshafen in Germany 2014</a>
+						</li>
+					<li>
+				<a href="../../04/homebrew-data-interface/index.html">Homebrew Data Interface</a>
+						</li>
+					<li>
+				<a href="index.html">Yaesu FT-450 Master Controller</a>
+						</li>
+				</ul>
+		</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"></ul></aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+	<li><a href='../../../06/index.html'>June 2014</a></li>
+	<li><a href='../../index.html'>April 2014</a></li>
+		</ul>
+</aside><aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+	<li class="cat-item cat-item-1"><a href="../../../../category/uncategorized/index.html" >Uncategorized</a>
+</li>
+		</ul>
+</aside></div><!-- #secondary -->
+		</div><!-- #main .wrapper -->
+	<footer id="colophon" role="contentinfo">
+		<div class="site-info">
+		</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type='text/javascript'>
+var colomatduration = 'fast';
+var colomatslideEffect = 'slideFade';
+</script><script type='text/javascript' src='../../../../wp-content/plugins/jquery-collapse-o-matic/js/collapse00e2.js?ver=1.5.7'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/comment-reply.min5b31.js?ver=4.3.1'></script>
+<script type='text/javascript' src='../../../../wp-content/themes/twentytwelve/js/navigationa462.js?ver=20140318'></script>
+</body>
+</html>

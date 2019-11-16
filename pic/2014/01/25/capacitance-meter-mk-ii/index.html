@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Capacitance Meter Mk II | PIC Tutorials</title>
+<link rel="profile" href="../../../../../xfn/11.html" />
+<link rel="stylesheet" type="text/css" media="all" href="../../../../wp-content/themes/twentyeleven/style.css" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="PIC Tutorials &raquo; Capacitance Meter Mk II Comments Feed" href="feed/index.html" />
+<link rel='stylesheet' id='collapseomatic-css-css'  href='../../../../wp-content/plugins/jquery-collapse-o-matic/light_style00e2.css?ver=1.5.7' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jqueryc1d8.js?ver=1.11.3'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Experiments with the Arduino Capacitance Meter' href='../../22/experiments-with-uno-cap-meter/index.html' />
+<link rel='next' title='Capacitance Meter Temperature Sensitivity' href='../../27/cap-meter-temp-stability/index.html' />
+<link rel='canonical' href='index.html' />
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="single single-post postid-302 single-format-standard single-author singular two-column right-sidebar">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+			<hgroup>
+				<h1 id="site-title"><span><a href="../../../../index.html" rel="home">PIC Tutorials</a></span></h1>
+				<h2 id="site-description">Electronics and Programming Simplified</h2>
+			</hgroup>
+
+						<a href="../../../../index.html">
+									<img src="../../../../wp-content/uploads/sites/2/2013/07/cropped-header1.png" width="1000" height="288" alt="" />
+							</a>
+			
+			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Main menu</h3>
+								<div class="skip-link"><a class="assistive-text" href="#content">Skip to primary content</a></div>
+												<div class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-349" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-349"><a href="../../../../../ham/index.html">Amateur Radio</a></li>
+<li id="menu-item-351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a href="../../../../about/index.html">About</a></li>
+</ul></div>			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<div id="primary">
+			<div id="content" role="main">
+
+				
+					<nav id="nav-single">
+						<h3 class="assistive-text">Post navigation</h3>
+						<span class="nav-previous"><a href="../../22/experiments-with-uno-cap-meter/index.html" rel="prev"><span class="meta-nav">&larr;</span> Previous</a></span>
+						<span class="nav-next"><a href="../../27/cap-meter-temp-stability/index.html" rel="next">Next <span class="meta-nav">&rarr;</span></a></span>
+					</nav><!-- #nav-single -->
+
+					
+<article id="post-302" class="post-302 post type-post status-publish format-standard hentry category-general">
+	<header class="entry-header">
+		<h1 class="entry-title">Capacitance Meter Mk II</h1>
+
+				<div class="entry-meta">
+			<span class="sep">Posted on </span><a href="index.html" title="10:25 am" rel="bookmark"><time class="entry-date" datetime="2014-01-25T10:25:54+00:00">January 25, 2014</time></a><span class="by-author">by </span> <span class="author vcard"><a class="url fn n" href="../../../../author/jon/index.html" title="View all posts by jon" rel="author">jon</a></span></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>I was blown away with the interest in the <a title="Capacitance Meter Mk I" href="../../21/cap-meter-with-arduino-uno/index.html">Capacitance Meter for the Arduino Uno</a>, and that encouraged me to think about how I could improve it.</p>
+<p><img class="alignnone size-medium wp-image-304" style="color: #333333; font-style: normal;" alt="CapMeterMkII" src="../../../../wp-content/uploads/sites/2/2014/01/CapMeterMkII-300x168.jpg" width="300" height="168" /></p>
+<p><a title="Capacitor tesing using internal pullup on Arduino" href="http://hackaday.com/2014/01/22/capacitance-measurement-with-the-arduino-uno/#comment-1167876">Scott made a comment on the Hackaday post</a>, and suggested using the internal pullup resistor to cover higher capacitances. I had initially ruled that out because it wouldn&#8217;t work for low value capacitors (less than about 1nF). But thinking about it again, I realized that this method could be used to extend the range up to uF values. By combining this with the method in the <a title="Capacitance meter Mk I" href="../../21/cap-meter-with-arduino-uno/index.html">Mk I Capacitance meter</a>, I could make a capacitance meter that could measure from 1pF to over 1000uF &#8211; with no external components!</p>
+<p>Actually getting this to work proved slightly more complicated than I first thought. The basic idea was going to be:</p>
+<ol>
+<li>Test the capacitor using the stray capacitance method. If the capacitor is less than 1nF then we are done.</li>
+<li>Otherwise, we start charging the capacitor using the internal pullup.</li>
+<li>After a certain amount of time (maybe the RC time constant), the capacitor will have reached a certain voltage.</li>
+<li>Using the charge time and voltage (or more specifically  the ratio of the capacitor voltage to the charging voltage) we can work out the capacitance.</li>
+</ol>
+<p>The time to charge larger capacitors would be in the order of milliseconds. This would be quite easy to measure with a reasonable degree of accuracy. But the RC time constant of a 1nF capacitor with a 30k pullup is about 30us. Which is more difficult to measure accurately. I thought about using interrupts, and using a hand-crafted ADC conversion method (analogRead takes about 100us &#8211; and you can do the conversion much faster than this), but I didn&#8217;t want the code to get too complicated, and I wanted to stick to the standard Arduino routines. So I came up the the following code:</p>
+<h2 class="collapseomatic " id="id8882"  title="View Code">View Code</h2><div id="target-id8882" class="collapseomatic_content "></p>
+<pre>const int OUT_PIN = A2;
+const int IN_PIN = A0;
+
+//Capacitance between IN_PIN and Ground
+//Stray capacitance value will vary from board to board.
+//Calibrate this value using known capacitor.
+const float IN_STRAY_CAP_TO_GND = 24.48;
+const float IN_CAP_TO_GND  = IN_STRAY_CAP_TO_GND;
+//Pullup resistance will vary depending on board.
+//Calibrate this with known capacitor.
+const float R_PULLUP = 34.8;  //in k ohms
+const int MAX_ADC_VALUE = 1023;
+
+void setup()
+{
+  pinMode(OUT_PIN, OUTPUT);
+  //digitalWrite(OUT_PIN, LOW);  //This is the default state for outputs
+  pinMode(IN_PIN, OUTPUT);
+  //digitalWrite(IN_PIN, LOW);
+
+  Serial.begin(115200);
+}
+
+void loop()
+{
+    //Capacitor under test between OUT_PIN and IN_PIN
+    //Rising high edge on OUT_PIN
+    pinMode(IN_PIN, INPUT);
+    digitalWrite(OUT_PIN, HIGH);
+    int val = analogRead(IN_PIN);
+    digitalWrite(OUT_PIN, LOW);
+
+    if (val &lt; 1000)
+    {
+      //Low value capacitor
+      //Clear everything for next measurement
+      pinMode(IN_PIN, OUTPUT);
+
+      //Calculate and print result
+
+      float capacitance = (float)val * IN_CAP_TO_GND / (float)(MAX_ADC_VALUE - val);
+
+      Serial.print(F("Capacitance Value = "));
+      Serial.print(capacitance, 3);
+      Serial.print(F(" pF ("));
+      Serial.print(val);
+      Serial.println(F(") "));
+    }
+    else
+    {
+      //Big capacitor - so use RC charging method
+
+      //discharge the capacitor (from low capacitance test)
+      pinMode(IN_PIN, OUTPUT);
+      delay(1);
+
+      //Start charging the capacitor with the internal pullup
+      pinMode(OUT_PIN, INPUT_PULLUP);
+      unsigned long u1 = micros();
+      unsigned long t;
+      int digVal;
+
+      //Charge to a fairly arbitrary level mid way between 0 and 5V
+      //Best not to use analogRead() here because it's not really quick enough
+      do
+      {
+        digVal = digitalRead(OUT_PIN);
+        unsigned long u2 = micros();
+        t = u2 &gt; u1 ? u2 - u1 : u1 - u2;
+      } while ((digVal &lt; 1) &amp;&amp; (t &lt; 400000L));
+
+      pinMode(OUT_PIN, INPUT);  //Stop charging
+      //Now we can read the level the capacitor has charged up to
+      val = analogRead(OUT_PIN);
+
+      //Discharge capacitor for next measurement
+      digitalWrite(IN_PIN, HIGH);
+      int dischargeTime = (int)(t / 1000L) * 5;
+      delay(dischargeTime);    //discharge slowly to start with
+      pinMode(OUT_PIN, OUTPUT);  //discharge remainder quickly
+      digitalWrite(OUT_PIN, LOW);
+      digitalWrite(IN_PIN, LOW);
+
+      //Calculate and print result
+      float capacitance = -(float)t / R_PULLUP
+                              / log(1.0 - (float)val / (float)MAX_ADC_VALUE);
+
+      Serial.print(F("Capacitance Value = "));
+      if (capacitance &gt; 1000.0)
+      {
+        Serial.print(capacitance / 1000.0, 2);
+        Serial.print(F(" uF"));
+      }
+      else
+      {
+        Serial.print(capacitance, 2);
+        Serial.print(F(" nF"));
+      }
+
+      Serial.print(F(" ("));
+      Serial.print(digVal == 1 ? F("Normal") : F("HighVal"));
+      Serial.print(F(", t= "));
+      Serial.print(t);
+      Serial.print(F(" us, ADC= "));
+      Serial.print(val);
+      Serial.println(F(")"));
+    }
+    while (millis() % 1000 != 0)
+      ;    
+}</pre>
+<p></div>
+<p>I&#8217;ll try to explain why I coded it this way&#8230; I tried using analogRead() to determine when the capacitor had charged up to a certain value. This could work, but analogRead() is very slow so I decided to use the input as a digital input to start with. When the input gets to about 2.5V the input will change from 0 to 1 and we stop charging the capacitor. At this point we really can&#8217;t be sure what the the voltage is across the capacitor, so we use analogRead to get an accurate value. We have taken timestamps at the start and end of the charging process, so now we have everything we need to determine the capacitance. The maths behind this is as follows:</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2014/01/RC_Charging1.png"><img class="alignnone size-medium wp-image-308" alt="RC_Charging1" src="../../../../wp-content/uploads/sites/2/2014/01/RC_Charging1-300x159.png" width="300" height="159" /></a></p>
+<p>For the circuit above, the formulas that we need are:</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2014/01/RCFormula1.png"><img class="alignnone size-medium wp-image-309" alt="RCFormula1" src="../../../../wp-content/uploads/sites/2/2014/01/RCFormula1-300x166.png" width="300" height="166" /></a></p>
+<p>Initially I assumed that the pullup resistor had a value of 30k. This won&#8217;t be correct and should be calibrated using a capacitor of a known value. Something around about 100nF &#8211; 1uF should give a good measurement (don&#8217;t use an electrolytic &#8211; these tend to have very poor tolerance, typically -20%, +80%!). By putting these numbers into the last formula, we can determine the actual pullup resistance.</p>
+<p>I used a 1uF capacitor and got the following result:</p>
+<p><span style="color: #0000ff;">Capacitance Value = 1.00 uF (Normal, t= 24704 us, ADC= 520)</span></p>
+<p><em>[Note that at this point the measured capacitance probably won&#8217;t be 1.00uF]</em></p>
+<p>Putting these numbers (C = 1e-6F, t = 0.024704s, Vc=520, Vin=1023) into the last formula gives us the result: R = 34.80 kΩ (34800Ω). For <strong>C</strong> we should use the expected value (1.00uF) rather than the measured value which, as previously stated, is likely to be different until we have done the calibration.</p>
+<p>I then tested this with various capacitors.</p>
+<p><a href="../../../../wp-content/uploads/sites/2/2014/01/dec9caps.jpg"><img class="alignnone size-medium wp-image-312" alt="dec9caps" src="../../../../wp-content/uploads/sites/2/2014/01/dec9caps-300x168.jpg" width="300" height="168" /></a></p>
+<p>These were my results:</p>
+<h2 class="collapseomatic " id="id9541"  title="Results">Results</h2><div id="target-id9541" class="collapseomatic_content "></p>
+<table width="361" border="0" cellspacing="0" cellpadding="0">
+<colgroup>
+<col width="84" />
+<col width="277" /> </colgroup>
+<tbody>
+<tr>
+<td width="84" height="17">Capacitor</td>
+<td width="277">Reading</td>
+</tr>
+<tr>
+<td height="17">5pF +-.5pF</td>
+<td>5.404 pF (185)</td>
+</tr>
+<tr>
+<td height="17">101J</td>
+<td>102.000 pF (825)</td>
+</tr>
+<tr>
+<td height="17">471K</td>
+<td>457.117 pF (971)</td>
+</tr>
+<tr>
+<td height="17">102K</td>
+<td>0.95 nF (Normal, t= 32 us, ADC= 636)</td>
+</tr>
+<tr>
+<td height="17">222K</td>
+<td>2.07 nF (Normal, t= 64 us, ADC= 602)</td>
+</tr>
+<tr>
+<td height="17">103K</td>
+<td>10.50 nF (Normal, t= 272 us, ADC= 537)</td>
+</tr>
+<tr>
+<td height="17">104K</td>
+<td>112.39 nF (Normal, t= 2800 us, ADC= 523)</td>
+</tr>
+<tr>
+<td height="17">105K</td>
+<td>986.04 nF (Normal, t= 24428 us, ADC= 521)</td>
+</tr>
+<tr>
+<td height="17">106K (tant.)</td>
+<td>11.75 uF (Normal, t= 291124 us, ADC= 521)</td>
+</tr>
+<tr>
+<td height="17">4.7u (elec.)</td>
+<td>5.02 uF (Normal, t= 124108 us, ADC= 520)</td>
+</tr>
+<tr>
+<td height="17">10u (elec.)</td>
+<td>12.12 uF (Normal, t= 299352 us, ADC= 520)</td>
+</tr>
+<tr>
+<td height="17">220u (elec.)</td>
+<td>224.77 uF (HighVal, t= 400004 us, ADC= 51)</td>
+</tr>
+<tr>
+<td height="17">1000u (elec.)</td>
+<td>1170.11 uF (HighVal, t= 400000 us, ADC= 10)</td>
+</tr>
+</tbody>
+</table>
+<p></div>
+<p>When testing electrolytics make sure that you connect the +ve end to A2 and the negative end to A0.</p>
+<p>I&#8217;m not sure how accurate this is, but I will look into this (and try to improve it if necessary) when I get a chance.</p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+		This entry was posted in <a href="../../../../category/general/index.html" rel="category tag">General</a> by <a href="../../../../author/jon/index.html">jon</a>. Bookmark the <a href="index.html" title="Permalink to Capacitance Meter Mk II" rel="bookmark">permalink</a>.		
+			</footer><!-- .entry-meta -->
+</article><!-- #post-302 -->
+
+						<div id="comments">
+	
+	
+			<h2 id="comments-title">
+			11 thoughts on &ldquo;<span>Capacitance Meter Mk II</span>&rdquo;		</h2>
+
+		
+		<ol class="commentlist">
+				<li class="comment even thread-even depth-1" id="li-comment-291">
+		<article id="comment-291" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-large.png?s=68&amp;d=mm&amp;r=g' srcset='http://0.gravatar.com/avatar/c05e0b14565de0f3e6fc2a8ffc299cc3?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn"><a href='http://www.designlibre.com/' rel='external nofollow' class='url'>André</a></span> on <a href="index.html#comment-291"><time datetime="2014-01-25T17:53:33+00:00">January 25, 2014 at 5:53 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Cool.  You know, I ran into the same problem you did when experimenting with an Arduino based component tester design.  However, for me, in order to measure small capacitances I wound up using 555s and counting its pulses.  It means extra parts and it has other disadvantages.  You took a much better path than me, I will experiment with this technique.  Cheers.</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-293">
+		<article id="comment-293" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/1de66b24ec22473be5c620e81dc2a1154165.jpeg?s=68&amp;d=mm&amp;r=g' srcset='http://1.gravatar.com/avatar/1de66b24ec22473be5c620e81dc2a115?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn"><a href='http://wb8nbs.wordpress.com/' rel='external nofollow' class='url'>Jim</a></span> on <a href="index.html#comment-293"><time datetime="2014-01-26T02:35:28+00:00">January 26, 2014 at 2:35 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>I&#8217;m interested in the tempreture sensitivity of this method.  Put the Arduino in the fridge for an hour and see if you get the same measurement.</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-jon bypostauthor even depth-2" id="li-comment-296">
+		<article id="comment-296" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-small.png?s=39&amp;d=mm&amp;r=g' srcset='http://1.gravatar.com/avatar/dc462521dac0765c59cc0734e6aea62e?s=78&amp;d=mm&amp;r=g 2x' class='avatar avatar-39 photo' height='39' width='39' /><span class="fn">jon</span> on <a href="index.html#comment-296"><time datetime="2014-01-27T10:43:10+00:00">January 27, 2014 at 10:43 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi Jim,<br />
+OK &#8211; I&#8217;ve done the test &#8211; my results are here: <a href="../../27/cap-meter-temp-stability/index.html" rel="nofollow">http://wordpress.codewrite.co.uk/pic/2014/01/27/cap-meter-temp-stability/</a><br />
+My conclusion was that I couldn&#8217;t see any temperature sensitivity. I am going to try a bit colder &#8211; in the freezer (-18degC), although I&#8217;m not sure that the Arduino is rated to work at that temperature!<br />
+Cheers, Jon.</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-300">
+		<article id="comment-300" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/1de66b24ec22473be5c620e81dc2a1154165.jpeg?s=68&amp;d=mm&amp;r=g' srcset='http://1.gravatar.com/avatar/1de66b24ec22473be5c620e81dc2a115?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn"><a href='http://wb8nbs.wordpress.com/' rel='external nofollow' class='url'>Jim</a></span> on <a href="index.html#comment-300"><time datetime="2014-01-28T22:35:38+00:00">January 28, 2014 at 10:35 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hey, thanks for doing that test.  I&#8217;m going to build this circuit with a tiny85 in an altoids tin. Got the SPI display working this afternoon. No backlight 16&#215;2 LCD draws &lt; 2 ma. <a href="http://www.flickr.com/photos/wb8nbs/12194178066/" rel="nofollow">http://www.flickr.com/photos/wb8nbs/12194178066/</a> should be able to power with coin cells or AAA batterys.</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment even depth-2" id="li-comment-929">
+		<article id="comment-929" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/762306680c167ef96cb280f4fade89a226e9.png?s=39&amp;d=mm&amp;r=g' srcset='http://1.gravatar.com/avatar/762306680c167ef96cb280f4fade89a2?s=78&amp;d=mm&amp;r=g 2x' class='avatar avatar-39 photo' height='39' width='39' /><span class="fn">Andreas</span> on <a href="index.html#comment-929"><time datetime="2015-06-07T14:01:12+00:00">June 7, 2015 at 2:01 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi,</p>
+<p>Did you success using ATtiny85? I tried 2 t85 and one t84 and they do not produce anything useful. Arduino works like a charm.</p>
+<p>I got readings all over the board and it looks like floating.</p>
+<p>Best,<br />
+Andreas</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-370">
+		<article id="comment-370" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-large.png?s=68&amp;d=mm&amp;r=g' srcset='http://0.gravatar.com/avatar/f63a8ad399e7209100331987410fc1c8?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn">Doug</span> on <a href="index.html#comment-370"><time datetime="2014-05-30T17:24:54+00:00">May 30, 2014 at 5:24 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Could you explain the calibration process better? I cant figure out how you get the numbers you put in to the calculation from the numbers you got out. If it spits out this: &#8220;Capacitance Value = 1.00 uF (Normal, t= 24704 us, ADC= 520)&#8221; then why do you put in this : &#8220;(1.0uF, 24532us, Vc=521, Vin=1023)&#8221; ? Also, is C in microFarads and t in microseconds, or do you have to convert them to Farads and seconds to use in the formula?</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-jon bypostauthor even depth-2" id="li-comment-378">
+		<article id="comment-378" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-small.png?s=39&amp;d=mm&amp;r=g' srcset='http://1.gravatar.com/avatar/dc462521dac0765c59cc0734e6aea62e?s=78&amp;d=mm&amp;r=g 2x' class='avatar avatar-39 photo' height='39' width='39' /><span class="fn">jon</span> on <a href="index.html#comment-378"><time datetime="2014-06-11T08:36:31+00:00">June 11, 2014 at 8:36 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Sorry about the slow reply.<br />
+The 1.0uF is the reference capacitor which should be as accurate as possible. The first time you do this it probably won&#8217;t display &#8220;1.0uF&#8221; as the measured reading. The numbers I have put into the formula don&#8217;t match the reported ones &#8211; so I&#8217;ll edit the post to make sure they do! If you use Farads and seconds you get the result in ohms. You could convert the ADC result to volts, but this is not necessary since we are dividing one by the other, so 521 / 1023 gives the same result as 2.546V / 5.0V.</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-410">
+		<article id="comment-410" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt=''src='../../../../../avatar/anon-large.png?s=68&amp;d=mm&amp;r=g'  srcset='http://0.gravatar.com/avatar/0fe271df0c9302db19f90f6961082cc3?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn">Victor</span> on <a href="index.html#comment-410"><time datetime="2014-07-31T04:40:13+00:00">July 31, 2014 at 4:40 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>I&#8217;m looking forward to add a feature to measure ESR on the uF range. Any idea how this could be done?</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-604">
+		<article id="comment-604" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-large.png?s=68&amp;d=mm&amp;r=g' srcset='http://1.gravatar.com/avatar/4d3b65beb1fc0ff0e4945c78a8e5ba51?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn">Gert</span> on <a href="index.html#comment-604"><time datetime="2014-11-29T18:26:53+00:00">November 29, 2014 at 6:26 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Could you explain the discharge capacitor better?<br />
+      int dischargeTime = (int)(t / 1000L) * 5;<br />
+      delay(dischargeTime);    //discharge slowly to start with<br />
+I have try to measuring with a oscilloscope, but I can se the discharge.<br />
+Nice article you have written !</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-856">
+		<article id="comment-856" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-large.png?s=68&amp;d=mm&amp;r=g' srcset='http://2.gravatar.com/avatar/b8feebe972d9a3dbcfc1d7b1f5c99dde?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn">Yogesh Babu</span> on <a href="index.html#comment-856"><time datetime="2015-05-03T18:20:55+00:00">May 3, 2015 at 6:20 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hello,<br />
+you have done a great job !!<br />
+This works for pF measurement but ,I would like to have very high resolution of the pF Meaurement ..<br />
+That is 0.001 % resolution </p>
+<p>Do you have idea how to detect  very small change in capacitance in the range of pF, that is in the range of measuring 200 to 400 pF and Resolution 0.001 ..</p>
+<p>Thanks in advance !!</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-1102">
+		<article id="comment-1102" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt='' src='../../../../../avatar/anon-large.png?s=68&amp;d=mm&amp;r=g' srcset='http://0.gravatar.com/avatar/ffcbf3a74f8153aa508679d90113c658?s=136&amp;d=mm&amp;r=g 2x' class='avatar avatar-68 photo' height='68' width='68' /><span class="fn">Eric</span> on <a href="index.html#comment-1102"><time datetime="2015-10-18T20:51:36+00:00">October 18, 2015 at 8:51 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hey code didn&#8217;t work&#8230;. it&#8217;s says f was not declared on the scope&#8230; anybody help pls</p>
+</div>
+
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+		</ol>
+
+		
+		
+	
+
+			
+</div><!-- #comments -->
+
+				
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+
+	</div><!-- #main -->
+
+	<footer id="colophon" role="contentinfo">
+
+			
+
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type='text/javascript'>
+var colomatduration = 'fast';
+var colomatslideEffect = 'slideFade';
+</script><script type='text/javascript' src='../../../../wp-includes/js/comment-reply.min5b31.js?ver=4.3.1'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jquery-collapse-o-matic/js/collapse00e2.js?ver=1.5.7'></script>
+
+</body>
+</html>
